@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2020 at 11:12 PM
+-- Generation Time: Dec 02, 2020 at 07:21 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -20,6 +20,131 @@ SET time_zone = "+00:00";
 --
 -- Database: `MoosaHospital`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `title`, `slug`, `content`, `excerpt`, `status`, `image`, `seo_title`, `meta_description`, `meta_keywords`, `created_at`, `updated_at`) VALUES
+(1, 'fsfssdfsar', 'fsfssdfsar', '<p>fsdfsdfdsdad</p>', '<p>sdfsdfsdf</p>', 'PUBLISHED', 'blogs/December2020/QfYRcMm4LOSurgOinVNg.jpg', 'sfsa', 'fsdf', 'fssfsf', '2020-12-01 12:10:00', '2020-12-01 13:30:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs_categories_relation`
+--
+
+CREATE TABLE `blogs_categories_relation` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `blog_category_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blogs_categories_relation`
+--
+
+INSERT INTO `blogs_categories_relation` (`id`, `blog_id`, `blog_category_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 1, 2, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs_tags_relation`
+--
+
+CREATE TABLE `blogs_tags_relation` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `blog_tag_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blogs_tags_relation`
+--
+
+INSERT INTO `blogs_tags_relation` (`id`, `blog_id`, `blog_tag_id`, `created_at`, `updated_at`) VALUES
+(7, 1, 8, NULL, NULL),
+(8, 1, 9, NULL, NULL),
+(9, 1, 10, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_categories`
+--
+
+CREATE TABLE `blog_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blog_categories`
+--
+
+INSERT INTO `blog_categories` (`id`, `category_name`, `slug`, `created_at`, `updated_at`, `name`) VALUES
+(1, 'blog catogry1', 'blog-catogry1', '2020-12-01 12:14:17', '2020-12-01 12:14:17', ''),
+(2, 'blog category 2', 'blog-category-2', '2020-12-01 12:14:31', '2020-12-01 12:14:31', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_tags`
+--
+
+CREATE TABLE `blog_tags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tag_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blog_tags`
+--
+
+INSERT INTO `blog_tags` (`id`, `tag_name`, `created_at`, `updated_at`) VALUES
+(1, 'tag1', '2020-12-01 12:21:56', '2020-12-01 12:21:56'),
+(2, 'tag2', '2020-12-01 13:05:47', '2020-12-01 13:05:47'),
+(3, 'tag3', '2020-12-01 13:05:55', '2020-12-01 13:05:55'),
+(4, 'tag4', '2020-12-01 13:12:05', '2020-12-01 13:12:05'),
+(5, 'tag5ar', '2020-12-01 13:12:00', '2020-12-01 13:30:08'),
+(6, 'تكميم', '2020-12-01 13:12:48', '2020-12-01 13:12:48'),
+(7, 'جراحة', '2020-12-01 16:32:51', '2020-12-01 16:32:51'),
+(8, 'جراحه', '2020-12-01 17:11:18', '2020-12-01 17:11:18'),
+(9, 'اعصاب', '2020-12-01 17:11:27', '2020-12-01 17:11:27'),
+(10, 'امراض جلديه', '2020-12-01 17:16:08', '2020-12-01 17:16:08');
 
 -- --------------------------------------------------------
 
@@ -42,7 +167,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'Category 1', 'category-1', '2020-11-18 19:17:29', '2020-11-18 19:17:29'),
+(1, NULL, 1, 'Category 1jhh', 'category-1hg', '2020-11-18 19:17:29', '2020-12-01 08:15:36'),
 (2, NULL, 1, 'Category 2', 'category-2', '2020-11-18 19:17:29', '2020-11-18 19:17:29');
 
 -- --------------------------------------------------------
@@ -100,21 +225,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
 (27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
 (28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
-(31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
-(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 4),
-(33, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 5),
-(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 6),
+(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, '{}', 2),
+(31, 5, 'category_id', 'select_multiple', 'Category', 0, 0, 1, 1, 1, 0, '{}', 3),
+(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 4),
+(33, 5, 'excerpt', 'text_area', 'Excerpt', 0, 0, 1, 1, 1, 1, '{}', 5),
+(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, '{}', 6),
 (35, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
 (36, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
-(37, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 9),
-(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 10),
-(39, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
-(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 12),
-(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 13),
-(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, NULL, 14),
-(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, NULL, 15),
+(37, 5, 'meta_description', 'text_area', 'Meta Description', 0, 0, 1, 1, 1, 1, '{}', 9),
+(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 0, 0, 1, 1, 1, 1, '{}', 10),
+(39, 5, 'status', 'select_multiple', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
+(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 12),
+(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, '{}', 14),
+(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, '{}', 15),
 (44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
 (46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
@@ -170,7 +295,31 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (105, 18, 'whatsapp_number', 'text', 'Whatsapp Number', 0, 0, 1, 1, 1, 1, '{}', 11),
 (106, 18, 'image', 'media_picker', 'Image', 1, 0, 1, 1, 1, 1, '{\"max\":1,\"min\":1,\"allowed\":[\"image\\/jpeg\",\"image\\/png\",\"image\\/bmp\"]}', 12),
 (107, 18, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 13),
-(108, 18, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14);
+(108, 18, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
+(109, 5, 'post_hasmany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"hasMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 16),
+(110, 19, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(111, 19, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 2),
+(112, 19, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:blogs,slug\"}}', 3),
+(113, 19, 'content', 'rich_text_box', 'Content', 1, 0, 1, 1, 1, 1, '{}', 4),
+(114, 19, 'excerpt', 'rich_text_box', 'Excerpt', 1, 0, 1, 1, 1, 1, '{}', 5),
+(115, 19, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 6),
+(116, 19, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
+(117, 19, 'seo_title', 'text', 'Seo Title', 0, 0, 1, 1, 1, 1, '{}', 8),
+(118, 19, 'meta_description', 'text', 'Meta Description', 1, 0, 1, 1, 1, 1, '{}', 9),
+(119, 19, 'meta_keywords', 'text', 'Meta Keywords', 1, 0, 1, 1, 1, 1, '{}', 10),
+(120, 19, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 1, 0, 1, '{}', 11),
+(121, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 12),
+(122, 20, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(123, 20, 'tag_name', 'text', 'Tag Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(125, 20, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(126, 20, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(127, 22, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(128, 22, 'category_name', 'text', 'Category Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(129, 22, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"category_name\",\"forceUpdate\":true}}', 3),
+(130, 22, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(131, 22, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(132, 19, 'blog_belongstomany_blog_category_relationship', 'relationship', 'blog categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\BlogCategory\",\"table\":\"blog_categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"category_name\",\"pivot_table\":\"blogs_categories_relation\",\"pivot\":\"1\",\"taggable\":\"0\"}', 13),
+(133, 19, 'blog_belongstomany_blog_tag_relationship', 'relationship', 'blog tags', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\BlogTag\",\"table\":\"blog_tags\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"tag_name\",\"pivot_table\":\"blogs_tags_relation\",\"pivot\":\"1\",\"taggable\":\"on\"}', 14);
 
 -- --------------------------------------------------------
 
@@ -205,14 +354,17 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-11-18 19:17:17', '2020-11-18 19:17:17'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-11-18 19:17:17', '2020-11-18 19:17:17'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-11-18 19:17:28', '2020-11-18 19:17:28'),
-(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-11-18 19:17:29', '2020-11-18 19:17:29'),
+(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-11-18 19:17:29', '2020-12-01 11:09:24'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-11-18 19:17:31', '2020-11-18 19:17:31'),
 (8, 'testimonials', 'testimonials', 'Testimonial', 'Testimonials', 'voyager-pen', 'App\\Models\\Testimonial', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-11-20 20:34:48', '2020-11-20 20:36:09'),
 (10, 'services', 'services', 'Service', 'Services', 'voyager-pie-chart', 'App\\Models\\Service', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"service_name\"}', '2020-11-22 11:00:47', '2020-11-22 11:00:47'),
 (14, 'serivce_items', 'serivce-items', 'Serivce Item', 'Serivce Items', NULL, 'App\\SerivceItem', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-11-22 13:44:25', '2020-11-22 14:32:05'),
 (15, 'patient_guide_categories', 'patient-guide-categories', 'Patient Guide Category', 'Patient Guide Categories', NULL, 'App\\Models\\PatientGuideCategory', NULL, NULL, 'patient guide categories eg: for visitors, for patient...', 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"category_name\",\"scope\":null}', '2020-11-24 07:09:08', '2020-11-30 12:11:19'),
 (16, 'patient_guids', 'patient-guids', 'Patient Guid', 'Patient Guids', NULL, 'App\\Models\\PatientGuid', NULL, NULL, 'patient guid', 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2020-11-24 08:33:46', '2020-11-24 08:41:05'),
-(18, 'doctors', 'doctors', 'Doctor', 'Doctors', 'voyager-people', 'App\\Models\\Doctor', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"name\",\"scope\":null}', '2020-11-30 14:09:50', '2020-11-30 15:03:03');
+(18, 'doctors', 'doctors', 'Doctor', 'Doctors', 'voyager-people', 'App\\Models\\Doctor', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"name\",\"scope\":null}', '2020-11-30 14:09:50', '2020-11-30 15:03:03'),
+(19, 'blogs', 'blogs', 'Blog', 'Blogs', 'voyager-window-list', 'App\\Models\\Blog', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:41:14', '2020-12-01 13:10:13'),
+(20, 'blog_tags', 'blog-tags', 'Tag', 'Tags', 'voyager-file-text', 'App\\Models\\BlogTag', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:45:59', '2020-12-01 13:09:31'),
+(22, 'blog_categories', 'blog-categories', 'Blog Category', 'Blog Categories', NULL, 'App\\Models\\BlogCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:47:27', '2020-12-01 12:08:58');
 
 -- --------------------------------------------------------
 
@@ -324,12 +476,17 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 6, '2020-11-18 19:17:32', '2020-11-22 13:27:48', 'voyager.pages.index', NULL),
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-11-18 19:17:36', '2020-11-22 13:27:49', 'voyager.hooks', NULL),
 (16, 1, 'Testimonials', '', '_self', 'voyager-pen', NULL, NULL, 10, '2020-11-20 20:34:49', '2020-11-22 13:27:49', 'voyager.testimonials.index', NULL),
-(17, 1, 'Services', '', '_self', 'voyager-pie-chart', NULL, NULL, 11, '2020-11-22 11:00:48', '2020-11-22 13:27:49', 'voyager.services.index', NULL),
-(19, 1, 'Serivce Items', '', '_self', NULL, NULL, NULL, 12, '2020-11-22 13:44:25', '2020-11-29 09:50:27', 'voyager.serivce-items.index', NULL),
+(17, 1, 'Services', '', '_self', 'voyager-pie-chart', NULL, 29, 1, '2020-11-22 11:00:48', '2020-12-01 16:21:09', 'voyager.services.index', NULL),
+(19, 1, 'Serivce Items', '', '_self', NULL, NULL, 29, 2, '2020-11-22 13:44:25', '2020-12-01 16:21:27', 'voyager.serivce-items.index', NULL),
 (20, 1, ' Guide Categories', '', '_self', NULL, '#000000', 23, 1, '2020-11-24 07:09:08', '2020-11-29 10:21:32', 'voyager.patient-guide-categories.index', 'null'),
 (21, 1, 'Patient Guids', '', '_self', NULL, NULL, 23, 2, '2020-11-24 08:33:46', '2020-11-29 10:21:34', 'voyager.patient-guids.index', NULL),
-(23, 1, 'دليل المريض', '', '_self', 'voyager-book', '#000000', NULL, 13, '2020-11-29 10:20:11', '2020-11-29 10:26:20', NULL, ''),
-(24, 1, 'Doctors', '', '_self', 'voyager-people', NULL, NULL, 14, '2020-11-30 14:09:52', '2020-11-30 14:09:52', 'voyager.doctors.index', NULL);
+(23, 1, 'دليل المريض', '', '_self', 'voyager-book', '#000000', NULL, 11, '2020-11-29 10:20:11', '2020-12-01 16:21:27', NULL, ''),
+(24, 1, 'Doctors', '', '_self', 'voyager-people', NULL, NULL, 12, '2020-11-30 14:09:52', '2020-12-01 16:21:27', 'voyager.doctors.index', NULL),
+(25, 1, 'المدونه', '', '_self', 'voyager-window-list', '#000000', 28, 1, '2020-12-01 11:41:14', '2020-12-01 13:40:10', 'voyager.blogs.index', 'null'),
+(26, 1, 'Tags', '', '_self', 'voyager-tag', '#000000', 28, 2, '2020-12-01 11:45:59', '2020-12-01 13:37:24', 'voyager.blog-tags.index', 'null'),
+(27, 1, 'Blog Categories', '', '_self', 'voyager-categories', '#000000', 28, 3, '2020-12-01 11:47:27', '2020-12-01 13:38:04', 'voyager.blog-categories.index', 'null'),
+(28, 1, 'المدونه', '', '_self', 'voyager-bag', '#000000', NULL, 13, '2020-12-01 13:36:14', '2020-12-01 16:21:27', NULL, ''),
+(29, 1, 'الخدمات', '', '_self', 'voyager-bulb', '#000000', NULL, 14, '2020-12-01 16:20:43', '2020-12-01 16:21:27', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -382,7 +539,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (32, '2020_11_24_101133_ultr_table_patient_guids_table', 7),
 (33, '2020_11_29_110159_create_visitors_guids_table', 8),
 (34, '2020_11_29_111534_ulter_visitor_guid_table', 9),
-(35, '2020_11_30_152128_create_doctors_table', 10);
+(35, '2020_11_30_152128_create_doctors_table', 10),
+(36, '2020_12_01_130501_create_blog_categories_table', 11),
+(37, '2020_12_01_130524_create_blog_tags_table', 11),
+(38, '2020_12_01_130540_create_blogs_table', 11),
+(39, '2020_12_01_132550_create_blogs_categories_relation_table', 11),
+(40, '2020_12_01_132808_create_blogs__tags_relation_table', 11),
+(41, '2020_12_01_140204_rename_blog_ctegories_name_column', 12),
+(42, '2020_12_01_140445_rename_blog_tags_name_column', 12),
+(43, '2020_12_01_150031_update_blog_tag_columns', 13),
+(44, '2020_12_01_150212_update_blog_tag_columns', 14);
 
 -- --------------------------------------------------------
 
@@ -469,7 +635,7 @@ CREATE TABLE `patient_guids` (
 
 INSERT INTO `patient_guids` (`id`, `content`, `created_at`, `updated_at`, `patient_guide_category_id`, `title`) VALUES
 (1, '<p style=\"margin-right: 20px; line-height: 19px; text-align: right;\"><strong>وثيقة حقوق ومسؤوليات المريض والأسرة</strong><br /><br />كونك مريضًا مهمًا في مستشفى الموسى التخصصي (ASH) ، تتمتع أنت وعائلتك بالحقوق التالية:<br /><br />(تُمنح حقوق الأطفال وكبار السن والمرضى غير القادرين على ممارسة حقوقهم لأسرهم / أولياء أمورهم):<br /><br />لديك الحق في فهم واستخدام جميع حقوقك: (ستتلقى نسخة مكتوبة من هذه الحقوق من مكتب الاستقبال أو مكتب التسجيل أو طاقم التمريض). إذا لم تفهمها لأي سبب من الأسباب ، يرجى الاتصال بمكتب علاقات المرضى وطلب المساعدة بما في ذلك المترجم الفوري.</p>', '2020-11-24 08:43:00', '2020-11-24 08:47:24', 2, 'حقوق المريض والأسرة'),
-(2, '<div class=\"main-content\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-12\">\n<div class=\"page-content\">\n<div class=\"doc-sec-content\">\n<p>يؤمن مستشفى الموسى التخصصي بأهمية دعم و مشاركة الأسرة والأصدقاء في عملية شفاء المريض ويقدر مدى أهمية تحديد أوقات لزيارة المرضى كأداة للمساعدة في تحقيق ذلك.</p>\n<p>&nbsp;</p>\n<p><strong>مواعيد زيارة المرضى:</strong></p>\n<p>من الساعة 12 ظهراً إلى 1 ظهراً</p>\n<p>و من الساعة 6 مساءً إلى 7 مساءً</p>\n</div>\n<p>&nbsp;</p>\n<div class=\"doc-sec-content\">\n<p><strong>لا يوجد زيارات للعناية المركزة</strong></p>\n</div>\n<div style=\"text-align: center;\"><a href=\"https://almoosahospital.org/ar/visiting-hours-policies/%d8%b3%d9%8a%d8%a7%d8%b3%d8%a9-%d8%a7%d9%84%d8%b2%d9%8a%d8%a7%d8%b1%d8%a7%d8%aa-%d9%84%d9%80-%d8%a7%d9%84%d8%b2%d8%a7%d8%a6%d8%b1-%d9%88%d8%a7%d9%84%d8%a3%d8%b3%d8%b1%d8%a9-%d9%88%d8%b4/\"><strong><span style=\"font-size: 14pt;\">إضغط هنا لمشاهدة سياسة الزيارات لـ &ldquo;الزائر والأسرة وشريك الرعاية&rdquo; خلال جائحة كورونا</span></strong></a></div>\n</div>\n</div>\n</div>\n</div>\n</div>', '2020-11-29 09:52:34', '2020-11-29 09:52:34', 1, 'ساعات الزيارة');
+(2, '<div class=\"main-content\">\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-md-12\">\n<div class=\"page-content\">\n<div class=\"doc-sec-content\">\n<p>يؤمن مستشفى الموسى التخصصي بأهمية دعم و مشاركة الأسرة والأصدقاء في عملية شفاء المريض ويقدر مدى أهمية تحديد أوقات لزيارة المرضى كأداة للمساعدة في تحقيق ذلك.</p>\n<p>&nbsp;</p>\n<p><strong>مواعيد زيارة المرضى:</strong></p>\n<p>من الساعة 12 ظهراً إلى 1 ظهراً</p>\n<p>و من الساعة 6 مساءً إلى 7 مساءً</p>\n</div>\n<p>&nbsp;</p>\n<div class=\"doc-sec-content\">\n<p><strong>لا يوجد زيارات للعناية المركزة</strong></p>\n</div>\n<div style=\"text-align: center;\"><a href=\"https://almoosahospital.org/ar/visiting-hours-policies/%d8%b3%d9%8a%d8%a7%d8%b3%d8%a9-%d8%a7%d9%84%d8%b2%d9%8a%d8%a7%d8%b1%d8%a7%d8%aa-%d9%84%d9%80-%d8%a7%d9%84%d8%b2%d8%a7%d8%a6%d8%b1-%d9%88%d8%a7%d9%84%d8%a3%d8%b3%d8%b1%d8%a9-%d9%88%d8%b4/\"><strong><span style=\"font-size: 14pt;\">إضغط هنا لمشاهدة سياسة الزيارات لـ &ldquo;الزائر والأسرة وشريك الرعاية&rdquo; خلال جائحة كورونا</span></strong></a></div>\n</div>\n</div>\n</div>\n</div>\n</div>', '2020-11-29 09:52:00', '2020-12-01 16:25:53', 1, 'ساعات الزيارة');
 
 -- --------------------------------------------------------
 
@@ -560,7 +726,22 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (83, 'read_doctors', 'doctors', '2020-11-30 14:09:52', '2020-11-30 14:09:52'),
 (84, 'edit_doctors', 'doctors', '2020-11-30 14:09:52', '2020-11-30 14:09:52'),
 (85, 'add_doctors', 'doctors', '2020-11-30 14:09:52', '2020-11-30 14:09:52'),
-(86, 'delete_doctors', 'doctors', '2020-11-30 14:09:52', '2020-11-30 14:09:52');
+(86, 'delete_doctors', 'doctors', '2020-11-30 14:09:52', '2020-11-30 14:09:52'),
+(87, 'browse_blogs', 'blogs', '2020-12-01 11:41:14', '2020-12-01 11:41:14'),
+(88, 'read_blogs', 'blogs', '2020-12-01 11:41:14', '2020-12-01 11:41:14'),
+(89, 'edit_blogs', 'blogs', '2020-12-01 11:41:14', '2020-12-01 11:41:14'),
+(90, 'add_blogs', 'blogs', '2020-12-01 11:41:14', '2020-12-01 11:41:14'),
+(91, 'delete_blogs', 'blogs', '2020-12-01 11:41:14', '2020-12-01 11:41:14'),
+(92, 'browse_blog_tags', 'blog_tags', '2020-12-01 11:45:59', '2020-12-01 11:45:59'),
+(93, 'read_blog_tags', 'blog_tags', '2020-12-01 11:45:59', '2020-12-01 11:45:59'),
+(94, 'edit_blog_tags', 'blog_tags', '2020-12-01 11:45:59', '2020-12-01 11:45:59'),
+(95, 'add_blog_tags', 'blog_tags', '2020-12-01 11:45:59', '2020-12-01 11:45:59'),
+(96, 'delete_blog_tags', 'blog_tags', '2020-12-01 11:45:59', '2020-12-01 11:45:59'),
+(97, 'browse_blog_categories', 'blog_categories', '2020-12-01 11:47:27', '2020-12-01 11:47:27'),
+(98, 'read_blog_categories', 'blog_categories', '2020-12-01 11:47:27', '2020-12-01 11:47:27'),
+(99, 'edit_blog_categories', 'blog_categories', '2020-12-01 11:47:27', '2020-12-01 11:47:27'),
+(100, 'add_blog_categories', 'blog_categories', '2020-12-01 11:47:27', '2020-12-01 11:47:27'),
+(101, 'delete_blog_categories', 'blog_categories', '2020-12-01 11:47:27', '2020-12-01 11:47:27');
 
 -- --------------------------------------------------------
 
@@ -650,7 +831,22 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (83, 1),
 (84, 1),
 (85, 1),
-(86, 1);
+(86, 1),
+(87, 1),
+(88, 1),
+(89, 1),
+(90, 1),
+(91, 1),
+(92, 1),
+(93, 1),
+(94, 1),
+(95, 1),
+(96, 1),
+(97, 1),
+(98, 1),
+(99, 1),
+(100, 1),
+(101, 1);
 
 -- --------------------------------------------------------
 
@@ -681,8 +877,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'تبخستبخسب هب تسخبسخ ', '', 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/November2020/t8Dv9zZIktNhvo1ptTux.png', 'tbkhstbkhsb-hb-tskhbskh', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-11-18 19:17:31', '2020-11-20 16:02:44'),
-(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-11-18 19:17:31', '2020-11-18 19:17:31'),
+(1, 1, 1, 'تبخستبخسب هب تسخبسخ ', '', 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/November2020/t8Dv9zZIktNhvo1ptTux.png', 'tbkhstbkhsb-hb-tskhbskh', 'This is the meta description', 'keyword1, keyword2, keyword3', 'DRAFT', 0, '2020-11-18 19:17:31', '2020-12-01 10:20:20'),
+(2, 1, 1, 'My Sample Postbgfj', '', 'This is the excerpt for the sample Post', '<p>This is the body for the sample pos</p>\n<p style=\"padding-left: 80px;\"><img style=\"float: left;\" src=\"http://localhost:8000/storage/posts/December2020/doctor.jpg\" alt=\"\" width=\"200\" height=\"227\" />kyh</p>\n<p>t, which includes the body.</p>\n<h2>We can use all kinds of form</h2>\n<h2>at!</h2>\n<p>And include a bunch of other stuff</p>\n<p>dgdgdgdgd</p>\n<p>hkfhshogh dhvdoighoi</p>', 'posts/post2.jpg', 'my-sample-postbgfj', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-11-18 19:17:31', '2020-12-01 10:16:40'),
 (3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-11-18 19:17:31', '2020-11-18 19:17:31'),
 (4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-11-18 19:17:31', '2020-11-18 19:17:31');
 
@@ -964,7 +1160,73 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (131, 'doctors', 'name', 2, 'en', 'Dr. Ahmed Elmasry', '2020-11-30 14:57:53', '2020-11-30 14:57:53'),
 (132, 'doctors', 'title', 2, 'en', 'consultant cardiologist', '2020-11-30 14:57:53', '2020-11-30 14:57:53'),
 (133, 'doctors', 'qualifications', 2, 'en', ' 	cardiology consultant  ', '2020-11-30 14:57:53', '2020-11-30 14:57:53'),
-(134, 'doctors', 'current_positions', 2, 'en', ' 	cardiology consultant ', '2020-11-30 14:57:53', '2020-11-30 14:57:53');
+(134, 'doctors', 'current_positions', 2, 'en', ' 	cardiology consultant ', '2020-11-30 14:57:53', '2020-11-30 14:57:53'),
+(135, 'categories', 'name', 1, 'en', 'Category 1', '2020-12-01 08:15:36', '2020-12-01 08:15:36'),
+(136, 'categories', 'slug', 1, 'en', 'category-1', '2020-12-01 08:15:36', '2020-12-01 08:15:36'),
+(137, 'posts', 'title', 2, 'en', 'My Sample Post', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(138, 'posts', 'excerpt', 2, 'en', 'This is the excerpt for the sample Post', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(139, 'posts', 'body', 2, 'en', '<p>This is the body for the sample post, which includes the body.</p>\n<h2>We can use all kinds of format!</h2>\n<p>And include a bunch of other stuff.</p>', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(140, 'posts', 'slug', 2, 'en', 'my-sample-post', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(141, 'posts', 'meta_description', 2, 'en', 'Meta Description for sample post', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(142, 'posts', 'meta_keywords', 2, 'en', 'keyword1, keyword2, keyword3', '2020-12-01 10:15:28', '2020-12-01 10:15:28'),
+(143, 'data_rows', 'display_name', 29, 'en', 'ID', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(144, 'data_rows', 'display_name', 30, 'en', 'Author', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(145, 'data_rows', 'display_name', 31, 'en', 'Category', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(146, 'data_rows', 'display_name', 32, 'en', 'Title', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(147, 'data_rows', 'display_name', 42, 'en', 'SEO Title', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(148, 'data_rows', 'display_name', 33, 'en', 'Excerpt', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(149, 'data_rows', 'display_name', 34, 'en', 'Body', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(150, 'data_rows', 'display_name', 35, 'en', 'Post Image', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(151, 'data_rows', 'display_name', 36, 'en', 'Slug', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(152, 'data_rows', 'display_name', 37, 'en', 'Meta Description', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(153, 'data_rows', 'display_name', 38, 'en', 'Meta Keywords', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(154, 'data_rows', 'display_name', 39, 'en', 'Status', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(155, 'data_rows', 'display_name', 43, 'en', 'Featured', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(156, 'data_rows', 'display_name', 40, 'en', 'Created At', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(157, 'data_rows', 'display_name', 41, 'en', 'Updated At', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(158, 'data_types', 'display_name_singular', 5, 'en', 'Post', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(159, 'data_types', 'display_name_plural', 5, 'en', 'Posts', '2020-12-01 10:23:28', '2020-12-01 10:23:28'),
+(160, 'data_rows', 'display_name', 109, 'en', 'categories', '2020-12-01 11:01:23', '2020-12-01 11:01:23'),
+(161, 'data_rows', 'display_name', 110, 'en', 'Id', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(162, 'data_rows', 'display_name', 111, 'en', 'Title', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(163, 'data_rows', 'display_name', 112, 'en', 'Slug', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(164, 'data_rows', 'display_name', 113, 'en', 'Content', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(165, 'data_rows', 'display_name', 114, 'en', 'Excerpt', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(166, 'data_rows', 'display_name', 115, 'en', 'Status', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(167, 'data_rows', 'display_name', 116, 'en', 'Image', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(168, 'data_rows', 'display_name', 117, 'en', 'Seo Title', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(169, 'data_rows', 'display_name', 118, 'en', 'Meta Description', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(170, 'data_rows', 'display_name', 119, 'en', 'Meta Keywords', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(171, 'data_rows', 'display_name', 120, 'en', 'Created At', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(172, 'data_rows', 'display_name', 121, 'en', 'Updated At', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(173, 'data_rows', 'display_name', 132, 'en', 'blog_categories', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(174, 'data_types', 'display_name_singular', 19, 'en', 'Blog', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(175, 'data_types', 'display_name_plural', 19, 'en', 'Blogs', '2020-12-01 11:53:23', '2020-12-01 11:53:23'),
+(176, 'data_rows', 'display_name', 127, 'en', 'Id', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(177, 'data_rows', 'display_name', 128, 'en', 'Category Name', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(178, 'data_rows', 'display_name', 129, 'en', 'Slug', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(179, 'data_rows', 'display_name', 130, 'en', 'Created At', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(180, 'data_rows', 'display_name', 131, 'en', 'Updated At', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(181, 'data_types', 'display_name_singular', 22, 'en', 'Blog Category', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(182, 'data_types', 'display_name_plural', 22, 'en', 'Blog Categories', '2020-12-01 12:08:58', '2020-12-01 12:08:58'),
+(183, 'data_rows', 'display_name', 122, 'en', 'Id', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(184, 'data_rows', 'display_name', 123, 'en', 'Tag Name', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(185, 'data_rows', 'display_name', 124, 'en', 'Slug', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(186, 'data_rows', 'display_name', 125, 'en', 'Created At', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(187, 'data_rows', 'display_name', 126, 'en', 'Updated At', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(188, 'data_types', 'display_name_singular', 20, 'en', 'Tag', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(189, 'data_types', 'display_name_plural', 20, 'en', 'Tags', '2020-12-01 12:09:30', '2020-12-01 12:09:30'),
+(190, 'data_rows', 'display_name', 133, 'en', 'blog_tags', '2020-12-01 12:19:38', '2020-12-01 12:19:38'),
+(191, 'blog_tags', 'tag_name', 5, 'en', 'tag5', '2020-12-01 13:30:08', '2020-12-01 13:30:08'),
+(192, 'blogs', 'title', 1, 'en', 'fsfssdfs', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
+(193, 'blogs', 'content', 1, 'en', '<p>fsdfsdfds</p>', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
+(194, 'blogs', 'excerpt', 1, 'en', '<p>sdfsdfsdf</p>', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
+(195, 'menu_items', 'title', 28, 'en', 'Blog', '2020-12-01 13:36:14', '2020-12-01 13:36:14'),
+(196, 'menu_items', 'title', 26, 'en', 'Tags', '2020-12-01 13:37:24', '2020-12-01 13:37:24'),
+(197, 'menu_items', 'title', 27, 'en', 'Blog Categories', '2020-12-01 13:38:04', '2020-12-01 13:38:04'),
+(198, 'menu_items', 'title', 25, 'en', 'Blog Items', '2020-12-01 13:39:09', '2020-12-01 13:40:10'),
+(199, 'menu_items', 'title', 29, 'en', 'Services', '2020-12-01 16:20:44', '2020-12-01 16:20:44'),
+(200, 'blog_tags', 'tag_name', 7, 'en', 'sergien', '2020-12-01 16:32:51', '2020-12-01 16:32:51');
 
 -- --------------------------------------------------------
 
@@ -991,7 +1253,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$M7mgKziT4H9xUyRIwpiFuu.d2QQX97N76kr31ImbXluccZc/TEmi2', '3ASnGFHIoyZYGgteSGy0MgrLnlJjAHkjHQVxSi9kfy4RZzHZFrVmEYzy3XGk', '{\"locale\":\"en\"}', '2020-11-18 19:17:29', '2020-11-30 15:22:14'),
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$M7mgKziT4H9xUyRIwpiFuu.d2QQX97N76kr31ImbXluccZc/TEmi2', 'IdydY6xsgWRtsPRjOkFAAIpFrEupH8Crz15YzH6dhVyQ0wr37sFPidfdLmAV', '{\"locale\":\"en\"}', '2020-11-18 19:17:29', '2020-12-01 17:33:03'),
 (2, 1, 'aziz', 'aziz@uppermedic.com', 'users/default.png', NULL, '$2y$10$VqHpymjsy1X.uxg0o.vmzeLUoLZadGXtkB3Z50mC/5y9dOWoqGA6y', NULL, '{\"locale\":\"en\"}', '2020-11-20 19:04:12', '2020-11-24 06:34:14');
 
 -- --------------------------------------------------------
@@ -1008,6 +1270,38 @@ CREATE TABLE `user_roles` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `blogs_slug_unique` (`slug`);
+
+--
+-- Indexes for table `blogs_categories_relation`
+--
+ALTER TABLE `blogs_categories_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blogs_tags_relation`
+--
+ALTER TABLE `blogs_tags_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `blog_categories_slug_unique` (`slug`);
+
+--
+-- Indexes for table `blog_tags`
+--
+ALTER TABLE `blog_tags`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -1179,6 +1473,36 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `blogs_categories_relation`
+--
+ALTER TABLE `blogs_categories_relation`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `blogs_tags_relation`
+--
+ALTER TABLE `blogs_tags_relation`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `blog_tags`
+--
+ALTER TABLE `blog_tags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -1188,13 +1512,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -1218,13 +1542,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1248,7 +1572,7 @@ ALTER TABLE `patient_guids`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -1296,7 +1620,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `users`
