@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2020 at 03:25 PM
+-- Generation Time: Dec 02, 2020 at 06:12 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -420,6 +420,82 @@ INSERT INTO `doctors` (`id`, `slug`, `name`, `title`, `qualifications`, `current
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `cost` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `speaker_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attendance` int(11) NOT NULL DEFAULT 0,
+  `category_id` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_attendances`
+--
+
+CREATE TABLE `event_attendances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `firstName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_id` bigint(20) UNSIGNED NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_categories`
+--
+
+CREATE TABLE `event_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_timelines`
+--
+
+CREATE TABLE `event_timelines` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lecture_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start` time NOT NULL,
+  `end` time NOT NULL,
+  `event_id` bigint(20) UNSIGNED NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -600,7 +676,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2020_12_02_090633_create_video_galleries_table', 17),
 (48, '2020_12_02_102923_create_events_table', 18),
 (49, '2020_12_02_120125_create_event_categories_table', 19),
-(50, '2020_12_02_123913_create_event_attendances_table', 20);
+(50, '2020_12_02_123913_create_event_attendances_table', 20),
+(51, '2020_12_02_150314_create_events_table', 21),
+(52, '2020_12_02_151254_create_event_attendances_table', 22),
+(53, '2020_12_02_151616_create_event_categories_table', 22),
+(54, '2020_12_02_151736_create_event_timelines_table', 22);
 
 -- --------------------------------------------------------
 
@@ -1473,6 +1553,32 @@ ALTER TABLE `doctors`
   ADD UNIQUE KEY `doctors_slug_unique` (`slug`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_attendances`
+--
+ALTER TABLE `event_attendances`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_attendances_event_id_foreign` (`event_id`);
+
+--
+-- Indexes for table `event_categories`
+--
+ALTER TABLE `event_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_timelines`
+--
+ALTER TABLE `event_timelines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_timelines_event_id_foreign` (`event_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1684,6 +1790,30 @@ ALTER TABLE `doctors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `event_attendances`
+--
+ALTER TABLE `event_attendances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `event_categories`
+--
+ALTER TABLE `event_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `event_timelines`
+--
+ALTER TABLE `event_timelines`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1711,7 +1841,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1818,6 +1948,18 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `data_rows`
   ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `event_attendances`
+--
+ALTER TABLE `event_attendances`
+  ADD CONSTRAINT `event_attendances_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`);
+
+--
+-- Constraints for table `event_timelines`
+--
+ALTER TABLE `event_timelines`
+  ADD CONSTRAINT `event_timelines_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `menu_items`
