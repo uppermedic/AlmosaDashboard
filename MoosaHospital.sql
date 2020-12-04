@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2020 at 06:12 PM
+-- Generation Time: Dec 04, 2020 at 11:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -92,7 +92,8 @@ CREATE TABLE `blogs_tags_relation` (
 INSERT INTO `blogs_tags_relation` (`id`, `blog_id`, `blog_tag_id`, `created_at`, `updated_at`) VALUES
 (7, 1, 8, NULL, NULL),
 (8, 1, 9, NULL, NULL),
-(9, 1, 10, NULL, NULL);
+(9, 1, 10, NULL, NULL),
+(10, 1, 11, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,8 @@ INSERT INTO `blog_tags` (`id`, `tag_name`, `created_at`, `updated_at`) VALUES
 (7, 'جراحة', '2020-12-01 16:32:51', '2020-12-01 16:32:51'),
 (8, 'جراحه', '2020-12-01 17:11:18', '2020-12-01 17:11:18'),
 (9, 'اعصاب', '2020-12-01 17:11:27', '2020-12-01 17:11:27'),
-(10, 'امراض جلديه', '2020-12-01 17:16:08', '2020-12-01 17:16:08');
+(10, 'امراض جلديه', '2020-12-01 17:16:08', '2020-12-01 17:16:08'),
+(11, 'tag66', '2020-12-04 20:25:15', '2020-12-04 20:25:15');
 
 -- --------------------------------------------------------
 
@@ -336,7 +338,50 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (147, 25, 'video_url', 'text', 'Video Url', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|url\",\"messages\":{\"required\":\"This :attribute field is a must.\",\"url\":\"please wrte valide video url\"}}}', 3),
 (148, 25, 'bg_image', 'image', 'Background Image', 1, 1, 1, 1, 1, 1, '{}', 4),
 (149, 25, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
-(150, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6);
+(150, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(151, 27, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(152, 27, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\" :attribute required\"}}}', 2),
+(153, 27, 'start_date', 'date', 'Start Date', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\" :attribute required\"}}}', 3),
+(154, 27, 'end_date', 'date', 'End Date', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\" :attribute required\"}}}', 4),
+(155, 27, 'cost', 'number', 'التكلفه', 0, 0, 1, 1, 1, 1, '{}', 5),
+(156, 27, 'image', 'image', 'Image', 1, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":null},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 6),
+(157, 27, 'content', 'rich_text_box', 'Description', 1, 0, 1, 1, 1, 1, '{}', 7),
+(158, 27, 'speaker_name', 'text', 'Speaker Name', 1, 0, 1, 1, 1, 1, '{}', 8),
+(159, 27, 'location', 'text', 'Location', 0, 0, 1, 1, 1, 1, '{}', 9),
+(160, 27, 'phone', 'text', 'Contact Phone', 0, 0, 1, 1, 1, 1, '{}', 10),
+(161, 27, 'email', 'text', 'Contact Email', 0, 0, 1, 1, 1, 1, '{}', 11),
+(162, 27, 'attendance', 'number', 'Attendance', 1, 1, 1, 0, 0, 1, '{}', 12),
+(164, 27, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 0, '{}', 14),
+(165, 27, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 15),
+(166, 27, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 16),
+(167, 27, 'event_hasone_event_category_relationship', 'relationship', 'نوع الحدث', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\EventCategory\",\"table\":\"event_categories\",\"type\":\"belongsTo\",\"column\":\"event_category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 17),
+(168, 29, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(169, 29, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute required\"}}}', 2),
+(170, 29, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 3),
+(171, 29, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(172, 29, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(173, 27, 'event_category_id', 'text', 'Event Category Id', 0, 1, 1, 1, 1, 1, '{}', 16),
+(174, 31, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(175, 31, 'firstName', 'text', 'FirstName', 1, 1, 1, 1, 1, 1, '{}', 2),
+(176, 31, 'lastName', 'text', 'LastName', 1, 0, 1, 1, 1, 1, '{}', 4),
+(177, 31, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 5),
+(178, 31, 'city', 'text', 'City', 1, 1, 1, 1, 1, 1, '{}', 6),
+(179, 31, 'phone', 'text', 'Phone', 1, 1, 1, 1, 1, 1, '{}', 7),
+(180, 31, 'event_id', 'number', 'Event Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(181, 31, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 8),
+(182, 31, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(183, 31, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(184, 31, 'event_attendance_belongsto_event_relationship', 'relationship', 'events', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Event\",\"table\":\"events\",\"type\":\"belongsTo\",\"column\":\"event_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
+(185, 33, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(186, 33, 'title', 'text', 'Topic name', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this field requiered\"}}}', 3),
+(187, 33, 'lecture_title', 'text', 'Lecture Title', 1, 1, 1, 1, 1, 1, '{}', 4),
+(188, 33, 'start', 'time', 'Start', 1, 1, 1, 1, 1, 1, '{}', 5),
+(189, 33, 'end', 'time', 'End', 1, 1, 1, 1, 1, 1, '{}', 6),
+(190, 33, 'event_id', 'number', 'Event Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(191, 33, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 7),
+(192, 33, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
+(193, 33, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(194, 33, 'event_timeline_belongsto_event_relationship', 'relationship', 'events', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Event\",\"table\":\"events\",\"type\":\"belongsTo\",\"column\":\"event_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10);
 
 -- --------------------------------------------------------
 
@@ -384,7 +429,11 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (22, 'blog_categories', 'blog-categories', 'Blog Category', 'Blog Categories', NULL, 'App\\Models\\BlogCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:47:27', '2020-12-01 12:08:58'),
 (23, 'hakeem_magazines', 'hakeem-magazines', 'Hakeem Magazine', 'Hakeem Magazines', 'voyager-window-list', 'App\\Models\\HakeemMagazine', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-02 05:27:17', '2020-12-02 05:27:17'),
 (24, 'photo_galleries', 'photo-galleries', 'Photo Gallery', 'Photo Galleries', 'voyager-photo', 'App\\Models\\PhotoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-02 06:06:44', '2020-12-02 06:28:13'),
-(25, 'video_galleries', 'video-galleries', 'Video Gallery', 'Video Galleries', 'voyager-video', 'App\\Models\\VideoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-02 07:15:39', '2020-12-02 07:15:39');
+(25, 'video_galleries', 'video-galleries', 'Video Gallery', 'Video Galleries', 'voyager-video', 'App\\Models\\VideoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-02 07:15:39', '2020-12-02 07:15:39'),
+(27, 'events', 'events', 'حدث', 'الأحداث', 'voyager-activity', 'App\\Models\\Event', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 16:07:38', '2020-12-04 19:02:55'),
+(29, 'event_categories', 'event-categories', 'Event Category', 'Event Categories', 'voyager-categories', 'App\\Models\\EventCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 16:58:04', '2020-12-04 17:41:03'),
+(31, 'event_attendances', 'event-attendances', 'Event Attendance', 'Event Attendances', 'voyager-people', 'App\\Models\\EventAttendance', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 19:18:50', '2020-12-04 19:23:29'),
+(33, 'event_timelines', 'event-timelines', 'Event Timeline', 'Event Timelines', 'voyager-alarm-clock', 'App\\Models\\EventTimeline', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 19:57:53', '2020-12-04 20:08:24');
 
 -- --------------------------------------------------------
 
@@ -436,11 +485,18 @@ CREATE TABLE `events` (
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attendance` int(11) NOT NULL DEFAULT 0,
-  `category_id` int(11) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `event_category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `start_date`, `end_date`, `cost`, `image`, `content`, `speaker_name`, `location`, `phone`, `email`, `attendance`, `deleted_at`, `created_at`, `updated_at`, `event_category_id`) VALUES
+(1, 'الحدث الاول ', '2020-12-30', '2020-12-31', NULL, 'events/December2020/RPLHgsyhFw7RHzLd3j9K.png', '<p>ماذا يهدف هذا الحدث</p>', 'ا.د احمد', '12 ش المملكة', '2154874542', 'info@google.com', 0, NULL, '2020-12-04 17:56:00', '2020-12-04 19:03:11', 3);
 
 -- --------------------------------------------------------
 
@@ -461,6 +517,13 @@ CREATE TABLE `event_attendances` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `event_attendances`
+--
+
+INSERT INTO `event_attendances` (`id`, `firstName`, `lastName`, `email`, `city`, `phone`, `event_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'aziz', 'adel', 'aziz@emil.com', 'cairo', '21547877', 1, NULL, '2020-12-04 19:24:26', '2020-12-04 19:24:26');
+
 -- --------------------------------------------------------
 
 --
@@ -474,6 +537,15 @@ CREATE TABLE `event_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_categories`
+--
+
+INSERT INTO `event_categories` (`id`, `name`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'صحة', NULL, '2020-12-04 17:38:25', '2020-12-04 17:38:25'),
+(2, 'كورسات', NULL, '2020-12-04 17:39:04', '2020-12-04 17:39:04'),
+(3, 'المؤتمرات', NULL, '2020-12-04 17:39:52', '2020-12-04 17:39:52');
 
 -- --------------------------------------------------------
 
@@ -492,6 +564,13 @@ CREATE TABLE `event_timelines` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_timelines`
+--
+
+INSERT INTO `event_timelines` (`id`, `title`, `lecture_title`, `start`, `end`, `event_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'اليوم الاول', ' المحاضرة الاولي', '12:00:00', '17:00:00', 1, NULL, '2020-12-04 20:09:00', '2020-12-04 20:19:22');
 
 -- --------------------------------------------------------
 
@@ -608,7 +687,12 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (30, 1, 'مجله حكيم', '', '_self', 'voyager-window-list', '#000000', 33, 1, '2020-12-02 05:27:18', '2020-12-02 07:21:54', 'voyager.hakeem-magazines.index', 'null'),
 (31, 1, 'معرض الصور', '', '_self', 'voyager-photo', '#000000', 33, 2, '2020-12-02 06:06:44', '2020-12-02 07:21:27', 'voyager.photo-galleries.index', 'null'),
 (32, 1, 'الفديوهات', '', '_self', 'voyager-video', '#000000', 33, 3, '2020-12-02 07:15:40', '2020-12-02 07:22:11', 'voyager.video-galleries.index', 'null'),
-(33, 1, 'المركز الاعلامي', '', '_self', 'voyager-play', '#000000', NULL, 15, '2020-12-02 07:21:04', '2020-12-02 07:21:32', NULL, '');
+(33, 1, 'المركز الاعلامي', '', '_self', 'voyager-play', '#000000', NULL, 15, '2020-12-02 07:21:04', '2020-12-02 07:21:32', NULL, ''),
+(34, 1, 'الاحداث', '', '_self', 'voyager-activity', '#000000', 36, 1, '2020-12-04 16:07:39', '2020-12-04 19:20:51', 'voyager.events.index', 'null'),
+(35, 1, 'انواع الحدث', '', '_self', 'voyager-categories', '#000000', 36, 2, '2020-12-04 16:58:04', '2020-12-04 17:44:28', 'voyager.event-categories.index', 'null'),
+(36, 1, 'تدريب و تعلم', '', '_self', 'voyager-certificate', '#000000', NULL, 16, '2020-12-04 17:44:12', '2020-12-04 17:44:28', NULL, ''),
+(37, 1, 'المشتركين', '', '_self', 'voyager-people', '#000000', 36, 3, '2020-12-04 19:18:50', '2020-12-04 19:20:32', 'voyager.event-attendances.index', 'null'),
+(38, 1, 'Event Timelines', '', '_self', 'voyager-alarm-clock', NULL, 36, 4, '2020-12-04 19:57:53', '2020-12-04 19:58:21', 'voyager.event-timelines.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -888,7 +972,27 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (113, 'read_video_galleries', 'video_galleries', '2020-12-02 07:15:40', '2020-12-02 07:15:40'),
 (114, 'edit_video_galleries', 'video_galleries', '2020-12-02 07:15:40', '2020-12-02 07:15:40'),
 (115, 'add_video_galleries', 'video_galleries', '2020-12-02 07:15:40', '2020-12-02 07:15:40'),
-(116, 'delete_video_galleries', 'video_galleries', '2020-12-02 07:15:40', '2020-12-02 07:15:40');
+(116, 'delete_video_galleries', 'video_galleries', '2020-12-02 07:15:40', '2020-12-02 07:15:40'),
+(117, 'browse_events', 'events', '2020-12-04 16:07:39', '2020-12-04 16:07:39'),
+(118, 'read_events', 'events', '2020-12-04 16:07:39', '2020-12-04 16:07:39'),
+(119, 'edit_events', 'events', '2020-12-04 16:07:39', '2020-12-04 16:07:39'),
+(120, 'add_events', 'events', '2020-12-04 16:07:39', '2020-12-04 16:07:39'),
+(121, 'delete_events', 'events', '2020-12-04 16:07:39', '2020-12-04 16:07:39'),
+(122, 'browse_event_categories', 'event_categories', '2020-12-04 16:58:04', '2020-12-04 16:58:04'),
+(123, 'read_event_categories', 'event_categories', '2020-12-04 16:58:04', '2020-12-04 16:58:04'),
+(124, 'edit_event_categories', 'event_categories', '2020-12-04 16:58:04', '2020-12-04 16:58:04'),
+(125, 'add_event_categories', 'event_categories', '2020-12-04 16:58:04', '2020-12-04 16:58:04'),
+(126, 'delete_event_categories', 'event_categories', '2020-12-04 16:58:04', '2020-12-04 16:58:04'),
+(127, 'browse_event_attendances', 'event_attendances', '2020-12-04 19:18:50', '2020-12-04 19:18:50'),
+(128, 'read_event_attendances', 'event_attendances', '2020-12-04 19:18:50', '2020-12-04 19:18:50'),
+(129, 'edit_event_attendances', 'event_attendances', '2020-12-04 19:18:50', '2020-12-04 19:18:50'),
+(130, 'add_event_attendances', 'event_attendances', '2020-12-04 19:18:50', '2020-12-04 19:18:50'),
+(131, 'delete_event_attendances', 'event_attendances', '2020-12-04 19:18:50', '2020-12-04 19:18:50'),
+(132, 'browse_event_timelines', 'event_timelines', '2020-12-04 19:57:53', '2020-12-04 19:57:53'),
+(133, 'read_event_timelines', 'event_timelines', '2020-12-04 19:57:53', '2020-12-04 19:57:53'),
+(134, 'edit_event_timelines', 'event_timelines', '2020-12-04 19:57:53', '2020-12-04 19:57:53'),
+(135, 'add_event_timelines', 'event_timelines', '2020-12-04 19:57:53', '2020-12-04 19:57:53'),
+(136, 'delete_event_timelines', 'event_timelines', '2020-12-04 19:57:53', '2020-12-04 19:57:53');
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1112,27 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (113, 1),
 (114, 1),
 (115, 1),
-(116, 1);
+(116, 1),
+(117, 1),
+(118, 1),
+(119, 1),
+(120, 1),
+(121, 1),
+(122, 1),
+(123, 1),
+(124, 1),
+(125, 1),
+(126, 1),
+(127, 1),
+(128, 1),
+(129, 1),
+(130, 1),
+(131, 1),
+(132, 1),
+(133, 1),
+(134, 1),
+(135, 1),
+(136, 1);
 
 -- --------------------------------------------------------
 
@@ -1423,7 +1547,71 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (211, 'video_galleries', 'title', 1, 'en', 'When should you get a diabetes test to make sure you are safe and free of infection?', '2020-12-02 07:19:04', '2020-12-02 07:19:04'),
 (212, 'menu_items', 'title', 33, 'en', 'Media Center', '2020-12-02 07:21:04', '2020-12-02 07:21:04'),
 (213, 'menu_items', 'title', 30, 'en', 'Hakeem Magazines', '2020-12-02 07:21:54', '2020-12-02 07:21:54'),
-(214, 'menu_items', 'title', 32, 'en', 'Video Galleries', '2020-12-02 07:22:11', '2020-12-02 07:22:11');
+(214, 'menu_items', 'title', 32, 'en', 'Video Galleries', '2020-12-02 07:22:11', '2020-12-02 07:22:11'),
+(215, 'data_rows', 'display_name', 151, 'en', 'Id', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(216, 'data_rows', 'display_name', 152, 'en', 'Title', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(217, 'data_rows', 'display_name', 153, 'en', 'Start Date', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(218, 'data_rows', 'display_name', 154, 'en', 'End Date', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(219, 'data_rows', 'display_name', 155, 'en', 'Cost', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(220, 'data_rows', 'display_name', 156, 'en', 'Image', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(221, 'data_rows', 'display_name', 157, 'en', 'Description', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(222, 'data_rows', 'display_name', 158, 'en', 'Speaker Name', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(223, 'data_rows', 'display_name', 159, 'en', 'Location', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(224, 'data_rows', 'display_name', 160, 'en', 'Contact Phone', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(225, 'data_rows', 'display_name', 161, 'en', 'Contact Email', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(226, 'data_rows', 'display_name', 162, 'en', 'Attendance', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(227, 'data_rows', 'display_name', 163, 'en', 'Category Id', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(228, 'data_rows', 'display_name', 164, 'en', 'Deleted At', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(229, 'data_rows', 'display_name', 165, 'en', 'Created At', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(230, 'data_rows', 'display_name', 166, 'en', 'Updated At', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(231, 'data_rows', 'display_name', 167, 'en', 'event categories', '2020-12-04 16:11:59', '2020-12-04 16:12:46'),
+(232, 'data_types', 'display_name_singular', 27, 'en', 'Event', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(233, 'data_types', 'display_name_plural', 27, 'en', 'Events', '2020-12-04 16:11:59', '2020-12-04 16:11:59'),
+(234, 'event_categories', 'name', 1, 'en', 'Health', '2020-12-04 17:38:25', '2020-12-04 17:38:25'),
+(235, 'event_categories', 'name', 2, 'en', 'cources', '2020-12-04 17:39:05', '2020-12-04 17:39:05'),
+(236, 'event_categories', 'name', 3, 'en', 'Confernces', '2020-12-04 17:39:52', '2020-12-04 17:39:52'),
+(237, 'data_rows', 'display_name', 168, 'en', 'Id', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(238, 'data_rows', 'display_name', 169, 'en', 'Name', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(239, 'data_rows', 'display_name', 170, 'en', 'Deleted At', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(240, 'data_rows', 'display_name', 171, 'en', 'Created At', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(241, 'data_rows', 'display_name', 172, 'en', 'Updated At', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(242, 'data_types', 'display_name_singular', 29, 'en', 'Event Category', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(243, 'data_types', 'display_name_plural', 29, 'en', 'Event Categories', '2020-12-04 17:41:03', '2020-12-04 17:41:03'),
+(244, 'menu_items', 'title', 35, 'en', 'Event Categories', '2020-12-04 17:42:09', '2020-12-04 17:42:09'),
+(245, 'menu_items', 'title', 36, 'en', 'Training & Education', '2020-12-04 17:44:12', '2020-12-04 17:44:12'),
+(246, 'events', 'title', 1, 'en', 'event title', '2020-12-04 17:56:13', '2020-12-04 17:56:13'),
+(247, 'events', 'content', 1, 'en', '<h2><span style=\"color: #3366ff;\"><strong>event description</strong></span></h2>', '2020-12-04 17:56:13', '2020-12-04 17:56:13'),
+(248, 'events', 'speaker_name', 1, 'en', 'Dr.Ahmed', '2020-12-04 17:56:13', '2020-12-04 17:56:13'),
+(249, 'events', 'location', 1, 'en', '125 st london', '2020-12-04 17:56:13', '2020-12-04 17:56:13'),
+(250, 'menu_items', 'title', 37, 'en', 'Event Attendances', '2020-12-04 19:20:32', '2020-12-04 19:20:32'),
+(251, 'menu_items', 'title', 34, 'en', 'Events', '2020-12-04 19:20:51', '2020-12-04 19:20:51'),
+(252, 'data_rows', 'display_name', 174, 'en', 'Id', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(253, 'data_rows', 'display_name', 175, 'en', 'FirstName', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(254, 'data_rows', 'display_name', 176, 'en', 'LastName', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(255, 'data_rows', 'display_name', 177, 'en', 'Email', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(256, 'data_rows', 'display_name', 178, 'en', 'City', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(257, 'data_rows', 'display_name', 179, 'en', 'Phone', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(258, 'data_rows', 'display_name', 180, 'en', 'Event Id', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(259, 'data_rows', 'display_name', 181, 'en', 'Deleted At', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(260, 'data_rows', 'display_name', 182, 'en', 'Created At', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(261, 'data_rows', 'display_name', 183, 'en', 'Updated At', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(262, 'data_rows', 'display_name', 184, 'en', 'events', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(263, 'data_types', 'display_name_singular', 31, 'en', 'Event Attendance', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(264, 'data_types', 'display_name_plural', 31, 'en', 'Event Attendances', '2020-12-04 19:23:29', '2020-12-04 19:23:29'),
+(265, 'data_rows', 'display_name', 185, 'en', 'Id', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(266, 'data_rows', 'display_name', 186, 'en', 'Title', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(267, 'data_rows', 'display_name', 187, 'en', 'Lecture Title', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(268, 'data_rows', 'display_name', 188, 'en', 'Start', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(269, 'data_rows', 'display_name', 189, 'en', 'End', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(270, 'data_rows', 'display_name', 190, 'en', 'Event Id', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(271, 'data_rows', 'display_name', 191, 'en', 'Deleted At', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(272, 'data_rows', 'display_name', 192, 'en', 'Created At', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(273, 'data_rows', 'display_name', 193, 'en', 'Updated At', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(274, 'data_rows', 'display_name', 194, 'en', 'events', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(275, 'data_types', 'display_name_singular', 33, 'en', 'Event Timeline', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(276, 'data_types', 'display_name_plural', 33, 'en', 'Event Timelines', '2020-12-04 20:04:00', '2020-12-04 20:04:00'),
+(277, 'event_timelines', 'title', 1, 'en', 'day1', '2020-12-04 20:19:22', '2020-12-04 20:19:22'),
+(278, 'event_timelines', 'lecture_title', 1, 'en', 'lecture 1', '2020-12-04 20:19:22', '2020-12-04 20:19:22');
 
 -- --------------------------------------------------------
 
@@ -1751,7 +1939,7 @@ ALTER TABLE `blogs_categories_relation`
 -- AUTO_INCREMENT for table `blogs_tags_relation`
 --
 ALTER TABLE `blogs_tags_relation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `blog_categories`
@@ -1763,7 +1951,7 @@ ALTER TABLE `blog_categories`
 -- AUTO_INCREMENT for table `blog_tags`
 --
 ALTER TABLE `blog_tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1775,13 +1963,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -1793,25 +1981,25 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `event_attendances`
 --
 ALTER TABLE `event_attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `event_categories`
 --
 ALTER TABLE `event_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `event_timelines`
 --
 ALTER TABLE `event_timelines`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1835,7 +2023,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1865,7 +2053,7 @@ ALTER TABLE `patient_guids`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `photo_galleries`
@@ -1919,7 +2107,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=279;
 
 --
 -- AUTO_INCREMENT for table `users`

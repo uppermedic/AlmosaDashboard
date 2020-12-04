@@ -26,7 +26,7 @@ class CreateEventsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->integer('attendance')->default(0);
-            $table->integer('category_id');
+            /* $table->integer('category_id'); */
             $table->softDeletes();
             $table->timestamps();
         });

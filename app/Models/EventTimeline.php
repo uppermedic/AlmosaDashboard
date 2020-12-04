@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use TCG\Voyager\Traits\Translatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class EventTimeline extends Model
 {
-    use HasFactory;
+    use HasFactory,Translatable,SoftDeletes;
+    protected $translatable = ['title','lecture_title'];
 }

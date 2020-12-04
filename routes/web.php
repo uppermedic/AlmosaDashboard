@@ -14,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
+use App\Models\Event;
+//Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
+Route::get('/', function(){
+   
+    $events = Event::with('categories','timelines')->get();
+    $events->load('translations');
+    return $events;
+
+    
+});
 
 
 Route::group(['prefix' => 'moosa-adminstrator'], function () {
