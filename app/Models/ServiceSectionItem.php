@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TCG\Voyager\Traits\Translatable;
-class Service extends Model
+class ServiceSectionItem extends Model
 {
-    use HasFactory,Translatable,SoftDeletes;
-    protected $translatable = ['title','excerpt','content'];
+    use HasFactory,SoftDeletes,Translatable;
+    protected $translatable = ['title','content'];
 }
