@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TCG\Voyager\Traits\Translatable;
-class ServiceSectionItem extends Model
+
+class Community extends Model
 {
-    use HasFactory,SoftDeletes,Translatable;
-    protected $translatable = ['title','content'];
-    protected $fillable = ['title','content','section_id'];
+    use HasFactory,Translatable,SoftDeletes;
+    protected $translatable = ['title'];
+
 }
