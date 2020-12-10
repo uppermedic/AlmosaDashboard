@@ -101,10 +101,13 @@
 
                                 <ul style="list-style: none;max-height: 300px;overflow-x: hidden">
                                     @foreach ($service_sections as $section)
-
+                                        @php
+                                        $section_id = (int) $section->id; //should be converted to int
+                                        $myId = $dataTypeContent->section_id;
+                                                @endphp
                                         <li>
                                             <label>
-                                                <input value="{{$section->id}}" type="radio" name="service_section"> {{$section->title}}
+                                                <input value="{{$section->id}}" type="radio" name="service_section" @if($myId == $section_id) checked  @endif > {{$section->title}}
                                             </label>
                                             <strong>-{{$section->getService->title}}</strong>
                                         </li>

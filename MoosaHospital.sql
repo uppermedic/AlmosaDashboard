@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 09, 2020 at 06:05 PM
+-- Generation Time: Dec 10, 2020 at 05:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -199,6 +199,55 @@ CREATE TABLE `communities` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `communities`
+--
+
+INSERT INTO `communities` (`id`, `title`, `slug`, `thumbnail`, `image`, `color`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'power of art ar', 'power-of-art-en', 'communities/doctor.jpg', '[\"communities\\/December2020\\/OkoNah5kmQf1fvEMKwkT.jpg\"]', '#dd6767', NULL, '2020-12-10 08:22:00', '2020-12-10 08:32:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `communities_objectives_relations`
+--
+
+CREATE TABLE `communities_objectives_relations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `community_id` bigint(20) UNSIGNED NOT NULL,
+  `objective_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `communities_objectives_relations`
+--
+
+INSERT INTO `communities_objectives_relations` (`id`, `community_id`, `objective_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `communities_participating_relations`
+--
+
+CREATE TABLE `communities_participating_relations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `community_id` bigint(20) UNSIGNED NOT NULL,
+  `participating_group_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `communities_participating_relations`
+--
+
+INSERT INTO `communities_participating_relations` (`id`, `community_id`, `participating_group_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -217,6 +266,13 @@ CREATE TABLE `community_contents` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `community_contents`
+--
+
+INSERT INTO `community_contents` (`id`, `name`, `title`, `content`, `images`, `video`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'content for pwer of art community', 'objectives ar', '<p>content ar</p>', 'community-contents/doctor1.jpg', NULL, NULL, '2020-12-10 08:30:39', '2020-12-10 08:30:39');
+
 -- --------------------------------------------------------
 
 --
@@ -230,6 +286,13 @@ CREATE TABLE `community_content_relation` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `community_content_relation`
+--
+
+INSERT INTO `community_content_relation` (`id`, `community_id`, `community_content_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -485,10 +548,24 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (247, 41, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
 (248, 41, 'content', 'rich_text_box', 'Content', 0, 0, 1, 1, 1, 1, '{}', 4),
 (249, 41, 'images', 'media_picker', 'Images', 0, 0, 1, 1, 1, 1, '{}', 5),
-(250, 41, 'video', 'text', 'Video', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"url\",\"messages\":{\"url\":\"write valid video url\"}}}', 6),
+(250, 41, 'video', 'text', 'Video url', 0, 0, 1, 1, 1, 1, '{}', 6),
 (251, 41, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 1, 0, 0, 1, '{}', 7),
 (252, 41, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
-(253, 41, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9);
+(253, 41, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(254, 40, 'community_belongstomany_community_content_relationship', 'relationship', 'community contents', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\CommunityContent\",\"table\":\"community_contents\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"community_content_relation\",\"pivot\":\"1\",\"taggable\":\"0\"}', 10),
+(255, 42, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(256, 42, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messgaes\":{\"required\":\"this :attribute is required\"}}}', 2),
+(257, 42, 'icon', 'media_picker', 'Icon', 1, 0, 1, 1, 1, 1, '{\"max\":1,\"min\":1}', 3),
+(258, 42, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(259, 42, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(260, 43, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(261, 43, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this :attribute is required\"}}}', 2),
+(262, 43, 'image', 'media_picker', 'Image', 1, 0, 1, 1, 1, 1, '{}', 3),
+(263, 43, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 4),
+(264, 43, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
+(265, 43, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(266, 40, 'community_belongstomany_objective_relationship', 'relationship', 'objectives', 0, 1, 1, 1, 1, 1, '{\"description\":\"select objectives of the community (is optional)\",\"model\":\"App\\\\Models\\\\Objective\",\"table\":\"objectives\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_objectives_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
+(267, 40, 'community_belongstomany_participating_group_relationship', 'relationship', 'participating_groups', 0, 1, 1, 1, 1, 1, '{\"description\":\"select participation group of the community (is optional)\",\"model\":\"App\\\\Models\\\\ParticipatingGroup\",\"table\":\"participating_groups\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_participating_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12);
 
 -- --------------------------------------------------------
 
@@ -543,8 +620,10 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (35, 'services', 'services', 'Service', 'Services', 'voyager-bubble-hear', 'App\\Models\\Service', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:44:28', '2020-12-08 07:12:44'),
 (37, 'service_sections', 'service-sections', 'Service Section', 'Service Sections', 'voyager-pie-chart', 'App\\Models\\ServiceSection', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:56:03', '2020-12-08 06:51:25'),
 (39, 'service_section_items', 'service-section-items', 'Section Item', 'Section Items', 'voyager-paperclip', 'App\\Models\\ServiceSectionItem', NULL, 'App\\Http\\Controllers\\Voyager\\ServiceSectionsItemsController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 15:09:30', '2020-12-09 08:22:36'),
-(40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-09 14:21:00'),
-(41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-09 14:31:39', '2020-12-09 14:31:39');
+(40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-10 10:50:14'),
+(41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-10 08:30:15'),
+(42, 'objectives', 'objectives', 'Objective', 'Objectives', 'voyager-leaf', 'App\\Models\\Objective', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56');
 
 -- --------------------------------------------------------
 
@@ -808,7 +887,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (42, 1, 'Section Items', '', '_self', 'voyager-window-list', '#000000', 29, 4, '2020-12-07 15:09:30', '2020-12-07 16:19:06', 'voyager.service-section-items.index', 'null'),
 (43, 1, 'المبادرات', '', '_self', 'voyager-fire', '#000000', 45, 1, '2020-12-09 14:19:29', '2020-12-09 14:36:56', 'voyager.communities.index', 'null'),
 (44, 1, 'محتوي المبادرات', '', '_self', 'voyager-droplet', '#000000', 45, 2, '2020-12-09 14:31:39', '2020-12-09 14:37:29', 'voyager.community-contents.index', 'null'),
-(45, 1, 'المبادرات', '', '_self', 'voyager-puzzle', '#000000', NULL, 17, '2020-12-09 14:35:05', '2020-12-09 14:35:22', NULL, '');
+(45, 1, 'المبادرات', '', '_self', 'voyager-puzzle', '#000000', NULL, 17, '2020-12-09 14:35:05', '2020-12-09 14:35:22', NULL, ''),
+(46, 1, 'أهداف المبادرة', '', '_self', 'voyager-leaf', '#000000', 45, 3, '2020-12-10 09:46:28', '2020-12-10 10:32:48', 'voyager.objectives.index', 'null'),
+(47, 1, 'الفئات المشاركه', '', '_self', 'voyager-bolt', '#000000', 45, 4, '2020-12-10 09:52:56', '2020-12-10 10:32:56', 'voyager.participating-groups.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -888,7 +969,35 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (59, '2020_12_07_175138_create_serices_physicians_relation_table', 24),
 (60, '2020_12_09_155254_create_communities_table', 25),
 (61, '2020_12_09_155802_create_community_contents_table', 25),
-(62, '2020_12_09_160522_create_community_content_relation_table', 25);
+(62, '2020_12_09_160522_create_community_content_relation_table', 25),
+(63, '2020_12_10_110531_create_objectives_table', 26),
+(64, '2020_12_10_112720_create_participating_groups_table', 26),
+(65, '2020_12_10_115528_create_community_objects_table', 27),
+(66, '2020_12_10_115649_create_community_participating_table', 27),
+(67, '2020_12_10_123415_create_communities_objectives_relations_table', 28),
+(68, '2020_12_10_123457_create_communities_participating_relations_table', 28);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `objectives`
+--
+
+CREATE TABLE `objectives` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `objectives`
+--
+
+INSERT INTO `objectives` (`id`, `title`, `icon`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'art ar', 'objectives/doctor.jpg', '2020-12-10 11:11:42', '2020-12-10 11:11:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -918,6 +1027,28 @@ CREATE TABLE `pages` (
 INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'ههتبهخ', 'تسبت تبتب ن سبت ب بن سنب', '<p>سيبا عتسابهسب اه&nbsp; يب</p>', NULL, 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2020-11-18 19:17:32', '2020-11-22 14:03:13'),
 (2, 1, 'Home', 'Home Page', '', NULL, 'home', 'Home page', 'home', 'ACTIVE', '2020-11-20 15:57:15', '2020-11-22 14:03:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participating_groups`
+--
+
+CREATE TABLE `participating_groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `participating_groups`
+--
+
+INSERT INTO `participating_groups` (`id`, `title`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'participAting group ar', 'participating-groups/doctor.jpg', NULL, '2020-12-10 11:12:30', '2020-12-10 11:12:30');
 
 -- --------------------------------------------------------
 
@@ -1136,7 +1267,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (163, 'read_community_contents', 'community_contents', '2020-12-09 14:31:39', '2020-12-09 14:31:39'),
 (164, 'edit_community_contents', 'community_contents', '2020-12-09 14:31:39', '2020-12-09 14:31:39'),
 (165, 'add_community_contents', 'community_contents', '2020-12-09 14:31:39', '2020-12-09 14:31:39'),
-(166, 'delete_community_contents', 'community_contents', '2020-12-09 14:31:39', '2020-12-09 14:31:39');
+(166, 'delete_community_contents', 'community_contents', '2020-12-09 14:31:39', '2020-12-09 14:31:39'),
+(167, 'browse_objectives', 'objectives', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(168, 'read_objectives', 'objectives', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(169, 'edit_objectives', 'objectives', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(170, 'add_objectives', 'objectives', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(171, 'delete_objectives', 'objectives', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
+(172, 'browse_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(173, 'read_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(174, 'edit_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(175, 'add_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(176, 'delete_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56');
 
 -- --------------------------------------------------------
 
@@ -1296,7 +1437,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (163, 1),
 (164, 1),
 (165, 1),
-(166, 1);
+(166, 1),
+(167, 1),
+(168, 1),
+(169, 1),
+(170, 1),
+(171, 1),
+(172, 1),
+(173, 1),
+(174, 1),
+(175, 1),
+(176, 1);
 
 -- --------------------------------------------------------
 
@@ -1501,7 +1652,7 @@ CREATE TABLE `service_section_items` (
 
 INSERT INTO `service_section_items` (`id`, `title`, `content`, `section_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'Day 17', '<p>dnjnjknk</p>', 1, NULL, '2020-12-08 12:03:00', '2020-12-09 09:00:59'),
-(6, 'نمءةرنرمؤء', '<p>knfjsndfsjs</p>', 1, NULL, '2020-12-09 10:10:00', '2020-12-09 14:57:11');
+(6, 'نمءةرنرمؤء', '<p>knfjsndfsjs</p>', 1, NULL, '2020-12-09 10:10:00', '2020-12-10 07:46:58');
 
 -- --------------------------------------------------------
 
@@ -1534,7 +1685,25 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (7, 'admin.description', 'Admin Description', 'Welcome to Voyager. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
-(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', 'AIzaSyD5Fk-uLeoP4ij79Z2G9LbhfOGq65ifEtY', '', 'text', 1, 'Admin');
+(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', 'AIzaSyD5Fk-uLeoP4ij79Z2G9LbhfOGq65ifEtY', '', 'text', 1, 'Admin'),
+(11, 'hospital.single_bed', 'Single Bed', NULL, NULL, 'text', 6, 'hospital'),
+(12, 'hospital.doctor', 'Doctor', NULL, NULL, 'text', 7, 'hospital'),
+(13, 'hospital.surgery', 'Surgery', NULL, NULL, 'text', 8, 'hospital'),
+(14, 'hospital.patients', 'Patients', NULL, NULL, 'text', 9, 'hospital'),
+(15, 'contact-us.addess', 'Address', NULL, NULL, 'text', 10, 'Contact Us'),
+(16, 'contact-us.location_url', 'Location URL', NULL, NULL, 'text', 11, 'Contact Us'),
+(17, 'contact-us.emergency_number', 'Emergency Number', NULL, NULL, 'text', 12, 'Contact Us'),
+(18, 'contact-us.contact_phone', 'Contact Phone', NULL, NULL, 'text', 13, 'Contact Us'),
+(19, 'contact-us.conact_email', 'Contact Email', NULL, NULL, 'text', 14, 'Contact Us'),
+(20, 'footer.wellcome_title', 'Wellcome Title', NULL, NULL, 'text', 15, 'Footer'),
+(21, 'footer.wellcome_content', 'Wellcome Content', NULL, NULL, 'text_area', 16, 'Footer'),
+(22, 'footer.facebook', 'Facebook URL', ';fsdfk;sf', '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 17, 'Footer'),
+(23, 'footer.twitter_url', 'Twitter URL', '', '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 18, 'Footer'),
+(24, 'footer.instagram_url', 'Instagram URL', '', NULL, 'text', 19, 'Footer'),
+(25, 'footer.linkedin_url', 'Linkedin URL', '', NULL, 'text', 20, 'Footer'),
+(26, 'footer.youtube_url', 'YouTube URL', '', NULL, 'text', 21, 'Footer'),
+(27, 'site.second_logo', 'Second Logo', '', NULL, 'image', 22, 'Site'),
+(28, 'site.third_logo', 'Third Logo', '', NULL, 'image', 23, 'Site');
 
 -- --------------------------------------------------------
 
@@ -1917,7 +2086,27 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (341, 'menu_items', 'title', 44, 'en', 'Community Contents', '2020-12-09 14:37:29', '2020-12-09 14:37:29'),
 (342, 'service_categories', 'title', 2, 'en', 'oisjdoisfjos', '2020-12-09 14:45:26', '2020-12-09 14:45:26'),
 (343, 'service_section_items', 'title', 6, 'en', 'ldnldastet', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
-(344, 'service_section_items', 'content', 6, 'en', '<p>knfjsndfsjs</p>', '2020-12-09 14:57:11', '2020-12-09 14:57:11');
+(344, 'service_section_items', 'content', 6, 'en', '<p>knfjsndfsjs</p>', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
+(345, 'communities', 'title', 1, 'en', 'power of art en', '2020-12-10 08:22:18', '2020-12-10 08:22:18'),
+(346, 'data_rows', 'display_name', 254, 'en', 'community_contents', '2020-12-10 08:26:55', '2020-12-10 08:26:55'),
+(347, 'data_rows', 'display_name', 245, 'en', 'Id', '2020-12-10 08:30:15', '2020-12-10 08:30:15');
+INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
+(348, 'data_rows', 'display_name', 246, 'en', 'Name', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(349, 'data_rows', 'display_name', 247, 'en', 'Title', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(350, 'data_rows', 'display_name', 248, 'en', 'Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(351, 'data_rows', 'display_name', 249, 'en', 'Images', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(352, 'data_rows', 'display_name', 250, 'en', 'Video', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(353, 'data_rows', 'display_name', 251, 'en', 'Deleted At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(354, 'data_rows', 'display_name', 252, 'en', 'Created At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(355, 'data_rows', 'display_name', 253, 'en', 'Updated At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(356, 'data_types', 'display_name_singular', 41, 'en', 'Community Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(357, 'data_types', 'display_name_plural', 41, 'en', 'Community Contents', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(358, 'menu_items', 'title', 47, 'en', 'Participating Groups', '2020-12-10 10:32:16', '2020-12-10 10:32:16'),
+(359, 'menu_items', 'title', 46, 'en', 'Objectives', '2020-12-10 10:32:38', '2020-12-10 10:32:38'),
+(360, 'data_rows', 'display_name', 266, 'en', 'objectives', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
+(361, 'data_rows', 'display_name', 267, 'en', 'participating_groups', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
+(362, 'objectives', 'title', 1, 'en', 'art en', '2020-12-10 11:11:42', '2020-12-10 11:11:42'),
+(363, 'participating_groups', 'title', 1, 'en', 'participAting group en', '2020-12-10 11:12:30', '2020-12-10 11:12:30');
 
 -- --------------------------------------------------------
 
@@ -2031,6 +2220,21 @@ ALTER TABLE `communities`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `communities_objectives_relations`
+--
+ALTER TABLE `communities_objectives_relations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `communities_objectives_relations_community_id_foreign` (`community_id`),
+  ADD KEY `communities_objectives_relations_objective_id_foreign` (`objective_id`);
+
+--
+-- Indexes for table `communities_participating_relations`
+--
+ALTER TABLE `communities_participating_relations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `communities_participating_relations_community_id_foreign` (`community_id`);
+
+--
 -- Indexes for table `community_contents`
 --
 ALTER TABLE `community_contents`
@@ -2127,11 +2331,23 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `objectives`
+--
+ALTER TABLE `objectives`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `pages_slug_unique` (`slug`);
+
+--
+-- Indexes for table `participating_groups`
+--
+ALTER TABLE `participating_groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `password_resets`
@@ -2306,31 +2522,43 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `communities`
 --
 ALTER TABLE `communities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `communities_objectives_relations`
+--
+ALTER TABLE `communities_objectives_relations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `communities_participating_relations`
+--
+ALTER TABLE `communities_participating_relations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `community_contents`
 --
 ALTER TABLE `community_contents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `community_content_relation`
 --
 ALTER TABLE `community_content_relation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -2384,19 +2612,31 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `objectives`
+--
+ALTER TABLE `objectives`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `participating_groups`
+--
+ALTER TABLE `participating_groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `patient_guide_categories`
@@ -2414,7 +2654,7 @@ ALTER TABLE `patient_guids`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `photo_galleries`
@@ -2468,7 +2708,7 @@ ALTER TABLE `service_section_items`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -2480,7 +2720,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -2503,6 +2743,20 @@ ALTER TABLE `video_galleries`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `communities_objectives_relations`
+--
+ALTER TABLE `communities_objectives_relations`
+  ADD CONSTRAINT `communities_objectives_relations_community_id_foreign` FOREIGN KEY (`community_id`) REFERENCES `communities` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `communities_objectives_relations_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `objectives` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `communities_participating_relations`
+--
+ALTER TABLE `communities_participating_relations`
+  ADD CONSTRAINT `communities_participating_relations_community_id_foreign` FOREIGN KEY (`community_id`) REFERENCES `communities` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `communities_participating_relations_participating_id_foreign` FOREIGN KEY (`participating_group_id`) REFERENCES `participating_groups` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `community_content_relation`
