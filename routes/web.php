@@ -15,13 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Models\Event;
+use App\Models\Service;
+use TCG\Voyager\Models\Page;
+
 //Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
 Route::get('/', function(){
    
-    $events = Event::with('categories','timelines')->get();
+   /* $events = Event::with('categories','timelines')->get();
     $events->load('translations');
-    return $events;
+    return $events;*/
+    //dd(Page::where('id', 2)->get(['image'])[0]);
+    //$test = Testimonial::with('translations')->limit(10)->get();
 
+   /* $test->load('translations');*/
+    /*foreach ($test as $k=>$item){
+       return(__($item['body']));
+    }*/
+
+    $services = Service::with('translations')->get();
+    return($services);
     
 });
 

@@ -9,7 +9,7 @@ use TCG\Voyager\Traits\Translatable;
 class Testimonial extends Model
 {
     use HasFactory, Translatable;
-    
+    protected $table = 'testimonials';
     protected $translatable = ['body', 'patient_name', 'dr_name', 'department'];
     protected $fillable = ['body', 'patient_name', 'dr_name', 'department'];
 }

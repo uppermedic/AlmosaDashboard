@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2020 at 05:33 PM
+-- Generation Time: Dec 13, 2020 at 03:51 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -565,7 +565,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (264, 43, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
 (265, 43, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
 (266, 40, 'community_belongstomany_objective_relationship', 'relationship', 'objectives', 0, 1, 1, 1, 1, 1, '{\"description\":\"select objectives of the community (is optional)\",\"model\":\"App\\\\Models\\\\Objective\",\"table\":\"objectives\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_objectives_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(267, 40, 'community_belongstomany_participating_group_relationship', 'relationship', 'participating_groups', 0, 1, 1, 1, 1, 1, '{\"description\":\"select participation group of the community (is optional)\",\"model\":\"App\\\\Models\\\\ParticipatingGroup\",\"table\":\"participating_groups\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_participating_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12);
+(267, 40, 'community_belongstomany_participating_group_relationship', 'relationship', 'participating_groups', 0, 1, 1, 1, 1, 1, '{\"description\":\"select participation group of the community (is optional)\",\"model\":\"App\\\\Models\\\\ParticipatingGroup\",\"table\":\"participating_groups\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_participating_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12),
+(268, 44, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(269, 44, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 2),
+(270, 44, 'content', 'text', 'Content', 0, 1, 1, 1, 1, 1, '{}', 3),
+(271, 44, 'image', 'media_picker', 'Image', 0, 1, 1, 1, 1, 1, '{}', 4),
+(272, 44, 'page_id', 'text', 'Page Id', 1, 1, 1, 1, 1, 1, '{}', 5),
+(273, 44, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(274, 44, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(275, 44, 'page_content_belongsto_page_relationship', 'relationship', 'pages', 0, 1, 1, 1, 1, 1, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Page\",\"table\":\"pages\",\"type\":\"belongsTo\",\"column\":\"page_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":null}', 8);
 
 -- --------------------------------------------------------
 
@@ -623,7 +631,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-10 10:50:14'),
 (41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-10 08:30:15'),
 (42, 'objectives', 'objectives', 'Objective', 'Objectives', 'voyager-leaf', 'App\\Models\\Objective', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
-(43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56');
+(43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-13 12:29:47', '2020-12-13 12:29:47');
 
 -- --------------------------------------------------------
 
@@ -852,33 +861,33 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 4, '2020-11-18 19:17:19', '2020-11-22 13:27:48', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2020-11-18 19:17:19', '2020-11-18 19:17:19', 'voyager.users.index', NULL),
 (4, 1, 'الادوار', '', '_self', 'voyager-lock', '#000000', NULL, 2, '2020-11-18 19:17:19', '2020-11-20 20:26:28', 'voyager.roles.index', 'null'),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2020-11-18 19:17:19', '2020-11-22 13:27:48', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2020-11-18 19:17:19', '2020-12-13 12:34:21', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-11-18 19:17:19', '2020-11-22 13:27:48', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-11-18 19:17:19', '2020-11-22 13:27:48', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-11-18 19:17:19', '2020-11-22 13:27:49', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-11-18 19:17:19', '2020-11-22 13:27:49', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 9, '2020-11-18 19:17:19', '2020-11-22 13:27:49', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 7, '2020-11-18 19:17:28', '2020-11-22 13:27:48', 'voyager.categories.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 9, '2020-11-18 19:17:19', '2020-12-13 12:34:21', 'voyager.settings.index', NULL),
+(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 7, '2020-11-18 19:17:28', '2020-12-13 12:34:21', 'voyager.categories.index', NULL),
 (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 5, '2020-11-18 19:17:30', '2020-11-22 13:27:48', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 6, '2020-11-18 19:17:32', '2020-11-22 13:27:48', 'voyager.pages.index', NULL),
+(13, 1, 'الصفحات', '', '_self', 'voyager-file-text', '#000000', 49, 1, '2020-11-18 19:17:32', '2020-12-13 12:34:21', 'voyager.pages.index', 'null'),
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-11-18 19:17:36', '2020-11-22 13:27:49', 'voyager.hooks', NULL),
-(16, 1, 'Testimonials', '', '_self', 'voyager-pen', NULL, NULL, 10, '2020-11-20 20:34:49', '2020-11-22 13:27:49', 'voyager.testimonials.index', NULL),
+(16, 1, 'Testimonials', '', '_self', 'voyager-pen', NULL, NULL, 10, '2020-11-20 20:34:49', '2020-12-13 12:34:22', 'voyager.testimonials.index', NULL),
 (20, 1, ' Guide Categories', '', '_self', NULL, '#000000', 23, 1, '2020-11-24 07:09:08', '2020-11-29 10:21:32', 'voyager.patient-guide-categories.index', 'null'),
 (21, 1, 'Patient Guids', '', '_self', NULL, NULL, 23, 2, '2020-11-24 08:33:46', '2020-11-29 10:21:34', 'voyager.patient-guids.index', NULL),
-(23, 1, 'دليل المريض', '', '_self', 'voyager-book', '#000000', NULL, 11, '2020-11-29 10:20:11', '2020-12-01 16:21:27', NULL, ''),
-(24, 1, 'Doctors', '', '_self', 'voyager-people', NULL, NULL, 12, '2020-11-30 14:09:52', '2020-12-01 16:21:27', 'voyager.doctors.index', NULL),
+(23, 1, 'دليل المريض', '', '_self', 'voyager-book', '#000000', NULL, 11, '2020-11-29 10:20:11', '2020-12-13 12:34:22', NULL, ''),
+(24, 1, 'Doctors', '', '_self', 'voyager-people', NULL, NULL, 12, '2020-11-30 14:09:52', '2020-12-13 12:34:22', 'voyager.doctors.index', NULL),
 (25, 1, 'المدونه', '', '_self', 'voyager-window-list', '#000000', 28, 1, '2020-12-01 11:41:14', '2020-12-01 13:40:10', 'voyager.blogs.index', 'null'),
 (26, 1, 'Tags', '', '_self', 'voyager-tag', '#000000', 28, 2, '2020-12-01 11:45:59', '2020-12-01 13:37:24', 'voyager.blog-tags.index', 'null'),
 (27, 1, 'Blog Categories', '', '_self', 'voyager-categories', '#000000', 28, 3, '2020-12-01 11:47:27', '2020-12-01 13:38:04', 'voyager.blog-categories.index', 'null'),
-(28, 1, 'المدونه', '', '_self', 'voyager-bag', '#000000', NULL, 13, '2020-12-01 13:36:14', '2020-12-01 16:21:27', NULL, ''),
-(29, 1, 'الخدمات', '', '_self', 'voyager-bulb', '#000000', NULL, 14, '2020-12-01 16:20:43', '2020-12-01 16:21:27', NULL, ''),
+(28, 1, 'المدونه', '', '_self', 'voyager-bag', '#000000', NULL, 13, '2020-12-01 13:36:14', '2020-12-13 12:34:22', NULL, ''),
+(29, 1, 'الخدمات', '', '_self', 'voyager-bulb', '#000000', NULL, 14, '2020-12-01 16:20:43', '2020-12-13 12:34:22', NULL, ''),
 (30, 1, 'مجله حكيم', '', '_self', 'voyager-window-list', '#000000', 33, 1, '2020-12-02 05:27:18', '2020-12-02 07:21:54', 'voyager.hakeem-magazines.index', 'null'),
 (31, 1, 'معرض الصور', '', '_self', 'voyager-photo', '#000000', 33, 2, '2020-12-02 06:06:44', '2020-12-02 07:21:27', 'voyager.photo-galleries.index', 'null'),
 (32, 1, 'الفديوهات', '', '_self', 'voyager-video', '#000000', 33, 3, '2020-12-02 07:15:40', '2020-12-02 07:22:11', 'voyager.video-galleries.index', 'null'),
-(33, 1, 'المركز الاعلامي', '', '_self', 'voyager-play', '#000000', NULL, 15, '2020-12-02 07:21:04', '2020-12-02 07:21:32', NULL, ''),
+(33, 1, 'المركز الاعلامي', '', '_self', 'voyager-play', '#000000', NULL, 15, '2020-12-02 07:21:04', '2020-12-13 12:34:22', NULL, ''),
 (34, 1, 'الاحداث', '', '_self', 'voyager-activity', '#000000', 36, 1, '2020-12-04 16:07:39', '2020-12-04 19:20:51', 'voyager.events.index', 'null'),
 (35, 1, 'انواع الحدث', '', '_self', 'voyager-categories', '#000000', 36, 2, '2020-12-04 16:58:04', '2020-12-04 17:44:28', 'voyager.event-categories.index', 'null'),
-(36, 1, 'تدريب و تعلم', '', '_self', 'voyager-certificate', '#000000', NULL, 16, '2020-12-04 17:44:12', '2020-12-07 16:17:38', NULL, ''),
+(36, 1, 'تدريب و تعلم', '', '_self', 'voyager-certificate', '#000000', NULL, 16, '2020-12-04 17:44:12', '2020-12-13 12:34:22', NULL, ''),
 (37, 1, 'المشتركين', '', '_self', 'voyager-people', '#000000', 36, 3, '2020-12-04 19:18:50', '2020-12-04 19:20:32', 'voyager.event-attendances.index', 'null'),
 (38, 1, 'Event Timelines', '', '_self', 'voyager-alarm-clock', NULL, 36, 4, '2020-12-04 19:57:53', '2020-12-04 19:58:21', 'voyager.event-timelines.index', NULL),
 (39, 1, 'Service Categories', '', '_self', 'voyager-leaf', NULL, 29, 1, '2020-12-07 14:31:59', '2020-12-07 16:17:38', 'voyager.service-categories.index', NULL),
@@ -887,9 +896,11 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (42, 1, 'Section Items', '', '_self', 'voyager-window-list', '#000000', 29, 4, '2020-12-07 15:09:30', '2020-12-07 16:19:06', 'voyager.service-section-items.index', 'null'),
 (43, 1, 'المبادرات', '', '_self', 'voyager-fire', '#000000', 45, 1, '2020-12-09 14:19:29', '2020-12-09 14:36:56', 'voyager.communities.index', 'null'),
 (44, 1, 'محتوي المبادرات', '', '_self', 'voyager-droplet', '#000000', 45, 2, '2020-12-09 14:31:39', '2020-12-09 14:37:29', 'voyager.community-contents.index', 'null'),
-(45, 1, 'المبادرات', '', '_self', 'voyager-puzzle', '#000000', NULL, 17, '2020-12-09 14:35:05', '2020-12-09 14:35:22', NULL, ''),
+(45, 1, 'المبادرات', '', '_self', 'voyager-puzzle', '#000000', NULL, 17, '2020-12-09 14:35:05', '2020-12-13 12:34:22', NULL, ''),
 (46, 1, 'أهداف المبادرة', '', '_self', 'voyager-leaf', '#000000', 45, 3, '2020-12-10 09:46:28', '2020-12-10 10:32:48', 'voyager.objectives.index', 'null'),
-(47, 1, 'الفئات المشاركه', '', '_self', 'voyager-bolt', '#000000', 45, 4, '2020-12-10 09:52:56', '2020-12-10 10:32:56', 'voyager.participating-groups.index', 'null');
+(47, 1, 'الفئات المشاركه', '', '_self', 'voyager-bolt', '#000000', 45, 4, '2020-12-10 09:52:56', '2020-12-10 10:32:56', 'voyager.participating-groups.index', 'null'),
+(48, 1, 'محتوي الصفاحات', '', '_self', 'voyager-news', '#000000', 49, 2, '2020-12-13 12:29:47', '2020-12-13 12:34:21', 'voyager.page-contents.index', 'null'),
+(49, 1, 'الصفحات', '', '_self', 'voyager-file-text', '#000000', NULL, 6, '2020-12-13 12:33:07', '2020-12-13 12:34:21', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -975,7 +986,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (65, '2020_12_10_115528_create_community_objects_table', 27),
 (66, '2020_12_10_115649_create_community_participating_table', 27),
 (67, '2020_12_10_123415_create_communities_objectives_relations_table', 28),
-(68, '2020_12_10_123457_create_communities_participating_relations_table', 28);
+(68, '2020_12_10_123457_create_communities_participating_relations_table', 28),
+(69, '2020_12_13_142100_create_page_contents_table', 29);
 
 -- --------------------------------------------------------
 
@@ -1025,8 +1037,24 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'ههتبهخ', 'تسبت تبتب ن سبت ب بن سنب', '<p>سيبا عتسابهسب اه&nbsp; يب</p>', NULL, 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2020-11-18 19:17:32', '2020-11-22 14:03:13'),
-(2, 1, 'Home', 'Home Page', '', NULL, 'home', 'Home page', 'home', 'ACTIVE', '2020-11-20 15:57:15', '2020-11-22 14:03:02');
+(2, 1, 'Home', 'Home Page', '', 'pages/December2020/u1nalxScVosSYtP6hk89.jpg', 'home', 'Home page', 'home', 'ACTIVE', '2020-11-20 15:57:15', '2020-12-13 08:06:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_contents`
+--
+
+CREATE TABLE `page_contents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1277,7 +1305,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (173, 'read_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
 (174, 'edit_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
 (175, 'add_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
-(176, 'delete_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56');
+(176, 'delete_participating_groups', 'participating_groups', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
+(177, 'browse_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
+(178, 'read_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
+(179, 'edit_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
+(180, 'add_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
+(181, 'delete_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47');
 
 -- --------------------------------------------------------
 
@@ -1447,7 +1480,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (173, 1),
 (174, 1),
 (175, 1),
-(176, 1);
+(176, 1),
+(177, 1),
+(178, 1),
+(179, 1),
+(180, 1),
+(181, 1);
 
 -- --------------------------------------------------------
 
@@ -1553,8 +1591,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `service_category_id`, `slug`, `title`, `excerpt`, `content`, `icon`, `color`, `thumbnail`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'test-ar-jkk', 'test ar jkk ', '<p>nj</p>', '<p>k</p>', 'services/December2020/qup2XPqJZCUVC3svFZDg.jpg', '#000000', 'services/doctor1.jpg', 'services/doctor1.jpg', NULL, '2020-12-07 16:33:41', '2020-12-07 16:33:41'),
-(2, 1, 'shshy', 'ششي', '<p>ؤشؤ</p>', '<p>ؤش</p>', 'services/December2020/G3KHCBBWlENKNMWCiWU6.jpg', '#ca2727', 'services/doctor1.jpg', 'services/November2020/WxvmJ3GgPocglALeJS1L.png', NULL, '2020-12-08 07:11:26', '2020-12-08 07:11:26');
+(1, 2, 'test-ar-jkk', 'test ar jkk ', '<p>nj</p>', '<p>k</p>', 'services/December2020/qup2XPqJZCUVC3svFZDg.jpg', '#000000', 'services/doctor1.jpg', 'services/doctor1.jpg', NULL, '2020-12-07 16:33:00', '2020-12-13 12:01:57'),
+(2, 2, 'shshy', 'ششي', '<p>ؤشؤ</p>', '<p>ؤش</p>', 'services/December2020/G3KHCBBWlENKNMWCiWU6.jpg', '#ca2727', 'services/doctor1.jpg', 'services/November2020/WxvmJ3GgPocglALeJS1L.png', NULL, '2020-12-08 07:11:00', '2020-12-13 12:01:42');
 
 -- --------------------------------------------------------
 
@@ -1603,7 +1641,7 @@ CREATE TABLE `service_categories` (
 
 INSERT INTO `service_categories` (`id`, `title`, `slug`, `color`, `thumbnail`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'برامج طبيه', 'medical-programs', '#61c6f5', 'service-categories/December2020/zwRdG5J5yChyshQ5R8Gm.jpg', 'service-categories/December2020/7vUYEsbk9q2Tz2OL9B81.jpg', NULL, '2020-12-07 16:22:00', '2020-12-07 16:40:00'),
-(2, 'ختخخ', 'oisjdoisfjoskfkdfkd', '#bc9d9d', 'service-categories/December2020/6uOSpaSfB2P8bGTkxToE.jpg', 'service-categories/December2020/Cf7H0sWrdSLutNi0ep2Q.jpg', NULL, '2020-12-09 14:45:26', '2020-12-09 14:45:26');
+(2, 'المراكز الطبيه', 'medical-centers', '#bc9d9d', 'service-categories/December2020/6uOSpaSfB2P8bGTkxToE.jpg', 'service-categories/December2020/Cf7H0sWrdSLutNi0ep2Q.jpg', NULL, '2020-12-09 14:45:00', '2020-12-13 11:59:05');
 
 -- --------------------------------------------------------
 
@@ -1677,33 +1715,38 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`, `group`) VALUES
 (1, 'site.title', 'Site Title', 'Moosa Hospital', '', 'text', 1, 'Site'),
-(2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
-(3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
-(4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
+(2, 'site.description', 'Site Description', 'Site Description', '', 'text', 3, 'Site'),
+(3, 'site.logo', 'Site Logo', 'settings/December2020/VteqQZtEsgyjMSObyorn.jpg', '', 'image', 23, 'Site'),
+(4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 24, 'Site'),
 (5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Moosa HospitalAdmin', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Welcome to Voyager. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', 'AIzaSyD5Fk-uLeoP4ij79Z2G9LbhfOGq65ifEtY', '', 'text', 1, 'Admin'),
-(11, 'hospital.single_bed', 'Single Bed', NULL, NULL, 'text', 6, 'hospital'),
-(12, 'hospital.doctor', 'Doctor', NULL, NULL, 'text', 7, 'hospital'),
-(13, 'hospital.surgery', 'Surgery', NULL, NULL, 'text', 8, 'hospital'),
-(14, 'hospital.patients', 'Patients', NULL, NULL, 'text', 9, 'hospital'),
-(15, 'contact-us.addess', 'Address', NULL, NULL, 'text', 10, 'Contact Us'),
-(16, 'contact-us.location_url', 'Location URL', NULL, NULL, 'text', 11, 'Contact Us'),
-(17, 'contact-us.emergency_number', 'Emergency Number', NULL, NULL, 'text', 12, 'Contact Us'),
-(18, 'contact-us.contact_phone', 'Contact Phone', NULL, NULL, 'text', 13, 'Contact Us'),
-(19, 'contact-us.conact_email', 'Contact Email', NULL, NULL, 'text', 14, 'Contact Us'),
-(20, 'footer.wellcome_title', 'Wellcome Title', NULL, NULL, 'text', 15, 'Footer'),
-(21, 'footer.wellcome_content', 'Wellcome Content', NULL, NULL, 'text_area', 16, 'Footer'),
-(22, 'footer.facebook', 'Facebook URL', ';fsdfk;sf', '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 17, 'Footer'),
-(23, 'footer.twitter_url', 'Twitter URL', '', '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 18, 'Footer'),
-(24, 'footer.instagram_url', 'Instagram URL', '', NULL, 'text', 19, 'Footer'),
-(25, 'footer.linkedin_url', 'Linkedin URL', '', NULL, 'text', 20, 'Footer'),
-(26, 'footer.youtube_url', 'YouTube URL', '', NULL, 'text', 21, 'Footer'),
-(27, 'site.second_logo', 'Second Logo', '', NULL, 'image', 22, 'Site'),
-(28, 'site.third_logo', 'Third Logo', '', NULL, 'image', 23, 'Site');
+(11, 'hospital.single_bed', 'Single Bed', '2541', NULL, 'text', 6, 'hospital'),
+(12, 'hospital.doctor', 'Doctor', '5521', NULL, 'text', 7, 'hospital'),
+(13, 'hospital.surgery', 'Surgery', '56362', NULL, 'text', 8, 'hospital'),
+(14, 'hospital.patients', 'Patients', '8451', NULL, 'text', 9, 'hospital'),
+(15, 'contact-us.addess', 'Address', 'الظهران|حي الفيصل الحساء ص. المربع 5098 المنطقة الشرقية |المملكة السعوديه', NULL, 'text', 10, 'Contact Us'),
+(16, 'contact-us.location_url', 'Location URL', 'https://map.com', NULL, 'text', 12, 'Contact Us'),
+(17, 'contact-us.emergency_number', 'Emergency Number', '00925412541', NULL, 'text', 13, 'Contact Us'),
+(18, 'contact-us.contact_phone', 'Contact Phone', '0125558454', NULL, 'text', 14, 'Contact Us'),
+(19, 'contact-us.conact_email', 'Contact Email', 'info@moosahospital.com', NULL, 'text', 26, 'Contact Us'),
+(20, 'footer.wellcome_title', 'Wellcome Title', 'welcome to alMoosa hospital ar', NULL, 'text', 15, 'Footer'),
+(21, 'footer.wellcome_content', 'Wellcome Content', 'welcome msg ar', NULL, 'text_area', 16, 'Footer'),
+(22, 'footer.facebook', 'Facebook URL', 'https://facebook.com', '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 17, 'Footer'),
+(23, 'footer.twitter_url', 'Twitter URL', NULL, '{\r\n    \"validation\":{\r\n        \"rule\":\"url\",\r\n        \"messages\":{\r\n            \"url\":\"please write valid url\"\r\n        }\r\n    }\r\n}', 'text', 18, 'Footer'),
+(24, 'footer.instagram_url', 'Instagram URL', NULL, NULL, 'text', 19, 'Footer'),
+(25, 'footer.linkedin_url', 'Linkedin URL', NULL, NULL, 'text', 20, 'Footer'),
+(26, 'footer.youtube_url', 'YouTube URL', NULL, NULL, 'text', 21, 'Footer'),
+(27, 'site.second_logo', 'Second Logo', '', NULL, 'image', 25, 'Site'),
+(28, 'site.third_logo', 'Third Logo', '', NULL, 'image', 27, 'Site'),
+(29, 'site.site_title_en', 'Site Title en', NULL, NULL, 'text', 2, 'Site'),
+(31, 'contact-us.addess_en', 'Address en', 'address en', NULL, 'text', 11, 'Contact Us'),
+(32, 'site.description_en', 'description en', NULL, NULL, 'text', 22, 'Site'),
+(34, 'footer.welcome_title_en', 'Welcome Title en', 'welcome title en', NULL, 'text', 28, 'Footer'),
+(35, 'footer.welcome_content_en', 'Welcome Content en', 'welcome msg en', NULL, 'text_area', 29, 'Footer');
 
 -- --------------------------------------------------------
 
@@ -1803,9 +1846,6 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (52, 'testimonials', 'patient_name', 1, 'en', 'Helop', '2020-11-20 20:48:47', '2020-11-20 20:48:47'),
 (53, 'testimonials', 'dr_name', 1, 'en', 'Dr-aziz adel', '2020-11-20 20:48:47', '2020-11-20 20:48:47'),
 (54, 'testimonials', 'department', 1, 'en', 'Sersion', '2020-11-20 20:48:47', '2020-11-20 20:48:47'),
-(55, 'pages', 'title', 1, 'en', 'Hello World', '2020-11-21 20:07:50', '2020-11-21 20:07:50'),
-(56, 'pages', 'body', 1, 'en', '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', '2020-11-21 20:07:50', '2020-11-21 20:07:50'),
-(57, 'pages', 'slug', 1, 'en', 'hello-world', '2020-11-21 20:07:50', '2020-11-21 20:07:50'),
 (58, 'services', 'service_name', 1, 'en', 'Medical centers', '2020-11-22 11:39:59', '2020-11-30 08:03:23'),
 (59, 'pages', 'title', 2, 'en', 'Home', '2020-11-22 13:09:59', '2020-11-22 13:09:59'),
 (60, 'pages', 'slug', 2, 'en', 'home', '2020-11-22 13:09:59', '2020-11-22 13:09:59'),
@@ -2084,13 +2124,12 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (339, 'menu_items', 'title', 45, 'en', 'community', '2020-12-09 14:35:06', '2020-12-09 14:35:06'),
 (340, 'menu_items', 'title', 43, 'en', 'Communities', '2020-12-09 14:36:37', '2020-12-09 14:36:37'),
 (341, 'menu_items', 'title', 44, 'en', 'Community Contents', '2020-12-09 14:37:29', '2020-12-09 14:37:29'),
-(342, 'service_categories', 'title', 2, 'en', 'oisjdoisfjos', '2020-12-09 14:45:26', '2020-12-09 14:45:26'),
+(342, 'service_categories', 'title', 2, 'en', 'Medical Centers', '2020-12-09 14:45:26', '2020-12-13 11:59:05'),
 (343, 'service_section_items', 'title', 6, 'en', 'ldnldastet', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
 (344, 'service_section_items', 'content', 6, 'en', '<p>knfjsndfsjs</p>', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
 (345, 'communities', 'title', 1, 'en', 'power of art en', '2020-12-10 08:22:18', '2020-12-10 08:22:18'),
 (346, 'data_rows', 'display_name', 254, 'en', 'community_contents', '2020-12-10 08:26:55', '2020-12-10 08:26:55'),
-(347, 'data_rows', 'display_name', 245, 'en', 'Id', '2020-12-10 08:30:15', '2020-12-10 08:30:15');
-INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
+(347, 'data_rows', 'display_name', 245, 'en', 'Id', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (348, 'data_rows', 'display_name', 246, 'en', 'Name', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (349, 'data_rows', 'display_name', 247, 'en', 'Title', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (350, 'data_rows', 'display_name', 248, 'en', 'Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
@@ -2099,14 +2138,21 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (353, 'data_rows', 'display_name', 251, 'en', 'Deleted At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (354, 'data_rows', 'display_name', 252, 'en', 'Created At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (355, 'data_rows', 'display_name', 253, 'en', 'Updated At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
-(356, 'data_types', 'display_name_singular', 41, 'en', 'Community Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
+(356, 'data_types', 'display_name_singular', 41, 'en', 'Community Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15');
+INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
 (357, 'data_types', 'display_name_plural', 41, 'en', 'Community Contents', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (358, 'menu_items', 'title', 47, 'en', 'Participating Groups', '2020-12-10 10:32:16', '2020-12-10 10:32:16'),
 (359, 'menu_items', 'title', 46, 'en', 'Objectives', '2020-12-10 10:32:38', '2020-12-10 10:32:38'),
 (360, 'data_rows', 'display_name', 266, 'en', 'objectives', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
 (361, 'data_rows', 'display_name', 267, 'en', 'participating_groups', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
 (362, 'objectives', 'title', 1, 'en', 'art en', '2020-12-10 11:11:42', '2020-12-10 11:11:42'),
-(363, 'participating_groups', 'title', 1, 'en', 'participAting group en', '2020-12-10 11:12:30', '2020-12-10 11:12:30');
+(363, 'participating_groups', 'title', 1, 'en', 'participAting group en', '2020-12-10 11:12:30', '2020-12-10 11:12:30'),
+(364, 'services', 'title', 2, 'en', 'ششي', '2020-12-13 12:01:42', '2020-12-13 12:01:42'),
+(365, 'services', 'excerpt', 2, 'en', '<p>ؤشؤ</p>', '2020-12-13 12:01:42', '2020-12-13 12:01:42'),
+(366, 'services', 'content', 2, 'en', '<p>ؤش</p>', '2020-12-13 12:01:42', '2020-12-13 12:01:42'),
+(367, 'menu_items', 'title', 13, 'en', 'Pages', '2020-12-13 12:32:29', '2020-12-13 12:32:29'),
+(368, 'menu_items', 'title', 49, 'en', 'Pages', '2020-12-13 12:33:07', '2020-12-13 12:33:07'),
+(369, 'menu_items', 'title', 48, 'en', 'Page Contents', '2020-12-13 12:33:45', '2020-12-13 12:33:45');
 
 -- --------------------------------------------------------
 
@@ -2344,6 +2390,12 @@ ALTER TABLE `pages`
   ADD UNIQUE KEY `pages_slug_unique` (`slug`);
 
 --
+-- Indexes for table `page_contents`
+--
+ALTER TABLE `page_contents`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `participating_groups`
 --
 ALTER TABLE `participating_groups`
@@ -2552,13 +2604,13 @@ ALTER TABLE `community_content_relation`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -2612,13 +2664,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `objectives`
@@ -2631,6 +2683,12 @@ ALTER TABLE `objectives`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `page_contents`
+--
+ALTER TABLE `page_contents`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `participating_groups`
@@ -2654,7 +2712,7 @@ ALTER TABLE `patient_guids`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `photo_galleries`
@@ -2708,7 +2766,7 @@ ALTER TABLE `service_section_items`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -2720,7 +2778,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
 
 --
 -- AUTO_INCREMENT for table `users`

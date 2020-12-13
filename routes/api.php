@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+use App\Http\Controllers\Api\HomeController;
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
-Route::get('/home/testimonials', function () {
-    //App::setLocale('en');
-    //$test = menu('admin');
-    //$test->load('translations');
-    //return $test;
-});
+/*Route::get('/home/testimonials', function () {
+    App::setLocale('en');
+    $test = menu('admin');
+    $test->load('translations');
+    return $test;
+});*/
+Route::get('/home',HomeController::class.'@show');
