@@ -8,10 +8,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Page;
 use TCG\Voyager\Facades\Voyager;
 
 class Helper{
-    public static function header()
+    /**
+     * get header data
+     * @return array
+     */
+    public static function header():array
     {
         return [
             'logo'=>Voyager::image(setting('site.logo')),
@@ -22,7 +27,11 @@ class Helper{
         ];
     }
 
-    public static function footer()
+    /**
+     * get footer data
+     * @return array
+     */
+    public static function footer():array
     {
         return [
             'welcome_title'=>['ar'=>setting('footer.wellcome_title'),'en'=>setting('footer.welcome_title_en')],
@@ -42,7 +51,12 @@ class Helper{
         ];
     }
 
-    public static function toTranslation($translations)
+    /**
+     * handle the translations
+     * @param $translations
+     * @return array
+     */
+    public static function toTranslation($translations):array
     {
         $getTranslatedItems = [];
         foreach ($translations as $translation) {
@@ -50,5 +64,27 @@ class Helper{
         }
 
         return $getTranslatedItems;
+    }
+
+    public static function page(Page $page): array
+    {
+        //$page = Page::where(['id'=>3,"status"=>"ACTIVE"])->with('translations')->first();
+        return [
+            'status'=>$page->status,
+            'page_cover'=>Voyager::image($page->image),
+            "seo"=>[
+                'ar'=>[
+                    'title'=>$page->title,
+                    'excerpt'=>$page->excerpt,
+                    'body'=>$page->body,
+                    'slug'=>$page->slug,
+                    'meta_description'=>$page->meta_description,
+                    'meta_keywords'=>$page->meta_keywords,
+
+
+                ],
+                'en'=>Helper::toTranslation($page->translations)
+           ]
+        ];
     }
 }

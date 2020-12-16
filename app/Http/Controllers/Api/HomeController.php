@@ -11,14 +11,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use TCG\Voyager\Facades\Voyager;
 
-use TCG\Voyager\Models\Page;
+use App\Models\Page;
 class HomeController extends Controller {
 
     public function show()
     {
+        $page = Page::where(['id'=>4,"status"=>"ACTIVE"])->with('translations')->first();
         $data = [
-
-            'page_cover'=>Voyager::image(Page::where('id',2)->get(['image'])[0]['image']),
+            'page' => Helper::page($page),
+            'content' => $this->getContent(),
             'home_services'=>ServicesController::HomeServices(),
             'testimonials'=>TestimonialController::show(),
             'hospital'=>[
@@ -31,5 +32,24 @@ class HomeController extends Controller {
 
         ];
         return response($data,200);
+    }
+
+    public function getContent():array
+    {
+        $pageContent = [];
+        $contents = Page::find(4)->getPageContents()->with('translations')->orderBy('id','ASC')->get();
+        foreach ($contents as $k => $content) {
+            $pageContent[] = [
+                'image'=>Voyager::image($content->image),
+                'ar'=>[
+                    'title'=>$content->title,
+                    'content'=>$content->content,
+
+                ],
+                'en'=>Helper::toTranslation($content->translations)
+            ];
+        }
+       return  $pageContent;
+
     }
 }

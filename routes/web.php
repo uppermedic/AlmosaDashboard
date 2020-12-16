@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ServiceCategory;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Models\Event;
 use App\Models\Service;
-use TCG\Voyager\Models\Page;
+use App\Models\Page;
 
 //Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
 Route::get('/', function(){
@@ -34,9 +35,19 @@ Route::get('/', function(){
 
 //    $services = Service::with('translations')->get();
 //    return($services);
-    $search = \App\Models\Blog::search('بلوج')->get();
+  /*  $search = \App\Models\Blog::search('بلوج')->get();
     $search->load('translations');
-    return $search;
+    return $search;*/
+
+    //$page = new Page();
+    //$page = Page::where(['id'=>4,"status"=>"ACTIVE"])->with('translations')->first();
+    /*foreach ($page->getPageContent as $content) {
+        dd($content->pivot->get_page_content);
+    }*/
+   //$pageContent = $page->get_page_content;
+
+    $serviceCatogries = ServiceCategory::with('translations')->get();
+    return $serviceCatogries;
 
 });
 

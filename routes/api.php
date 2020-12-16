@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\AboutController;
+use App\Http\Controllers\Api\ServicesController;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
@@ -30,4 +32,6 @@ use App\Http\Controllers\Api\SearchController;
 });*/
 Route::get('/layout',LayoutController::class.'@show');
 Route::get('/home',HomeController::class.'@show');
+Route::get('/about', AboutController::class . '@show');
+Route::get('/services',ServicesController::class.'@show');
 Route::get('/search/{q}',SearchController::class.'@show');

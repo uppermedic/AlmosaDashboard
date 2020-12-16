@@ -8,11 +8,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use TCG\Voyager\Facades\Voyager;
 
 class ServicesController extends Controller
 {
+
+    public function show()
+    {
+        $page = Page::where(['id' => 5, 'status' => 'ACTIVE'])->with('translations')->first();
+        return response([
+            'page' => Helper::page($page),
+            'categories'=>$this->getCategories(),
+
+        ],200);
+    }
+
     /**
      * show services at home page  limit by 10
      */
@@ -32,5 +45,24 @@ class ServicesController extends Controller
             ];
         }
         return $items;
+    }
+
+    public function getCategories():array
+    {
+        $data = [];
+        $categories = ServiceCategory::with('translations')->get();
+        foreach ($categories as $category) {
+            $data [] = [
+                'id'=>$category->id,
+                'color'=>$category->color,
+                'thumbnail'=>Voyager::image($category->thumbnail),
+                'ar' => [
+                    'title'=>$category->title,
+                    'slug'=>$category->slug
+                ],
+                'en'=>Helper::toTranslation($category->translations)
+            ];
+        }
+        return $data;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2020 at 11:03 AM
+-- Generation Time: Dec 16, 2020 at 06:05 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -364,18 +364,18 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
 (42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, '{}', 14),
 (43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, '{}', 15),
-(44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
-(46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
-(47, 6, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 4),
-(48, 6, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 5),
+(44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, '{}', 2),
+(46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 3),
+(47, 6, 'excerpt', 'text_area', 'Excerpt', 0, 0, 1, 1, 1, 1, '{}', 4),
+(48, 6, 'body', 'rich_text_box', 'Body', 0, 0, 1, 1, 1, 1, '{}', 5),
 (49, 6, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}', 6),
-(50, 6, 'meta_description', 'text', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 7),
-(51, 6, 'meta_keywords', 'text', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 8),
+(50, 6, 'meta_description', 'text', 'Meta Description', 0, 0, 1, 1, 1, 1, '{}', 7),
+(51, 6, 'meta_keywords', 'text', 'Meta Keywords', 0, 0, 1, 1, 1, 1, '{}', 8),
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
-(53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
-(54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(53, 6, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 10),
+(54, 6, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 11),
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1920\",\"height\":null},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 12),
 (56, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (57, 8, 'body', 'rich_text_box', 'Body', 1, 1, 1, 1, 1, 1, '{}', 2),
 (58, 8, 'patient_name', 'text', 'Patient Name', 1, 1, 1, 1, 1, 1, '{}', 3),
@@ -567,13 +567,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (266, 40, 'community_belongstomany_objective_relationship', 'relationship', 'objectives', 0, 1, 1, 1, 1, 1, '{\"description\":\"select objectives of the community (is optional)\",\"model\":\"App\\\\Models\\\\Objective\",\"table\":\"objectives\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_objectives_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
 (267, 40, 'community_belongstomany_participating_group_relationship', 'relationship', 'participating_groups', 0, 1, 1, 1, 1, 1, '{\"description\":\"select participation group of the community (is optional)\",\"model\":\"App\\\\Models\\\\ParticipatingGroup\",\"table\":\"participating_groups\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"communities_participating_relations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12),
 (268, 44, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(269, 44, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 2),
-(270, 44, 'content', 'text', 'Content', 0, 1, 1, 1, 1, 1, '{}', 3),
-(271, 44, 'image', 'media_picker', 'Image', 0, 1, 1, 1, 1, 1, '{}', 4),
-(272, 44, 'page_id', 'text', 'Page Id', 1, 1, 1, 1, 1, 1, '{}', 5),
-(273, 44, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
-(274, 44, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
-(275, 44, 'page_content_belongsto_page_relationship', 'relationship', 'pages', 0, 1, 1, 1, 1, 1, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Page\",\"table\":\"pages\",\"type\":\"belongsTo\",\"column\":\"page_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":null}', 8);
+(269, 44, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
+(270, 44, 'content', 'rich_text_box', 'Content', 0, 1, 1, 1, 1, 1, '{}', 4),
+(271, 44, 'image', 'media_picker', 'Image', 0, 1, 1, 1, 1, 1, '{}', 5),
+(273, 44, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(274, 44, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(276, 44, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 9),
+(277, 44, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(279, 6, 'page_belongstomany_page_content_relationship', 'relationship', 'page_contents', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PageContent\",\"table\":\"page_contents\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"page_content_relation\",\"pivot\":\"1\",\"taggable\":\"0\"}', 13);
 
 -- --------------------------------------------------------
 
@@ -609,7 +610,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-11-18 19:17:17', '2020-11-18 19:17:17'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-11-18 19:17:28', '2020-11-18 19:17:28'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-11-18 19:17:29', '2020-12-01 11:09:24'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-11-18 19:17:31', '2020-11-18 19:17:31'),
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'App\\Models\\Page', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-11-18 19:17:31', '2020-12-16 11:56:31'),
 (8, 'testimonials', 'testimonials', 'Testimonial', 'Testimonials', 'voyager-pen', 'App\\Models\\Testimonial', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-11-20 20:34:48', '2020-11-20 20:36:09'),
 (15, 'patient_guide_categories', 'patient-guide-categories', 'Patient Guide Category', 'Patient Guide Categories', NULL, 'App\\Models\\PatientGuideCategory', NULL, NULL, 'patient guide categories eg: for visitors, for patient...', 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"category_name\",\"scope\":null}', '2020-11-24 07:09:08', '2020-11-30 12:11:19'),
 (16, 'patient_guids', 'patient-guids', 'Patient Guid', 'Patient Guids', NULL, 'App\\Models\\PatientGuid', NULL, NULL, 'patient guid', 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"title\",\"scope\":null}', '2020-11-24 08:33:46', '2020-11-24 08:41:05'),
@@ -632,7 +633,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-10 08:30:15'),
 (42, 'objectives', 'objectives', 'Objective', 'Objectives', 'voyager-leaf', 'App\\Models\\Objective', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
 (43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
-(44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-13 12:29:47', '2020-12-13 12:29:47');
+(44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-13 12:29:47', '2020-12-16 13:27:11');
 
 -- --------------------------------------------------------
 
@@ -987,7 +988,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (66, '2020_12_10_115649_create_community_participating_table', 27),
 (67, '2020_12_10_123415_create_communities_objectives_relations_table', 28),
 (68, '2020_12_10_123457_create_communities_participating_relations_table', 28),
-(69, '2020_12_13_142100_create_page_contents_table', 29);
+(69, '2020_12_13_142100_create_page_contents_table', 29),
+(70, '2020_12_16_102935_create_page_content_relation_table', 30);
 
 -- --------------------------------------------------------
 
@@ -1037,7 +1039,9 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Home', 'Home Page', '', 'pages/December2020/u1nalxScVosSYtP6hk89.jpg', 'home', 'Home page', 'home', 'ACTIVE', '2020-11-20 15:57:15', '2020-12-13 08:06:53');
+(3, 1, 'من نحن', 'e', '<p>محتوي عربي</p>', 'pages/December2020/0Ve6olKx9HGrJc9bfZYL.png', 'lk', 'ميتا', 'ميتا', 'ACTIVE', '2020-12-16 08:40:32', '2020-12-16 12:38:55'),
+(4, 1, 'الرئسيه', 'نبذة مختصرة عن الرئسيه', '', 'pages/December2020/IsyhU0ZzRqIMthG3qUtS.png', 'الرئسيه', 'ميتا بالعربي', 'الرئسيه,مستشفي الموسي,اختر طبيبك', 'ACTIVE', '2020-12-16 11:11:02', '2020-12-16 11:56:51'),
+(5, 1, 'الخدمات', 'نبذة مختصرة عربي', '<p>محتوي الصفحة عربي</p>', NULL, 'خدمات', 'ميتا عربي', 'خدمات', 'ACTIVE', '2020-12-16 14:11:06', '2020-12-16 14:11:06');
 
 -- --------------------------------------------------------
 
@@ -1050,11 +1054,43 @@ CREATE TABLE `page_contents` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `page_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_contents`
+--
+
+INSERT INTO `page_contents` (`id`, `title`, `content`, `image`, `created_at`, `updated_at`, `deleted_at`, `name`) VALUES
+(1, 'لماذا مستشفي موسي', '<p>محتوي بالعربي</p>', NULL, '2020-12-16 08:23:00', '2020-12-16 08:52:39', NULL, 'why moosa block'),
+(2, 'مرحبا بك في مستشفي الموسي ', '<p>المحتوي عربي</p>', NULL, '2020-12-16 08:26:00', '2020-12-16 08:52:10', NULL, 'welcome to moosa block'),
+(3, 'الروية', '<p>محتوي عربي</p>', NULL, '2020-12-16 13:27:00', '2020-12-16 13:28:23', NULL, 'vision');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_content_relation`
+--
+
+CREATE TABLE `page_content_relation` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `page_id` bigint(20) UNSIGNED NOT NULL,
+  `page_content_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_content_relation`
+--
+
+INSERT INTO `page_content_relation` (`id`, `page_id`, `page_content_id`) VALUES
+(1, 2, 1),
+(2, 2, 2),
+(3, 4, 1),
+(4, 4, 2),
+(5, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -1640,7 +1676,7 @@ CREATE TABLE `service_categories` (
 --
 
 INSERT INTO `service_categories` (`id`, `title`, `slug`, `color`, `thumbnail`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'برامج طبيه', 'medical-programs', '#61c6f5', 'service-categories/December2020/zwRdG5J5yChyshQ5R8Gm.jpg', 'service-categories/December2020/7vUYEsbk9q2Tz2OL9B81.jpg', NULL, '2020-12-07 16:22:00', '2020-12-07 16:40:00'),
+(1, 'برامج طبيه', 'medical-programs', '#61c6f5', 'service-categories/December2020/zwRdG5J5yChyshQ5R8Gm.jpg', 'service-categories/December2020/7vUYEsbk9q2Tz2OL9B81.jpg', NULL, '2020-12-07 16:22:00', '2020-12-16 14:57:24'),
 (2, 'المراكز الطبيه', 'medical-centers', '#bc9d9d', 'service-categories/December2020/6uOSpaSfB2P8bGTkxToE.jpg', 'service-categories/December2020/Cf7H0sWrdSLutNi0ep2Q.jpg', NULL, '2020-12-09 14:45:00', '2020-12-13 11:59:05');
 
 -- --------------------------------------------------------
@@ -1824,8 +1860,6 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (28, 'menu_items', 'title', 6, 'pt', 'Menus', '2020-11-18 19:17:34', '2020-11-18 19:17:34'),
 (29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2020-11-18 19:17:34', '2020-11-18 19:17:34'),
 (30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2020-11-18 19:17:34', '2020-11-18 19:17:34'),
-(31, 'pages', 'title', 2, 'ar', 'الصفحة الرئسيه', '2020-11-20 15:57:15', '2020-11-20 15:57:15'),
-(32, 'pages', 'slug', 2, 'ar', 'alsfhh-alresyh', '2020-11-20 15:57:15', '2020-11-20 15:57:15'),
 (33, 'posts', 'title', 1, 'en', 'Lorem Ipsum Post', '2020-11-20 16:02:44', '2020-11-20 16:02:44'),
 (34, 'posts', 'excerpt', 1, 'en', 'This is the excerpt for the Lorem Ipsum Post', '2020-11-20 16:02:44', '2020-11-20 16:02:44'),
 (35, 'posts', 'body', 1, 'en', '<p>This is the body of the lorem ipsum post</p>', '2020-11-20 16:02:44', '2020-11-20 16:02:44'),
@@ -1847,8 +1881,6 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (53, 'testimonials', 'dr_name', 1, 'en', 'Dr-aziz adel', '2020-11-20 20:48:47', '2020-11-20 20:48:47'),
 (54, 'testimonials', 'department', 1, 'en', 'Sersion', '2020-11-20 20:48:47', '2020-11-20 20:48:47'),
 (58, 'services', 'service_name', 1, 'en', 'Medical centers', '2020-11-22 11:39:59', '2020-11-30 08:03:23'),
-(59, 'pages', 'title', 2, 'en', 'Home', '2020-11-22 13:09:59', '2020-11-22 13:09:59'),
-(60, 'pages', 'slug', 2, 'en', 'home', '2020-11-22 13:09:59', '2020-11-22 13:09:59'),
 (61, 'testimonials', 'body', 2, 'en', '<p>knsdadk kj ck</p>', '2020-11-22 13:13:09', '2020-11-22 13:13:09'),
 (62, 'testimonials', 'patient_name', 2, 'en', 'n c', '2020-11-22 13:13:09', '2020-11-22 13:13:09'),
 (63, 'testimonials', 'dr_name', 2, 'en', 'd jds', '2020-11-22 13:13:09', '2020-11-22 13:13:09'),
@@ -2138,11 +2170,11 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (353, 'data_rows', 'display_name', 251, 'en', 'Deleted At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (354, 'data_rows', 'display_name', 252, 'en', 'Created At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (355, 'data_rows', 'display_name', 253, 'en', 'Updated At', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
-(356, 'data_types', 'display_name_singular', 41, 'en', 'Community Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15');
-INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
+(356, 'data_types', 'display_name_singular', 41, 'en', 'Community Content', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (357, 'data_types', 'display_name_plural', 41, 'en', 'Community Contents', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (358, 'menu_items', 'title', 47, 'en', 'Participating Groups', '2020-12-10 10:32:16', '2020-12-10 10:32:16'),
-(359, 'menu_items', 'title', 46, 'en', 'Objectives', '2020-12-10 10:32:38', '2020-12-10 10:32:38'),
+(359, 'menu_items', 'title', 46, 'en', 'Objectives', '2020-12-10 10:32:38', '2020-12-10 10:32:38');
+INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
 (360, 'data_rows', 'display_name', 266, 'en', 'objectives', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
 (361, 'data_rows', 'display_name', 267, 'en', 'participating_groups', '2020-12-10 10:50:14', '2020-12-10 10:50:14'),
 (362, 'objectives', 'title', 1, 'en', 'art en', '2020-12-10 11:11:42', '2020-12-10 11:11:42'),
@@ -2153,7 +2185,60 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (367, 'menu_items', 'title', 13, 'en', 'Pages', '2020-12-13 12:32:29', '2020-12-13 12:32:29'),
 (368, 'menu_items', 'title', 49, 'en', 'Pages', '2020-12-13 12:33:07', '2020-12-13 12:33:07'),
 (369, 'menu_items', 'title', 48, 'en', 'Page Contents', '2020-12-13 12:33:45', '2020-12-13 12:33:45'),
-(370, 'blogs', 'content', 2, 'en', '<p>content en</p>', '2020-12-15 13:51:28', '2020-12-15 13:51:28');
+(370, 'blogs', 'content', 2, 'en', '<p>content en</p>', '2020-12-15 13:51:28', '2020-12-15 13:51:28'),
+(371, 'page_contents', 'title', 1, 'en', 'why moosa hospital', '2020-12-16 08:23:42', '2020-12-16 08:23:42'),
+(372, 'page_contents', 'content', 1, 'en', 'content en', '2020-12-16 08:23:42', '2020-12-16 08:23:42'),
+(373, 'page_contents', 'title', 2, 'en', 'welcome to moosa hospital', '2020-12-16 08:26:53', '2020-12-16 08:26:53'),
+(374, 'page_contents', 'content', 2, 'en', '<p>content en</p>', '2020-12-16 08:26:53', '2020-12-16 08:52:10'),
+(375, 'data_rows', 'display_name', 44, 'en', 'ID', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(376, 'data_rows', 'display_name', 45, 'en', 'Author', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(377, 'data_rows', 'display_name', 46, 'en', 'Title', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(378, 'data_rows', 'display_name', 47, 'en', 'Excerpt', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(379, 'data_rows', 'display_name', 48, 'en', 'Body', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(380, 'data_rows', 'display_name', 55, 'en', 'Page Image', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(381, 'data_rows', 'display_name', 49, 'en', 'Slug', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(382, 'data_rows', 'display_name', 50, 'en', 'Meta Description', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(383, 'data_rows', 'display_name', 51, 'en', 'Meta Keywords', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(384, 'data_rows', 'display_name', 52, 'en', 'Status', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(385, 'data_rows', 'display_name', 53, 'en', 'Created At', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(386, 'data_rows', 'display_name', 54, 'en', 'Updated At', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(387, 'data_types', 'display_name_singular', 6, 'en', 'Page', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(388, 'data_types', 'display_name_plural', 6, 'en', 'Pages', '2020-12-16 08:38:30', '2020-12-16 08:38:30'),
+(389, 'pages', 'title', 3, 'en', 'about', '2020-12-16 08:41:43', '2020-12-16 08:41:43'),
+(390, 'pages', 'body', 3, 'en', '<p>content en</p>', '2020-12-16 08:41:43', '2020-12-16 08:41:43'),
+(391, 'pages', 'slug', 3, 'en', 'about', '2020-12-16 08:41:43', '2020-12-16 08:41:43'),
+(392, 'pages', 'excerpt', 3, 'en', 'en', '2020-12-16 08:43:15', '2020-12-16 08:43:15'),
+(393, 'data_rows', 'display_name', 268, 'en', 'Id', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(394, 'data_rows', 'display_name', 269, 'en', 'Title', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(395, 'data_rows', 'display_name', 270, 'en', 'Content', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(396, 'data_rows', 'display_name', 271, 'en', 'Image', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(397, 'data_rows', 'display_name', 272, 'en', 'Page Id', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(398, 'data_rows', 'display_name', 273, 'en', 'Created At', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(399, 'data_rows', 'display_name', 274, 'en', 'Updated At', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(400, 'data_rows', 'display_name', 275, 'en', 'pages', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(401, 'data_types', 'display_name_singular', 44, 'en', 'Page Content', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(402, 'data_types', 'display_name_plural', 44, 'en', 'Page Contents', '2020-12-16 08:50:46', '2020-12-16 08:50:46'),
+(403, 'data_rows', 'display_name', 276, 'en', 'Deleted At', '2020-12-16 08:51:13', '2020-12-16 08:51:13'),
+(404, 'data_rows', 'display_name', 277, 'en', 'Name', '2020-12-16 08:51:13', '2020-12-16 08:51:13'),
+(405, 'data_rows', 'display_name', 278, 'en', 'page_contents', '2020-12-16 08:56:37', '2020-12-16 08:56:37'),
+(409, 'pages', 'title', 4, 'en', 'hpme', '2020-12-16 11:11:02', '2020-12-16 11:11:02'),
+(410, 'pages', 'excerpt', 4, 'en', 'home excerpt ', '2020-12-16 11:11:02', '2020-12-16 11:11:02'),
+(411, 'pages', 'slug', 4, 'en', 'home', '2020-12-16 11:11:02', '2020-12-16 11:11:02'),
+(412, 'pages', 'meta_description', 4, 'en', 'Home page meta description', '2020-12-16 11:11:02', '2020-12-16 11:11:02'),
+(413, 'pages', 'meta_keywords', 4, 'en', 'home,hospital,choose your doctor', '2020-12-16 11:11:02', '2020-12-16 11:11:02'),
+(414, 'data_rows', 'display_name', 279, 'en', 'page_contents', '2020-12-16 11:56:31', '2020-12-16 11:56:31'),
+(415, 'pages', 'meta_description', 3, 'en', 'ميتا', '2020-12-16 12:38:55', '2020-12-16 12:38:55'),
+(416, 'pages', 'meta_keywords', 3, 'en', 'ميتا', '2020-12-16 12:38:55', '2020-12-16 12:38:55'),
+(417, 'page_contents', 'title', 3, 'en', 'vision', '2020-12-16 13:28:23', '2020-12-16 13:28:23'),
+(418, 'page_contents', 'content', 3, 'en', '<p>vision content en</p>', '2020-12-16 13:28:23', '2020-12-16 13:28:23'),
+(419, 'pages', 'title', 5, 'en', 'Services', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(420, 'pages', 'excerpt', 5, 'en', 'excerpt en', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(421, 'pages', 'body', 5, 'en', '<p>body en</p>', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(422, 'pages', 'slug', 5, 'en', 'services', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(423, 'pages', 'meta_description', 5, 'en', 'meta description', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(424, 'pages', 'meta_keywords', 5, 'en', 'services', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
+(425, 'service_categories', 'slug', 1, 'en', 'medical-programs', '2020-12-16 15:04:24', '2020-12-16 15:04:24'),
+(426, 'service_categories', 'slug', 2, 'en', 'medical-centers', '2020-12-16 15:04:41', '2020-12-16 15:04:41');
 
 -- --------------------------------------------------------
 
@@ -2398,6 +2483,12 @@ ALTER TABLE `page_contents`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `page_content_relation`
+--
+ALTER TABLE `page_content_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `participating_groups`
 --
 ALTER TABLE `participating_groups`
@@ -2606,7 +2697,7 @@ ALTER TABLE `community_content_relation`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
 
 --
 -- AUTO_INCREMENT for table `data_types`
@@ -2672,7 +2763,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `objectives`
@@ -2684,13 +2775,19 @@ ALTER TABLE `objectives`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `page_contents`
 --
 ALTER TABLE `page_contents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `page_content_relation`
+--
+ALTER TABLE `page_content_relation`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `participating_groups`
@@ -2780,7 +2877,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
 
 --
 -- AUTO_INCREMENT for table `users`
