@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\LayoutController;
+use App\Http\Controllers\Api\SearchController;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
@@ -26,4 +28,6 @@ use App\Http\Controllers\Api\HomeController;
     $test->load('translations');
     return $test;
 });*/
+Route::get('/layout',LayoutController::class.'@show');
 Route::get('/home',HomeController::class.'@show');
+Route::get('/search/{q}',SearchController::class.'@show');

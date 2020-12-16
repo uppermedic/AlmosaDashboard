@@ -20,7 +20,7 @@ use TCG\Voyager\Models\Page;
 
 //Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
 Route::get('/', function(){
-   
+
    /* $events = Event::with('categories','timelines')->get();
     $events->load('translations');
     return $events;*/
@@ -32,13 +32,16 @@ Route::get('/', function(){
        return(__($item['body']));
     }*/
 
-    $services = Service::with('translations')->get();
-    return($services);
-    
+//    $services = Service::with('translations')->get();
+//    return($services);
+    $search = \App\Models\Blog::search('بلوج')->get();
+    $search->load('translations');
+    return $search;
+
 });
 
 
 Route::group(['prefix' => 'moosa-adminstrator'], function () {
-    
+
     Voyager::routes();
 });

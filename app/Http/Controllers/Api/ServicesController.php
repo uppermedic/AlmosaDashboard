@@ -16,7 +16,7 @@ class ServicesController extends Controller
     /**
      * show services at home page  limit by 10
      */
-    public static function HomeServices()
+    public static function HomeServices(): array
     {
         $services = Service::where('service_category_id',2)->with('translations')->orderBy('id','DESC')->limit(10)->get();
         $items = [];

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 13, 2020 at 03:51 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Dec 16, 2020 at 11:03 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,8 +47,8 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `title`, `slug`, `content`, `excerpt`, `status`, `image`, `seo_title`, `meta_description`, `meta_keywords`, `created_at`, `updated_at`) VALUES
-(1, 'fsfssdfsar', 'fsfssdfsar', '<p>fsdfsdfdsdad</p>', '<p>sdfsdfsdf</p>', 'PUBLISHED', 'blogs/December2020/QfYRcMm4LOSurgOinVNg.jpg', 'sfsa', 'fsdf', 'fssfsf', '2020-12-01 12:10:00', '2020-12-01 13:30:51'),
-(2, 'blog in ar', 'blog-in-en', '', '', 'PUBLISHED', 'blogs/December2020/TxpslN48mbeqvIyjwZvE.jpg', 'meta title', 'meta des', 'health', '2020-12-04 21:13:49', '2020-12-04 21:13:49');
+(1, 'fsfssdfsar', 'fsfssdfsar', '<p>blog</p>', '<p>sdfsdfsdf</p>', 'PUBLISHED', 'blogs/December2020/QfYRcMm4LOSurgOinVNg.jpg', 'sfsa', 'fsdf', 'fssfsf', '2020-12-01 12:10:00', '2020-12-15 12:15:42'),
+(2, 'بلوج عربي', 'blwj-arby', '<p>محتوي عربي</p>', '', 'PUBLISHED', 'blogs/December2020/TxpslN48mbeqvIyjwZvE.jpg', 'meta title', 'meta des', 'health', '2020-12-04 21:13:00', '2020-12-15 13:51:28');
 
 -- --------------------------------------------------------
 
@@ -1976,8 +1976,8 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (190, 'data_rows', 'display_name', 133, 'en', 'blog_tags', '2020-12-01 12:19:38', '2020-12-01 12:19:38'),
 (191, 'blog_tags', 'tag_name', 5, 'en', 'tag5', '2020-12-01 13:30:08', '2020-12-01 13:30:08'),
 (192, 'blogs', 'title', 1, 'en', 'fsfssdfs', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
-(193, 'blogs', 'content', 1, 'en', '<p>fsdfsdfds</p>', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
-(194, 'blogs', 'excerpt', 1, 'en', '<p>sdfsdfsdf</p>', '2020-12-01 13:30:52', '2020-12-01 13:30:52'),
+(193, 'blogs', 'content', 1, 'en', '<p>blog</p>', '2020-12-01 13:30:52', '2020-12-15 12:15:42'),
+(194, 'blogs', 'excerpt', 1, 'en', '<p>blog excerpt</p>', '2020-12-01 13:30:52', '2020-12-15 12:15:42'),
 (195, 'menu_items', 'title', 28, 'en', 'Blog', '2020-12-01 13:36:14', '2020-12-01 13:36:14'),
 (196, 'menu_items', 'title', 26, 'en', 'Tags', '2020-12-01 13:37:24', '2020-12-01 13:37:24'),
 (197, 'menu_items', 'title', 27, 'en', 'Blog Categories', '2020-12-01 13:38:04', '2020-12-01 13:38:04'),
@@ -2152,7 +2152,8 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (366, 'services', 'content', 2, 'en', '<p>ؤش</p>', '2020-12-13 12:01:42', '2020-12-13 12:01:42'),
 (367, 'menu_items', 'title', 13, 'en', 'Pages', '2020-12-13 12:32:29', '2020-12-13 12:32:29'),
 (368, 'menu_items', 'title', 49, 'en', 'Pages', '2020-12-13 12:33:07', '2020-12-13 12:33:07'),
-(369, 'menu_items', 'title', 48, 'en', 'Page Contents', '2020-12-13 12:33:45', '2020-12-13 12:33:45');
+(369, 'menu_items', 'title', 48, 'en', 'Page Contents', '2020-12-13 12:33:45', '2020-12-13 12:33:45'),
+(370, 'blogs', 'content', 2, 'en', '<p>content en</p>', '2020-12-15 13:51:28', '2020-12-15 13:51:28');
 
 -- --------------------------------------------------------
 
@@ -2278,7 +2279,8 @@ ALTER TABLE `communities_objectives_relations`
 --
 ALTER TABLE `communities_participating_relations`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `communities_participating_relations_community_id_foreign` (`community_id`);
+  ADD KEY `communities_participating_relations_community_id_foreign` (`community_id`),
+  ADD KEY `communities_participating_relations_participating_id_foreign` (`participating_group_id`);
 
 --
 -- Indexes for table `community_contents`
@@ -2778,7 +2780,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `users`

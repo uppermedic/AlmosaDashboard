@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', false),
+    'queue' => env('SCOUT_QUEUE', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -99,8 +99,11 @@ return [
     */
 
     'algolia' => [
-        'id' => env('ALGOLIA_APP_ID', ''),
-        'secret' => env('ALGOLIA_SECRET', ''),
+        'id' => env('ALGOLIA_APP_ID', 'IJFJ3RM4NM'),
+        'secret' => env('ALGOLIA_SECRET', '05e55929ead4ad6577213ad663f734cd'),
     ],
 
+    'tntsearch' => [
+        'storage'  => storage_path(),
+    ],
 ];

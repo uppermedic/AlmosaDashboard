@@ -17,7 +17,7 @@ class HomeController extends Controller {
     public function show()
     {
         $data = [
-            'header'=>Helper::header(),
+
             'page_cover'=>Voyager::image(Page::where('id',2)->get(['image'])[0]['image']),
             'home_services'=>ServicesController::HomeServices(),
             'testimonials'=>TestimonialController::show(),
@@ -28,7 +28,7 @@ class HomeController extends Controller {
                 'patient'=>setting('hospital.patients')
             ],
             'emergency_phone'=>setting('contact-us.emergency_number'),
-            'footer'=>Helper::footer()
+
         ];
         return response($data,200);
     }
