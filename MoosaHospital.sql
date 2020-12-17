@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2020 at 06:05 PM
+-- Generation Time: Dec 17, 2020 at 05:59 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -509,7 +509,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (207, 35, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"please :attribute is required\"}}}', 3),
 (208, 35, 'excerpt', 'rich_text_box', 'Excerpt', 1, 0, 1, 1, 1, 1, '{}', 6),
 (209, 35, 'content', 'rich_text_box', 'Content', 1, 0, 1, 1, 1, 1, '{}', 7),
-(210, 35, 'icon', 'media_picker', 'Icon', 1, 0, 1, 1, 1, 1, '{}', 8),
+(210, 35, 'icon', 'media_picker', 'Icon', 0, 0, 1, 1, 1, 1, '{}', 8),
 (211, 35, 'color', 'color', 'Color', 1, 0, 1, 1, 1, 1, '{}', 9),
 (212, 35, 'thumbnail', 'media_picker', 'Thumbnail', 1, 0, 1, 1, 1, 1, '{\"quality\":\"90%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 10),
 (213, 35, 'image', 'media_picker', 'Image', 1, 0, 1, 1, 1, 1, '{\"max\":1,\"min\":1,\"show_folders\":true,\"show_toolbar\":true,\"allow_upload\":true,\"allow_move\":true,\"allow_delete\":true,\"allow_create_folder\":true,\"allow_rename\":true,\"allow_crop\":true,\"hide_thumbnails\":false,\"quality\":90}', 11),
@@ -626,7 +626,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (31, 'event_attendances', 'event-attendances', 'Event Attendance', 'Event Attendances', 'voyager-people', 'App\\Models\\EventAttendance', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 19:18:50', '2020-12-04 19:23:29'),
 (33, 'event_timelines', 'event-timelines', 'Event Timeline', 'Event Timelines', 'voyager-alarm-clock', 'App\\Models\\EventTimeline', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 19:57:53', '2020-12-04 20:08:24'),
 (34, 'service_categories', 'service-categories', 'Service Category', 'Service Categories', 'voyager-leaf', 'App\\Models\\ServiceCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null}', '2020-12-07 14:31:58', '2020-12-07 14:31:58'),
-(35, 'services', 'services', 'Service', 'Services', 'voyager-bubble-hear', 'App\\Models\\Service', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:44:28', '2020-12-08 07:12:44'),
+(35, 'services', 'services', 'Service', 'Services', 'voyager-bubble-hear', 'App\\Models\\Service', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:44:28', '2020-12-17 12:20:05'),
 (37, 'service_sections', 'service-sections', 'Service Section', 'Service Sections', 'voyager-pie-chart', 'App\\Models\\ServiceSection', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:56:03', '2020-12-08 06:51:25'),
 (39, 'service_section_items', 'service-section-items', 'Section Item', 'Section Items', 'voyager-paperclip', 'App\\Models\\ServiceSectionItem', NULL, 'App\\Http\\Controllers\\Voyager\\ServiceSectionsItemsController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 15:09:30', '2020-12-09 08:22:36'),
 (40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-10 10:50:14'),
@@ -1627,7 +1627,7 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `service_category_id`, `slug`, `title`, `excerpt`, `content`, `icon`, `color`, `thumbnail`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 2, 'test-ar-jkk', 'test ar jkk ', '<p>nj</p>', '<p>k</p>', 'services/December2020/qup2XPqJZCUVC3svFZDg.jpg', '#000000', 'services/doctor1.jpg', 'services/doctor1.jpg', NULL, '2020-12-07 16:33:00', '2020-12-13 12:01:57'),
+(1, 1, 'test-ar-jkk', 'test ar jkk ', '<p>nj</p>', '<p>k</p>', 'services/December2020/qup2XPqJZCUVC3svFZDg.jpg', '#000000', 'services/doctor1.jpg', 'services/doctor1.jpg', NULL, '2020-12-07 16:33:00', '2020-12-17 07:07:58'),
 (2, 2, 'shshy', 'ششي', '<p>ؤشؤ</p>', '<p>ؤش</p>', 'services/December2020/G3KHCBBWlENKNMWCiWU6.jpg', '#ca2727', 'services/doctor1.jpg', 'services/November2020/WxvmJ3GgPocglALeJS1L.png', NULL, '2020-12-08 07:11:00', '2020-12-13 12:01:42');
 
 -- --------------------------------------------------------
@@ -1677,7 +1677,7 @@ CREATE TABLE `service_categories` (
 
 INSERT INTO `service_categories` (`id`, `title`, `slug`, `color`, `thumbnail`, `image`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'برامج طبيه', 'medical-programs', '#61c6f5', 'service-categories/December2020/zwRdG5J5yChyshQ5R8Gm.jpg', 'service-categories/December2020/7vUYEsbk9q2Tz2OL9B81.jpg', NULL, '2020-12-07 16:22:00', '2020-12-16 14:57:24'),
-(2, 'المراكز الطبيه', 'medical-centers', '#bc9d9d', 'service-categories/December2020/6uOSpaSfB2P8bGTkxToE.jpg', 'service-categories/December2020/Cf7H0sWrdSLutNi0ep2Q.jpg', NULL, '2020-12-09 14:45:00', '2020-12-13 11:59:05');
+(2, 'المراكز الطبيه', 'المراكز-الطبية', '#bc9d9d', 'service-categories/December2020/6uOSpaSfB2P8bGTkxToE.jpg', 'service-categories/December2020/Cf7H0sWrdSLutNi0ep2Q.jpg', NULL, '2020-12-09 14:45:00', '2020-12-17 07:13:00');
 
 -- --------------------------------------------------------
 
@@ -1701,8 +1701,8 @@ CREATE TABLE `service_sections` (
 --
 
 INSERT INTO `service_sections` (`id`, `title`, `color`, `icon`, `service_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'consultant cardiologist', '#ee2121', NULL, 1, NULL, '2020-12-08 06:53:28', '2020-12-08 06:53:28'),
-(2, 'غقعغ', '#d30f0f', NULL, 1, NULL, '2020-12-08 07:14:46', '2020-12-08 07:14:46');
+(1, 'consultant cardiologist', '#ee2121', 'service-sections/about.png', 1, NULL, '2020-12-08 06:53:00', '2020-12-17 13:18:14'),
+(2, 'غقعغ', '#d30f0f', 'service-sections/about.png', 1, NULL, '2020-12-08 07:14:00', '2020-12-17 13:18:21');
 
 -- --------------------------------------------------------
 
@@ -2238,7 +2238,10 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (423, 'pages', 'meta_description', 5, 'en', 'meta description', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
 (424, 'pages', 'meta_keywords', 5, 'en', 'services', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
 (425, 'service_categories', 'slug', 1, 'en', 'medical-programs', '2020-12-16 15:04:24', '2020-12-16 15:04:24'),
-(426, 'service_categories', 'slug', 2, 'en', 'medical-centers', '2020-12-16 15:04:41', '2020-12-16 15:04:41');
+(426, 'service_categories', 'slug', 2, 'en', 'medical-centers', '2020-12-16 15:04:41', '2020-12-16 15:04:41'),
+(427, 'services', 'slug', 2, 'en', 'shshy', '2020-12-17 12:20:24', '2020-12-17 12:20:24'),
+(428, 'services', 'slug', 1, 'en', 'test-ar-jkk', '2020-12-17 12:20:32', '2020-12-17 12:20:32'),
+(429, 'service_sections', 'title', 2, 'en', 'غقعغ', '2020-12-17 12:47:29', '2020-12-17 12:47:29');
 
 -- --------------------------------------------------------
 
@@ -2877,7 +2880,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=430;
 
 --
 -- AUTO_INCREMENT for table `users`

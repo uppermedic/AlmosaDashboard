@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c953159-a913-4a1e-a06c-26cc08ece331" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AboutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PageContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PageContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ServiceCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ServiceCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Service.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Service.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -607,7 +604,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -646,7 +643,8 @@
       <workItem from="1607848424738" duration="19740000" />
       <workItem from="1608033501748" duration="222000" />
       <workItem from="1608033738089" duration="318000" />
-      <workItem from="1608034075644" duration="32621000" />
+      <workItem from="1608034075644" duration="46988000" />
+      <workItem from="1608214580910" duration="7709000" />
     </task>
     <servers />
   </component>
@@ -690,6 +688,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />

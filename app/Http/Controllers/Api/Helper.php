@@ -53,15 +53,27 @@ class Helper{
 
     /**
      * handle the translations
+     * get specified columns
      * @param $translations
+     * @param null $columns
      * @return array
      */
-    public static function toTranslation($translations):array
+    public static function toTranslation($translations,$columns=[]):array
     {
         $getTranslatedItems = [];
-        foreach ($translations as $translation) {
-            $getTranslatedItems[$translation['column_name']] = $translation['value'];
+        if( !empty($columns)){
+            foreach ($translations as $translation) {
+                if(in_array($translation['column_name'],$columns)){
+                    $getTranslatedItems[$translation['column_name']] = $translation['value'];
+                }
+
+            }
+        }else{
+            foreach ($translations as $translation) {
+                $getTranslatedItems[$translation['column_name']] = $translation['value'];
+            }
         }
+
 
         return $getTranslatedItems;
     }

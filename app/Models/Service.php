@@ -9,5 +9,17 @@ use TCG\Voyager\Traits\Translatable;
 class Service extends Model
 {
     use HasFactory,Translatable,SoftDeletes;
-    protected $translatable = ['title','excerpt','content'];
+    protected $hidden = ['id'];
+    protected $table = 'services';
+    protected $translatable = ['title','excerpt','content','slug'];
+
+    public function getSections()
+    {
+        return $this->hasMany(ServiceSection::class,'service_id');
+    }
+
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class, 'services_physicians_relation', 'doctor_id', 'service_id');
+    }
 }

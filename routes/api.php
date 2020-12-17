@@ -33,5 +33,11 @@ use App\Http\Controllers\Api\ServicesController;
 Route::get('/layout',LayoutController::class.'@show');
 Route::get('/home',HomeController::class.'@show');
 Route::get('/about', AboutController::class . '@show');
+
+
 Route::get('/services',ServicesController::class.'@show');
+Route::get('/services/{cat_id}',ServicesController::class.'@servicesByCategory');
+Route::get('/services/single/{service_id}',ServicesController::class.'@singleService');
+
+
 Route::get('/search/{q}',SearchController::class.'@show');

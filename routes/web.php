@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\ServiceCategory;
+use App\Models\ServiceSection;
+use App\Models\ServiceSectionItem;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +35,10 @@ Route::get('/', function(){
        return(__($item['body']));
     }*/
 
-//    $services = Service::with('translations')->get();
-//    return($services);
+    $services =Service::find(2)->with('doctors','translations')->first();
+    $doctors = $services->doctors;
+    $doctors->load('translations');
+    return($services);
   /*  $search = \App\Models\Blog::search('بلوج')->get();
     $search->load('translations');
     return $search;*/
@@ -46,8 +50,8 @@ Route::get('/', function(){
     }*/
    //$pageContent = $page->get_page_content;
 
-    $serviceCatogries = ServiceCategory::with('translations')->get();
-    return $serviceCatogries;
+    //$serviceCatogries = ServiceCategory::where('slug','medical-centers')->with('translations')->get();
+    //return $serviceCatogries;
 
 });
 
