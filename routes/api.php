@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ServicesController;
+use App\Http\Controllers\Api\EventController;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
@@ -34,10 +35,27 @@ Route::get('/layout',LayoutController::class.'@show');
 Route::get('/home',HomeController::class.'@show');
 Route::get('/about', AboutController::class . '@show');
 
+Route::prefix('services')->group(function (){
+    Route::get('/',ServicesController::class.'@show');
+    Route::get('/{cat_id}',ServicesController::class.'@servicesByCategory');
+    Route::get('/single/{service_id}',ServicesController::class.'@singleService');
 
-Route::get('/services',ServicesController::class.'@show');
-Route::get('/services/{cat_id}',ServicesController::class.'@servicesByCategory');
-Route::get('/services/single/{service_id}',ServicesController::class.'@singleService');
+});
+
+Route::prefix('education')->group(function (){
+    Route::get('/',EventController::class.'@show');
+
+    Route::get('/type/{type}',EventController::class.'@getEventsOrCourses');
+
+    Route::post('/filter/{type}',EventController::class.'@filtration');
+
+    Route::get('/categories',EventController::class.'@getEventCategories');
+
+    Route::get('/single/{event_id}',EventController::class.'@getSingleEvent');
+
+    Route::post('/register',EventController::class.'@registerToEvent')->middleware('checkEvent');
+
+});
 
 
 Route::get('/search/{q}',SearchController::class.'@show');

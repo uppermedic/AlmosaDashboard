@@ -21,6 +21,6 @@ class Event extends Model
     }
 
     public function timelines(){
-        return $this->hasOne('App\Models\EventTimeline');
+        return $this->hasMany('App\Models\EventTimeline','event_id');
     }
 }

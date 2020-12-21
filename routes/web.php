@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EventCategory;
 use App\Models\ServiceCategory;
 use App\Models\ServiceSection;
 use App\Models\ServiceSectionItem;
@@ -24,9 +25,9 @@ use App\Models\Page;
 //Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
 Route::get('/', function(){
 
-   /* $events = Event::with('categories','timelines')->get();
-    $events->load('translations');
-    return $events;*/
+   /* $events = Event::with('translations','categories','timelines')->paginate(2);*/
+    $categories = EventCategory::with('translations')->get();
+    return csrf_token();
     //dd(Page::where('id', 2)->get(['image'])[0]);
     //$test = Testimonial::with('translations')->limit(10)->get();
 
@@ -35,10 +36,10 @@ Route::get('/', function(){
        return(__($item['body']));
     }*/
 
-    $services =Service::find(2)->with('doctors','translations')->first();
+   /* $services =Service::find(2)->with('doctors','translations')->first();
     $doctors = $services->doctors;
     $doctors->load('translations');
-    return($services);
+    return($services);*/
   /*  $search = \App\Models\Blog::search('بلوج')->get();
     $search->load('translations');
     return $search;*/
