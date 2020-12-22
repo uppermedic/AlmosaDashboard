@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MediaCenterController;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -57,5 +58,11 @@ Route::prefix('education')->group(function (){
 
 });
 
+Route::prefix('media')->group(function () {
+    Route::get('/',MediaCenterController::class.'@show');
+    Route::get('/magazine',MediaCenterController::class.'@getMagazine');
+    Route::get('/videos',MediaCenterController::class.'@getVideos');
+    Route::get('/photos',MediaCenterController::class.'@getPhotos');
+});
 
 Route::get('/search/{q}',SearchController::class.'@show');

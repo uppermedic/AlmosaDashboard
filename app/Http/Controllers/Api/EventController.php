@@ -79,7 +79,7 @@ class EventController extends Controller
      * @param $events
      * @return array
      */
-    protected function pagination($events)
+    protected function pagination($events): array
     {
         $data = [];
         $data['current_page']= $events->currentPage();

@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c953159-a913-4a1e-a06c-26cc08ece331" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/MediaCenterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MoosaHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoosaHospital.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Event.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_16_104646_alter_page_content_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PhotoGallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PhotoGallery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -345,6 +349,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
       <path value="$PROJECT_DIR$/vendor/teamtnt/tntsearch" />
       <path value="$PROJECT_DIR$/vendor/teamtnt/laravel-scout-tntsearch-driver" />
+      <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
@@ -646,7 +651,8 @@
       <workItem from="1608033738089" duration="318000" />
       <workItem from="1608034075644" duration="46988000" />
       <workItem from="1608214580910" duration="8066000" />
-      <workItem from="1608455310859" duration="39056000" />
+      <workItem from="1608455310859" duration="40117000" />
+      <workItem from="1608636069319" duration="18340000" />
     </task>
     <servers />
   </component>

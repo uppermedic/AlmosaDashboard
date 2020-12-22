@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2020 at 06:34 PM
+-- Generation Time: Dec 22, 2020 at 06:01 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -441,8 +441,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (138, 23, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
 (139, 23, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
 (140, 24, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(141, 24, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"This :attribute field is a must.\"}}}', 2),
-(142, 24, 'images', 'media_picker', 'Images', 1, 0, 1, 1, 1, 1, '{\"max\":20,\"min\":1,\"expanded\":true,\"show_folders\":true,\"show_toolbar\":true,\"allow_upload\":true,\"allow_move\":true,\"allow_delete\":true,\"allow_create_folder\":true,\"allow_rename\":true,\"allow_crop\":true,\"allowed\":[],\"hide_thumbnails\":false,\"quality\":90}', 3),
+(142, 24, 'images', 'media_picker', 'Images', 1, 1, 1, 1, 1, 1, '{\"max\":20,\"min\":1,\"expanded\":true,\"show_folders\":true,\"show_toolbar\":true,\"allow_upload\":true,\"allow_move\":true,\"allow_delete\":true,\"allow_create_folder\":true,\"allow_rename\":true,\"allow_crop\":true,\"allowed\":[],\"hide_thumbnails\":false,\"quality\":90}', 3),
 (143, 24, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
 (144, 24, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
 (145, 25, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
@@ -576,7 +575,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (277, 44, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
 (279, 6, 'page_belongstomany_page_content_relationship', 'relationship', 'page_contents', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PageContent\",\"table\":\"page_contents\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"page_content_relation\",\"pivot\":\"1\",\"taggable\":\"0\"}', 13),
 (280, 27, 'type', 'select_dropdown', 'Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"EVENT\",\"options\":{\"EVENT\":\"Event\",\"COURSE\":\"Course\"}}', 17),
-(281, 27, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"ONLINE\",\"options\":{\"ONLINE\":\"Online\",\"OFFLINE\":\"Offline\"}}', 18);
+(281, 27, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"ONLINE\",\"options\":{\"ONLINE\":\"Online\",\"OFFLINE\":\"Offline\"}}', 18),
+(282, 45, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(283, 45, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this :attribute is required\"}}}', 2),
+(284, 45, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 3),
+(285, 45, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 1, 0, 1, '{}', 4),
+(286, 45, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(287, 25, 'video_gallery_belongsto_video_category_relationship', 'relationship', 'video_categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\VideoCategory\",\"table\":\"video_categories\",\"type\":\"belongsTo\",\"column\":\"video_category_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(288, 25, 'video_category_id', 'text', 'Video Category Id', 1, 1, 1, 1, 1, 1, '{}', 7),
+(290, 24, 'photo_category_id', 'text', 'Photo Gallery Id', 1, 1, 1, 1, 1, 1, '{}', 5),
+(291, 24, 'photo_gallery_belongsto_photo_category_relationship', 'relationship', 'photo_categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PhotoCategory\",\"table\":\"photo_categories\",\"type\":\"belongsTo\",\"column\":\"photo_category_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"blog_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(292, 46, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(293, 46, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this :attribute is required\"}}}', 2),
+(294, 46, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 3),
+(295, 46, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(296, 46, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5);
 
 -- --------------------------------------------------------
 
@@ -621,8 +634,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (20, 'blog_tags', 'blog-tags', 'Tag', 'Tags', 'voyager-file-text', 'App\\Models\\BlogTag', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:45:59', '2020-12-01 13:09:31'),
 (22, 'blog_categories', 'blog-categories', 'Blog Category', 'Blog Categories', NULL, 'App\\Models\\BlogCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-01 11:47:27', '2020-12-01 12:08:58'),
 (23, 'hakeem_magazines', 'hakeem-magazines', 'Hakeem Magazine', 'Hakeem Magazines', 'voyager-window-list', 'App\\Models\\HakeemMagazine', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-02 05:27:17', '2020-12-02 05:27:17'),
-(24, 'photo_galleries', 'photo-galleries', 'Photo Gallery', 'Photo Galleries', 'voyager-photo', 'App\\Models\\PhotoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-02 06:06:44', '2020-12-02 06:28:13'),
-(25, 'video_galleries', 'video-galleries', 'Video Gallery', 'Video Galleries', 'voyager-video', 'App\\Models\\VideoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-02 07:15:39', '2020-12-02 07:15:39'),
+(24, 'photo_galleries', 'photo-galleries', 'Photo Gallery', 'Photo Galleries', 'voyager-photo', 'App\\Models\\PhotoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-02 06:06:44', '2020-12-22 13:05:44'),
+(25, 'video_galleries', 'video-galleries', 'Video Gallery', 'Video Galleries', 'voyager-video', 'App\\Models\\VideoGallery', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-02 07:15:39', '2020-12-22 12:04:04'),
 (27, 'events', 'events', 'حدث', 'الأحداث', 'voyager-activity', 'App\\Models\\Event', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 16:07:38', '2020-12-20 10:35:59'),
 (29, 'event_categories', 'event-categories', 'Event Category', 'Event Categories', 'voyager-categories', 'App\\Models\\EventCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 16:58:04', '2020-12-04 17:41:03'),
 (31, 'event_attendances', 'event-attendances', 'Event Attendance', 'Event Attendances', 'voyager-people', 'App\\Models\\EventAttendance', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-04 19:18:50', '2020-12-04 19:23:29'),
@@ -635,7 +648,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-10 08:30:15'),
 (42, 'objectives', 'objectives', 'Objective', 'Objectives', 'voyager-leaf', 'App\\Models\\Objective', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
 (43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
-(44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-13 12:29:47', '2020-12-16 13:27:11');
+(44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-13 12:29:47', '2020-12-16 13:27:11'),
+(45, 'video_categories', 'video-categories', 'Video Category', 'Video Categories', 'voyager-window-list', 'App\\Models\\VideoCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(46, 'photo_categories', 'photo-categories', 'Photo Category', 'Photo Categories', 'voyager-window-list', 'App\\Models\\PhotoCategory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-22 13:00:06', '2020-12-22 13:00:06');
 
 -- --------------------------------------------------------
 
@@ -814,7 +829,8 @@ CREATE TABLE `hakeem_magazines` (
 --
 
 INSERT INTO `hakeem_magazines` (`id`, `title`, `url`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'مجله موسي العدد الاول', 'https://issuu.com/al-moosa/docs/2-th-1-', 'hakeem-magazines/2019-08-27.jpg', '2020-12-02 05:32:00', '2020-12-02 05:34:12');
+(1, 'مجله موسي العدد الاول', 'https://issuu.com/al-moosa/docs/2-th-1-', 'hakeem-magazines/2019-08-27.jpg', '2020-12-02 05:32:00', '2020-12-02 05:34:12'),
+(2, 'sfsf', 'https://almoosahospital.org/', 'hakeem-magazines/about.png', '2020-12-22 11:32:08', '2020-12-22 11:32:08');
 
 -- --------------------------------------------------------
 
@@ -889,8 +905,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (28, 1, 'المدونه', '', '_self', 'voyager-bag', '#000000', NULL, 13, '2020-12-01 13:36:14', '2020-12-13 12:34:22', NULL, ''),
 (29, 1, 'الخدمات', '', '_self', 'voyager-bulb', '#000000', NULL, 14, '2020-12-01 16:20:43', '2020-12-13 12:34:22', NULL, ''),
 (30, 1, 'مجله حكيم', '', '_self', 'voyager-window-list', '#000000', 33, 1, '2020-12-02 05:27:18', '2020-12-02 07:21:54', 'voyager.hakeem-magazines.index', 'null'),
-(31, 1, 'معرض الصور', '', '_self', 'voyager-photo', '#000000', 33, 2, '2020-12-02 06:06:44', '2020-12-02 07:21:27', 'voyager.photo-galleries.index', 'null'),
-(32, 1, 'الفديوهات', '', '_self', 'voyager-video', '#000000', 33, 3, '2020-12-02 07:15:40', '2020-12-02 07:22:11', 'voyager.video-galleries.index', 'null'),
+(31, 1, 'معرض الصور', '', '_self', 'voyager-photo', '#000000', 33, 3, '2020-12-02 06:06:44', '2020-12-22 13:00:26', 'voyager.photo-galleries.index', 'null'),
+(32, 1, 'الفديوهات', '', '_self', 'voyager-video', '#000000', 33, 4, '2020-12-02 07:15:40', '2020-12-22 13:00:26', 'voyager.video-galleries.index', 'null'),
 (33, 1, 'المركز الاعلامي', '', '_self', 'voyager-play', '#000000', NULL, 15, '2020-12-02 07:21:04', '2020-12-13 12:34:22', NULL, ''),
 (34, 1, 'الاحداث', '', '_self', 'voyager-activity', '#000000', 36, 1, '2020-12-04 16:07:39', '2020-12-04 19:20:51', 'voyager.events.index', 'null'),
 (35, 1, 'انواع الحدث', '', '_self', 'voyager-categories', '#000000', 36, 2, '2020-12-04 16:58:04', '2020-12-04 17:44:28', 'voyager.event-categories.index', 'null'),
@@ -907,7 +923,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (46, 1, 'أهداف المبادرة', '', '_self', 'voyager-leaf', '#000000', 45, 3, '2020-12-10 09:46:28', '2020-12-10 10:32:48', 'voyager.objectives.index', 'null'),
 (47, 1, 'الفئات المشاركه', '', '_self', 'voyager-bolt', '#000000', 45, 4, '2020-12-10 09:52:56', '2020-12-10 10:32:56', 'voyager.participating-groups.index', 'null'),
 (48, 1, 'محتوي الصفاحات', '', '_self', 'voyager-news', '#000000', 49, 2, '2020-12-13 12:29:47', '2020-12-13 12:34:21', 'voyager.page-contents.index', 'null'),
-(49, 1, 'الصفحات', '', '_self', 'voyager-file-text', '#000000', NULL, 6, '2020-12-13 12:33:07', '2020-12-13 12:34:21', NULL, '');
+(49, 1, 'الصفحات', '', '_self', 'voyager-file-text', '#000000', NULL, 6, '2020-12-13 12:33:07', '2020-12-13 12:34:21', NULL, ''),
+(50, 1, 'Video Categories', '', '_self', 'voyager-window-list', '#000000', 33, 5, '2020-12-22 11:49:45', '2020-12-22 13:00:26', 'voyager.video-categories.index', 'null'),
+(51, 1, 'Photo Categories', '', '_self', 'voyager-window-list', NULL, 33, 2, '2020-12-22 13:00:06', '2020-12-22 13:00:26', 'voyager.photo-categories.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -996,7 +1014,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (68, '2020_12_10_123457_create_communities_participating_relations_table', 28),
 (69, '2020_12_13_142100_create_page_contents_table', 29),
 (70, '2020_12_16_102935_create_page_content_relation_table', 30),
-(71, '2020_12_20_122053_alter_event_add_type_status_table', 31);
+(71, '2020_12_20_122053_alter_event_add_type_status_table', 31),
+(72, '2019_12_14_000001_create_personal_access_tokens_table', 32),
+(73, '2020_12_22_134234_create_video_categories_table', 33),
+(74, '2020_12_22_135628_alter_video_gallaries_category_column_table', 34),
+(75, '2020_12_22_144327_create_photo_categories_table', 35),
+(76, '2020_12_22_144855_alter_photo_gallary_category_column_table', 35);
 
 -- --------------------------------------------------------
 
@@ -1049,7 +1072,9 @@ INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `sl
 (3, 1, 'من نحن', 'e', '<p>محتوي عربي</p>', 'pages/December2020/0Ve6olKx9HGrJc9bfZYL.png', 'lk', 'ميتا', 'ميتا', 'ACTIVE', '2020-12-16 08:40:32', '2020-12-16 12:38:55'),
 (4, 1, 'الرئسيه', 'نبذة مختصرة عن الرئسيه', '', 'pages/December2020/IsyhU0ZzRqIMthG3qUtS.png', 'الرئسيه', 'ميتا بالعربي', 'الرئسيه,مستشفي الموسي,اختر طبيبك', 'ACTIVE', '2020-12-16 11:11:02', '2020-12-16 11:56:51'),
 (5, 1, 'الخدمات', 'نبذة مختصرة عربي', '<p>محتوي الصفحة عربي</p>', NULL, 'خدمات', 'ميتا عربي', 'خدمات', 'ACTIVE', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
-(6, 1, 'التدريب و التطوير', '', '', 'pages/December2020/PlXNbO20WppubQRPODN7.png', 'altdryb-w-alttwyr', '', '', 'ACTIVE', '2020-12-20 08:59:14', '2020-12-20 09:00:21');
+(6, 1, 'التدريب و التطوير', '', '', 'pages/December2020/PlXNbO20WppubQRPODN7.png', 'altdryb-w-alttwyr', '', '', 'ACTIVE', '2020-12-20 08:59:14', '2020-12-20 09:00:21'),
+(7, 1, 'المركز الاعلامي', '', '', 'pages/December2020/fuv8PnhWgnfp307Fs2jw.png', 'mjlh-hkym', '', '', 'ACTIVE', '2020-12-22 10:38:16', '2020-12-22 10:51:28'),
+(8, 1, 'المدونه', '', '', 'pages/December2020/LNm1kPgPF7MUTgJtNPRr.png', 'almdwnh', '', '', 'ACTIVE', '2020-12-22 14:00:45', '2020-12-22 14:00:45');
 
 -- --------------------------------------------------------
 
@@ -1354,7 +1379,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (178, 'read_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
 (179, 'edit_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
 (180, 'add_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
-(181, 'delete_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47');
+(181, 'delete_page_contents', 'page_contents', '2020-12-13 12:29:47', '2020-12-13 12:29:47'),
+(182, 'browse_video_categories', 'video_categories', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(183, 'read_video_categories', 'video_categories', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(184, 'edit_video_categories', 'video_categories', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(185, 'add_video_categories', 'video_categories', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(186, 'delete_video_categories', 'video_categories', '2020-12-22 11:49:45', '2020-12-22 11:49:45'),
+(187, 'browse_photo_categories', 'photo_categories', '2020-12-22 13:00:06', '2020-12-22 13:00:06'),
+(188, 'read_photo_categories', 'photo_categories', '2020-12-22 13:00:06', '2020-12-22 13:00:06'),
+(189, 'edit_photo_categories', 'photo_categories', '2020-12-22 13:00:06', '2020-12-22 13:00:06'),
+(190, 'add_photo_categories', 'photo_categories', '2020-12-22 13:00:06', '2020-12-22 13:00:06'),
+(191, 'delete_photo_categories', 'photo_categories', '2020-12-22 13:00:06', '2020-12-22 13:00:06');
 
 -- --------------------------------------------------------
 
@@ -1529,7 +1564,58 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (178, 1),
 (179, 1),
 (180, 1),
-(181, 1);
+(181, 1),
+(182, 1),
+(183, 1),
+(184, 1),
+(185, 1),
+(186, 1),
+(187, 1),
+(188, 1),
+(189, 1),
+(190, 1),
+(191, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photo_categories`
+--
+
+CREATE TABLE `photo_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `photo_categories`
+--
+
+INSERT INTO `photo_categories` (`id`, `title`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'البرج الشمالي', NULL, '2020-12-22 13:01:00', '2020-12-22 13:03:16'),
+(2, 'مركز العيون', NULL, '2020-12-22 13:01:00', '2020-12-22 13:03:40'),
+(3, 'العنايه المركزه', NULL, '2020-12-22 13:01:00', '2020-12-22 13:03:01');
 
 -- --------------------------------------------------------
 
@@ -1539,18 +1625,19 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `photo_galleries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `photo_category_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `photo_galleries`
 --
 
-INSERT INTO `photo_galleries` (`id`, `title`, `images`, `created_at`, `updated_at`) VALUES
-(1, 'البرج الشمالي', '[\"photo-galleries/4q08qWig.jpeg\",\"photo-galleries/C5ORsx5g-scaled.jpeg\"]', '2020-12-02 06:29:00', '2020-12-04 21:00:06');
+INSERT INTO `photo_galleries` (`id`, `images`, `created_at`, `updated_at`, `photo_category_id`) VALUES
+(1, '[\"photo-galleries/4q08qWig.jpeg\",\"photo-galleries/C5ORsx5g-scaled.jpeg\"]', '2020-12-02 06:29:00', '2020-12-22 13:04:03', 1),
+(2, '[\"photo-galleries/about.png\"]', '2020-12-22 13:05:00', '2020-12-22 13:05:16', 2);
 
 -- --------------------------------------------------------
 
@@ -2256,7 +2343,33 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (433, 'data_rows', 'display_name', 280, 'en', 'Type', '2020-12-20 10:35:59', '2020-12-20 10:35:59'),
 (434, 'data_rows', 'display_name', 281, 'en', 'Status', '2020-12-20 10:35:59', '2020-12-20 10:35:59'),
 (435, 'event_timelines', 'title', 2, 'en', 'cacasdada', '2020-12-21 13:26:49', '2020-12-21 13:26:49'),
-(436, 'event_timelines', 'lecture_title', 2, 'en', 'csafcsacadadadad', '2020-12-21 13:26:49', '2020-12-21 13:26:49');
+(436, 'event_timelines', 'lecture_title', 2, 'en', 'csafcsacadadadad', '2020-12-21 13:26:49', '2020-12-21 13:26:49'),
+(437, 'pages', 'title', 7, 'en', 'Media Center', '2020-12-22 10:38:16', '2020-12-22 10:51:28'),
+(438, 'pages', 'slug', 7, 'en', 'hakeem-magazine', '2020-12-22 10:38:16', '2020-12-22 10:38:16'),
+(439, 'pages', 'meta_description', 7, 'en', 'meta description', '2020-12-22 10:38:16', '2020-12-22 10:38:16'),
+(440, 'pages', 'meta_keywords', 7, 'en', 'meta keywords', '2020-12-22 10:38:16', '2020-12-22 10:38:16'),
+(441, 'hakeem_magazines', 'title', 2, 'en', 'fdasfdas', '2020-12-22 11:32:08', '2020-12-22 11:32:08'),
+(442, 'menu_items', 'title', 50, 'en', 'Video Categories', '2020-12-22 11:50:53', '2020-12-22 11:50:53'),
+(443, 'video_categories', 'title', 1, 'en', 'heart', '2020-12-22 11:52:28', '2020-12-22 11:52:28'),
+(444, 'video_categories', 'title', 2, 'en', 'cancer en', '2020-12-22 11:52:52', '2020-12-22 11:52:52'),
+(445, 'data_rows', 'display_name', 145, 'en', 'Id', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(446, 'data_rows', 'display_name', 146, 'en', 'Title', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(447, 'data_rows', 'display_name', 147, 'en', 'Video Url', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(448, 'data_rows', 'display_name', 148, 'en', 'Background Image', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(449, 'data_rows', 'display_name', 149, 'en', 'Created At', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(450, 'data_rows', 'display_name', 150, 'en', 'Updated At', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(451, 'data_rows', 'display_name', 287, 'en', 'video_categories', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(452, 'data_types', 'display_name_singular', 25, 'en', 'Video Gallery', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(453, 'data_types', 'display_name_plural', 25, 'en', 'Video Galleries', '2020-12-22 12:04:04', '2020-12-22 12:04:04'),
+(454, 'data_rows', 'display_name', 290, 'en', 'Photo Gallery Id', '2020-12-22 12:57:18', '2020-12-22 12:57:18'),
+(455, 'photo_categories', 'title', 3, 'en', 'Intensive center', '2020-12-22 13:03:01', '2020-12-22 13:03:01'),
+(456, 'photo_categories', 'title', 1, 'en', 'North tower', '2020-12-22 13:03:16', '2020-12-22 13:03:16'),
+(457, 'photo_categories', 'title', 2, 'en', 'eye center', '2020-12-22 13:03:40', '2020-12-22 13:03:40'),
+(458, 'data_rows', 'display_name', 291, 'en', 'photo_categories', '2020-12-22 13:05:44', '2020-12-22 13:05:44'),
+(459, 'pages', 'title', 8, 'en', 'blog', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
+(460, 'pages', 'slug', 8, 'en', 'blog', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
+(461, 'pages', 'meta_description', 8, 'en', 'meta description', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
+(462, 'pages', 'meta_keywords', 8, 'en', 'meta keywords,hh', '2020-12-22 14:00:45', '2020-12-22 14:00:45');
 
 -- --------------------------------------------------------
 
@@ -2300,6 +2413,28 @@ CREATE TABLE `user_roles` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `video_categories`
+--
+
+CREATE TABLE `video_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `video_categories`
+--
+
+INSERT INTO `video_categories` (`id`, `title`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Heart', NULL, '2020-12-22 11:52:28', '2020-12-22 11:52:28'),
+(2, 'cancer ar', NULL, '2020-12-22 11:52:52', '2020-12-22 11:52:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `video_galleries`
 --
 
@@ -2309,15 +2444,17 @@ CREATE TABLE `video_galleries` (
   `video_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bg_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `video_category_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `video_galleries`
 --
 
-INSERT INTO `video_galleries` (`id`, `title`, `video_url`, `bg_image`, `created_at`, `updated_at`) VALUES
-(1, 'متى يجب عليك عمل فحص للسكري للتأكد من سلامتك وخلوك من الإصابة ؟', 'https://www.youtube.com/watch?v=1R0QKbX2_a0', 'video-galleries/December2020/Df9zomtdb85FUcAA4j1a.jpg', '2020-12-02 07:19:00', '2020-12-04 21:00:49');
+INSERT INTO `video_galleries` (`id`, `title`, `video_url`, `bg_image`, `created_at`, `updated_at`, `video_category_id`) VALUES
+(1, 'متى يجب عليك عمل فحص للسكري للتأكد من سلامتك وخلوك من الإصابة ؟', 'https://www.youtube.com/watch?v=1R0QKbX2_a0', 'video-galleries/December2020/Df9zomtdb85FUcAA4j1a.jpg', '2020-12-02 07:19:00', '2020-12-22 12:04:31', 1),
+(2, 'cbcxb', 'https://facebook.com', 'video-galleries/December2020/YuOUZ6O9qaqV85Bl202y.png', '2020-12-22 12:04:46', '2020-12-22 12:04:46', 2);
 
 --
 -- Indexes for dumped tables
@@ -2546,6 +2683,20 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_index` (`role_id`);
 
 --
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `photo_categories`
+--
+ALTER TABLE `photo_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `photo_galleries`
 --
 ALTER TABLE `photo_galleries`
@@ -2636,6 +2787,13 @@ ALTER TABLE `user_roles`
   ADD KEY `user_roles_role_id_index` (`role_id`);
 
 --
+-- Indexes for table `video_categories`
+--
+ALTER TABLE `video_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `video_categories_title_unique` (`title`);
+
+--
 -- Indexes for table `video_galleries`
 --
 ALTER TABLE `video_galleries`
@@ -2715,13 +2873,13 @@ ALTER TABLE `community_content_relation`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -2763,7 +2921,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `hakeem_magazines`
 --
 ALTER TABLE `hakeem_magazines`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -2775,13 +2933,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `objectives`
@@ -2793,7 +2951,7 @@ ALTER TABLE `objectives`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `page_contents`
@@ -2829,13 +2987,25 @@ ALTER TABLE `patient_guids`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `photo_categories`
+--
+ALTER TABLE `photo_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `photo_galleries`
 --
 ALTER TABLE `photo_galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -2895,7 +3065,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -2904,10 +3074,16 @@ ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `video_categories`
+--
+ALTER TABLE `video_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `video_galleries`
 --
 ALTER TABLE `video_galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

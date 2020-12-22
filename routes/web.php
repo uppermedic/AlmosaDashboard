@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\EventCategory;
+use App\Models\HakeemMagazine;
 use App\Models\ServiceCategory;
 use App\Models\ServiceSection;
 use App\Models\ServiceSectionItem;
 use App\Models\Testimonial;
+use App\Models\VideoGallery;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +28,8 @@ use App\Models\Page;
 Route::get('/', function(){
 
    /* $events = Event::with('translations','categories','timelines')->paginate(2);*/
-    $categories = EventCategory::with('translations')->get();
-    return csrf_token();
+   /* $categories = EventCategory::with('translations')->get();
+    return csrf_token();*/
     //dd(Page::where('id', 2)->get(['image'])[0]);
     //$test = Testimonial::with('translations')->limit(10)->get();
 
@@ -53,6 +55,10 @@ Route::get('/', function(){
 
     //$serviceCatogries = ServiceCategory::where('slug','medical-centers')->with('translations')->get();
     //return $serviceCatogries;
+    $page =  Page::where('id','=',7)->with('translations')->firstOrFail();
+    //$page->load($page);
+
+    return VideoGallery::with('translations')->paginate(10);
 
 });
 
