@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2020 at 06:01 PM
+-- Generation Time: Dec 24, 2020 at 05:23 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -48,7 +48,8 @@ CREATE TABLE `blogs` (
 
 INSERT INTO `blogs` (`id`, `title`, `slug`, `content`, `excerpt`, `status`, `image`, `seo_title`, `meta_description`, `meta_keywords`, `created_at`, `updated_at`) VALUES
 (1, 'fsfssdfsar', 'fsfssdfsar', '<p>blog</p>', '<p>sdfsdfsdf</p>', 'PUBLISHED', 'blogs/December2020/QfYRcMm4LOSurgOinVNg.jpg', 'sfsa', 'fsdf', 'fssfsf', '2020-12-01 12:10:00', '2020-12-15 12:15:42'),
-(2, 'بلوج عربي', 'blwj-arby', '<p>محتوي عربي</p>', '', 'PUBLISHED', 'blogs/December2020/TxpslN48mbeqvIyjwZvE.jpg', 'meta title', 'meta des', 'health', '2020-12-04 21:13:00', '2020-12-15 13:51:28');
+(2, 'بلوج عربي', 'blwj-arby', '<p>محتوي عربي</p>', '', 'PUBLISHED', 'blogs/December2020/TxpslN48mbeqvIyjwZvE.jpg', 'meta title', 'meta des', 'health', '2020-12-04 21:13:00', '2020-12-15 13:51:28'),
+(3, 'zda', 'zda', '<p>afafa</p>', '<p>fasfaf</p>', 'PUBLISHED', 'blogs/December2020/oUw3OXYY6QSoZuHMKuPU.png', 'dasd', 'vsvsf', 'sgs', '2020-12-23 09:25:00', '2020-12-23 11:22:30');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,8 @@ INSERT INTO `blogs_categories_relation` (`id`, `blog_id`, `blog_category_id`, `c
 (2, 1, 2, NULL, NULL),
 (3, 2, 1, NULL, NULL),
 (4, 2, 2, NULL, NULL),
-(5, 2, 4, NULL, NULL);
+(5, 2, 4, NULL, NULL),
+(6, 3, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,9 @@ INSERT INTO `blogs_tags_relation` (`id`, `blog_id`, `blog_tag_id`, `created_at`,
 (10, 1, 11, NULL, NULL),
 (11, 2, 3, NULL, NULL),
 (12, 2, 12, NULL, NULL),
-(13, 2, 13, NULL, NULL);
+(13, 2, 13, NULL, NULL),
+(14, 3, 5, NULL, NULL),
+(15, 3, 7, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -204,7 +208,8 @@ CREATE TABLE `communities` (
 --
 
 INSERT INTO `communities` (`id`, `title`, `slug`, `thumbnail`, `image`, `color`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'power of art ar', 'power-of-art-en', 'communities/doctor.jpg', '[\"communities\\/December2020\\/OkoNah5kmQf1fvEMKwkT.jpg\"]', '#dd6767', NULL, '2020-12-10 08:22:00', '2020-12-10 08:32:51');
+(1, 'power of art ar', 'power-of-art-enasassa', 'communities/doctor.jpg', 'communities/about.png', '#dd6767', NULL, '2020-12-10 08:22:00', '2020-12-23 16:07:57'),
+(2, 'مبادرة التعلم', 'مبادره-اتعلم', 'communities/about.png', 'communities/about.png', '#df6767', NULL, '2020-12-23 14:54:00', '2020-12-24 09:18:18');
 
 -- --------------------------------------------------------
 
@@ -225,7 +230,9 @@ CREATE TABLE `communities_objectives_relations` (
 --
 
 INSERT INTO `communities_objectives_relations` (`id`, `community_id`, `objective_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL);
+(1, 1, 1, NULL, NULL),
+(2, 2, 1, NULL, NULL),
+(3, 1, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -246,7 +253,8 @@ CREATE TABLE `communities_participating_relations` (
 --
 
 INSERT INTO `communities_participating_relations` (`id`, `community_id`, `participating_group_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL);
+(1, 1, 1, NULL, NULL),
+(2, 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -259,7 +267,7 @@ CREATE TABLE `community_contents` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `images` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photos` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -270,8 +278,10 @@ CREATE TABLE `community_contents` (
 -- Dumping data for table `community_contents`
 --
 
-INSERT INTO `community_contents` (`id`, `name`, `title`, `content`, `images`, `video`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'content for pwer of art community', 'objectives ar', '<p>content ar</p>', 'community-contents/doctor1.jpg', NULL, NULL, '2020-12-10 08:30:39', '2020-12-10 08:30:39');
+INSERT INTO `community_contents` (`id`, `name`, `title`, `content`, `photos`, `video`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'content for pwer of art community', 'objectives ar', '<p>content ar</p>', NULL, NULL, '2020-12-24 06:48:30', '2020-12-10 08:30:00', '2020-12-24 06:48:30'),
+(2, 'content1 for power art', 'محتوي عربي ', '<p>محتوي عربي</p>', '[\"community-contents/about.png\",\"community-contents/preview.cropped_1608739158.png\",\"community-contents/preview.png\"]', NULL, NULL, '2020-12-24 06:49:00', '2020-12-24 07:23:53'),
+(3, 'content 2 for art', 'محتوي عربي ', '<p>يشبسيب&nbsp; بسيب</p>', '[\"community-contents/preview.cropped_1608739158.png\",\"community-contents/preview.png\"]', 'https://youtube.com', NULL, '2020-12-24 08:12:20', '2020-12-24 08:12:20');
 
 -- --------------------------------------------------------
 
@@ -292,7 +302,9 @@ CREATE TABLE `community_content_relation` (
 --
 
 INSERT INTO `community_content_relation` (`id`, `community_id`, `community_content_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL);
+(3, 1, 2, NULL, NULL),
+(4, 2, 2, NULL, NULL),
+(5, 1, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -537,7 +549,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (237, 40, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this :attribute is required.\"}}}', 2),
 (238, 40, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true}}', 3),
 (239, 40, 'thumbnail', 'media_picker', 'Thumbnail', 1, 0, 1, 1, 1, 1, '{}', 4),
-(240, 40, 'image', 'multiple_images', 'Image', 1, 0, 1, 1, 1, 1, '{}', 5),
+(240, 40, 'image', 'media_picker', 'Image', 1, 0, 1, 1, 1, 1, '{\"max\":1,\"min\":1,\"show_folders\":true,\"show_toolbar\":true,\"allow_upload\":true,\"allow_move\":true,\"allow_delete\":true,\"allow_create_folder\":true,\"allow_rename\":true,\"allow_crop\":true,\"hide_thumbnails\":false,\"quality\":90}', 5),
 (241, 40, 'color', 'color', 'Color', 1, 1, 1, 1, 1, 1, '{}', 6),
 (242, 40, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 1, 0, 0, 1, '{}', 7),
 (243, 40, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
@@ -546,7 +558,6 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (246, 41, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|unique:community_contents,name\",\"messages\":{\"required\":\"this :attribute is required\",\"unique\":\"this :attribute is unique change to another name\"}}}', 2),
 (247, 41, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
 (248, 41, 'content', 'rich_text_box', 'Content', 0, 0, 1, 1, 1, 1, '{}', 4),
-(249, 41, 'images', 'media_picker', 'Images', 0, 0, 1, 1, 1, 1, '{}', 5),
 (250, 41, 'video', 'text', 'Video url', 0, 0, 1, 1, 1, 1, '{}', 6),
 (251, 41, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 1, 0, 0, 1, '{}', 7),
 (252, 41, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
@@ -589,7 +600,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (293, 46, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\"this :attribute is required\"}}}', 2),
 (294, 46, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 1, '{}', 3),
 (295, 46, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
-(296, 46, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5);
+(296, 46, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(297, 41, 'photos', 'media_picker', 'Images', 0, 1, 1, 1, 1, 1, '{\"max\":10,\"min\":0,\"expanded\":true,\"show_folders\":true,\"show_toolbar\":true,\"allow_upload\":true,\"allow_move\":true,\"allow_delete\":true,\"allow_create_folder\":true,\"allow_rename\":true,\"allow_crop\":true,\"allowed\":[],\"hide_thumbnails\":false,\"quality\":90}', 5);
 
 -- --------------------------------------------------------
 
@@ -644,8 +656,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (35, 'services', 'services', 'Service', 'Services', 'voyager-bubble-hear', 'App\\Models\\Service', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:44:28', '2020-12-17 12:20:05'),
 (37, 'service_sections', 'service-sections', 'Service Section', 'Service Sections', 'voyager-pie-chart', 'App\\Models\\ServiceSection', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 14:56:03', '2020-12-08 06:51:25'),
 (39, 'service_section_items', 'service-section-items', 'Section Item', 'Section Items', 'voyager-paperclip', 'App\\Models\\ServiceSectionItem', NULL, 'App\\Http\\Controllers\\Voyager\\ServiceSectionsItemsController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-07 15:09:30', '2020-12-09 08:22:36'),
-(40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-10 10:50:14'),
-(41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-10 08:30:15'),
+(40, 'communities', 'communities', 'Community', 'Communities', 'voyager-rocket', 'App\\Models\\Community', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:19:28', '2020-12-23 16:07:29'),
+(41, 'community_contents', 'community-contents', 'Community Content', 'Community Contents', 'voyager-droplet', 'App\\Models\\CommunityContent', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-09 14:31:39', '2020-12-24 06:48:15'),
 (42, 'objectives', 'objectives', 'Objective', 'Objectives', 'voyager-leaf', 'App\\Models\\Objective', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:46:27', '2020-12-10 09:46:27'),
 (43, 'participating_groups', 'participating-groups', 'Participating Group', 'Participating Groups', NULL, 'App\\Models\\ParticipatingGroup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-12-10 09:52:56', '2020-12-10 09:52:56'),
 (44, 'page_contents', 'page-contents', 'Page Content', 'Page Contents', 'voyager-news', 'App\\Models\\PageContent', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-12-13 12:29:47', '2020-12-16 13:27:11'),
@@ -1041,7 +1053,8 @@ CREATE TABLE `objectives` (
 --
 
 INSERT INTO `objectives` (`id`, `title`, `icon`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'art ar', 'objectives/doctor.jpg', '2020-12-10 11:11:42', '2020-12-10 11:11:42', NULL);
+(1, 'art ar', 'objectives/doctor.jpg', '2020-12-10 11:11:00', '2020-12-24 08:53:40', NULL),
+(2, 'daadad ar ', 'objectives/logo.png', '2020-12-24 08:54:20', '2020-12-24 08:54:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -1074,7 +1087,9 @@ INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `sl
 (5, 1, 'الخدمات', 'نبذة مختصرة عربي', '<p>محتوي الصفحة عربي</p>', NULL, 'خدمات', 'ميتا عربي', 'خدمات', 'ACTIVE', '2020-12-16 14:11:06', '2020-12-16 14:11:06'),
 (6, 1, 'التدريب و التطوير', '', '', 'pages/December2020/PlXNbO20WppubQRPODN7.png', 'altdryb-w-alttwyr', '', '', 'ACTIVE', '2020-12-20 08:59:14', '2020-12-20 09:00:21'),
 (7, 1, 'المركز الاعلامي', '', '', 'pages/December2020/fuv8PnhWgnfp307Fs2jw.png', 'mjlh-hkym', '', '', 'ACTIVE', '2020-12-22 10:38:16', '2020-12-22 10:51:28'),
-(8, 1, 'المدونه', '', '', 'pages/December2020/LNm1kPgPF7MUTgJtNPRr.png', 'almdwnh', '', '', 'ACTIVE', '2020-12-22 14:00:45', '2020-12-22 14:00:45');
+(8, 1, 'المدونه', '', '', 'pages/December2020/LNm1kPgPF7MUTgJtNPRr.png', 'almdwnh', '', '', 'ACTIVE', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
+(9, 1, 'Doctors', '', '', 'pages/December2020/4oFvgUUctk4G46A2fBRl.png', 'doctors', '', '', 'ACTIVE', '2020-12-23 07:48:13', '2020-12-23 07:48:13'),
+(10, 1, 'خدمه المجتمع', 'يشي شي  يشيشي', '<p>شيش&nbsp; يشيشي</p>', 'pages/December2020/Luq1IXmkAoVMdwF4dVn8.png', 'خدمه-المجتمع', 'meta description', 'meta keywords', 'ACTIVE', '2020-12-23 14:16:17', '2020-12-23 14:16:17');
 
 -- --------------------------------------------------------
 
@@ -1637,7 +1652,7 @@ CREATE TABLE `photo_galleries` (
 
 INSERT INTO `photo_galleries` (`id`, `images`, `created_at`, `updated_at`, `photo_category_id`) VALUES
 (1, '[\"photo-galleries/4q08qWig.jpeg\",\"photo-galleries/C5ORsx5g-scaled.jpeg\"]', '2020-12-02 06:29:00', '2020-12-22 13:04:03', 1),
-(2, '[\"photo-galleries/about.png\"]', '2020-12-22 13:05:00', '2020-12-22 13:05:16', 2);
+(2, '[\"photo-galleries/about.png\",\"photo-galleries/phone.png\",\"photo-galleries/logo.png\"]', '2020-12-22 13:05:00', '2020-12-24 12:57:36', 2);
 
 -- --------------------------------------------------------
 
@@ -2254,7 +2269,7 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (342, 'service_categories', 'title', 2, 'en', 'Medical Centers', '2020-12-09 14:45:26', '2020-12-13 11:59:05'),
 (343, 'service_section_items', 'title', 6, 'en', 'ldnldastet', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
 (344, 'service_section_items', 'content', 6, 'en', '<p>knfjsndfsjs</p>', '2020-12-09 14:57:11', '2020-12-09 14:57:11'),
-(345, 'communities', 'title', 1, 'en', 'power of art en', '2020-12-10 08:22:18', '2020-12-10 08:22:18'),
+(345, 'communities', 'title', 1, 'en', 'power of art enasassa', '2020-12-10 08:22:18', '2020-12-23 14:39:50'),
 (346, 'data_rows', 'display_name', 254, 'en', 'community_contents', '2020-12-10 08:26:55', '2020-12-10 08:26:55'),
 (347, 'data_rows', 'display_name', 245, 'en', 'Id', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
 (348, 'data_rows', 'display_name', 246, 'en', 'Name', '2020-12-10 08:30:15', '2020-12-10 08:30:15'),
@@ -2369,7 +2384,33 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (459, 'pages', 'title', 8, 'en', 'blog', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
 (460, 'pages', 'slug', 8, 'en', 'blog', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
 (461, 'pages', 'meta_description', 8, 'en', 'meta description', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
-(462, 'pages', 'meta_keywords', 8, 'en', 'meta keywords,hh', '2020-12-22 14:00:45', '2020-12-22 14:00:45');
+(462, 'pages', 'meta_keywords', 8, 'en', 'meta keywords,hh', '2020-12-22 14:00:45', '2020-12-22 14:00:45'),
+(463, 'pages', 'title', 9, 'en', 'Doctors', '2020-12-23 07:48:13', '2020-12-23 07:48:13'),
+(464, 'pages', 'slug', 9, 'en', 'doctors', '2020-12-23 07:48:13', '2020-12-23 07:48:13'),
+(465, 'pages', 'meta_description', 9, 'en', 'meta description', '2020-12-23 07:48:13', '2020-12-23 07:48:13'),
+(466, 'pages', 'meta_keywords', 9, 'en', 'meta keywords', '2020-12-23 07:48:13', '2020-12-23 07:48:13'),
+(467, 'blogs', 'title', 3, 'en', 'zda', '2020-12-23 11:22:30', '2020-12-23 11:22:30'),
+(468, 'blogs', 'slug', 3, 'en', 'zda', '2020-12-23 11:22:30', '2020-12-23 11:22:30'),
+(469, 'blogs', 'content', 3, 'en', '<p>afafa</p>', '2020-12-23 11:22:30', '2020-12-23 11:22:30'),
+(470, 'blogs', 'excerpt', 3, 'en', '<p>fasfaf</p>', '2020-12-23 11:22:30', '2020-12-23 11:22:30'),
+(471, 'community_contents', 'title', 1, 'en', 'objectives aen', '2020-12-23 14:00:22', '2020-12-23 16:00:33'),
+(472, 'community_contents', 'content', 1, 'en', '<p>content ar</p>', '2020-12-23 14:00:22', '2020-12-23 14:00:22'),
+(473, 'pages', 'title', 10, 'en', 'Community', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(474, 'pages', 'excerpt', 10, 'en', 'ex', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(475, 'pages', 'body', 10, 'en', '<p>contrnt</p>', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(476, 'pages', 'slug', 10, 'en', 'community', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(477, 'pages', 'meta_description', 10, 'en', 'community page meta description', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(478, 'pages', 'meta_keywords', 10, 'en', 'adddad,dadad,adadada', '2020-12-23 14:16:17', '2020-12-23 14:16:17'),
+(479, 'communities', 'slug', 1, 'en', 'power-of-art-en', '2020-12-23 14:52:18', '2020-12-23 14:52:18'),
+(480, 'communities', 'title', 2, 'en', 'power of learning', '2020-12-23 14:54:50', '2020-12-23 14:54:50'),
+(481, 'communities', 'slug', 2, 'en', 'power-of-learning', '2020-12-23 14:54:50', '2020-12-23 14:54:50'),
+(482, 'data_rows', 'display_name', 297, 'en', 'Images', '2020-12-24 06:48:15', '2020-12-24 06:48:15'),
+(483, 'community_contents', 'title', 2, 'en', 'wewerwe', '2020-12-24 06:49:34', '2020-12-24 06:49:34'),
+(484, 'community_contents', 'content', 2, 'en', '<p>rwrwrwe r wer</p>', '2020-12-24 06:49:34', '2020-12-24 06:49:34'),
+(485, 'community_contents', 'title', 3, 'en', 'esrfwsfw ', '2020-12-24 08:12:20', '2020-12-24 08:12:20'),
+(486, 'community_contents', 'content', 3, 'en', '<p>gfsdg dgd g</p>', '2020-12-24 08:12:20', '2020-12-24 08:12:20'),
+(487, 'objectives', 'title', 2, 'en', 'zfazfsafsf dasdf a ', '2020-12-24 08:54:20', '2020-12-24 08:54:20'),
+(488, 'video_galleries', 'title', 2, 'en', 'cbcxb', '2020-12-24 10:18:33', '2020-12-24 10:18:33');
 
 -- --------------------------------------------------------
 
@@ -2454,7 +2495,7 @@ CREATE TABLE `video_galleries` (
 
 INSERT INTO `video_galleries` (`id`, `title`, `video_url`, `bg_image`, `created_at`, `updated_at`, `video_category_id`) VALUES
 (1, 'متى يجب عليك عمل فحص للسكري للتأكد من سلامتك وخلوك من الإصابة ؟', 'https://www.youtube.com/watch?v=1R0QKbX2_a0', 'video-galleries/December2020/Df9zomtdb85FUcAA4j1a.jpg', '2020-12-02 07:19:00', '2020-12-22 12:04:31', 1),
-(2, 'cbcxb', 'https://facebook.com', 'video-galleries/December2020/YuOUZ6O9qaqV85Bl202y.png', '2020-12-22 12:04:46', '2020-12-22 12:04:46', 2);
+(2, 'cbcxb', 'https://facebook.com', 'video-galleries/December2020/YuOUZ6O9qaqV85Bl202y.png', '2020-12-22 12:04:00', '2020-12-24 10:18:33', 1);
 
 --
 -- Indexes for dumped tables
@@ -2807,19 +2848,19 @@ ALTER TABLE `video_galleries`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `blogs_categories_relation`
 --
 ALTER TABLE `blogs_categories_relation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `blogs_tags_relation`
 --
 ALTER TABLE `blogs_tags_relation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `blog_categories`
@@ -2843,37 +2884,37 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `communities`
 --
 ALTER TABLE `communities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `communities_objectives_relations`
 --
 ALTER TABLE `communities_objectives_relations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `communities_participating_relations`
 --
 ALTER TABLE `communities_participating_relations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `community_contents`
 --
 ALTER TABLE `community_contents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `community_content_relation`
 --
 ALTER TABLE `community_content_relation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=298;
 
 --
 -- AUTO_INCREMENT for table `data_types`
@@ -2945,13 +2986,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `page_contents`
@@ -3065,7 +3106,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
 
 --
 -- AUTO_INCREMENT for table `users`
