@@ -9,4 +9,9 @@ class PhotoGallery extends Model
 {
     use HasFactory;
    /* protected $translatable = ['title'];*/
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\PhotoCategory','photo_category_id');
+    }
 }

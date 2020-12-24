@@ -85,6 +85,8 @@ class EventController extends Controller
         $data['current_page']= $events->currentPage();
         $data['previous_page_url'] = $events->previousPageUrl();
         $data['next_page_url'] = $events->nextPageUrl();
+        $data['last_page'] = $events->lastPage();
+        $data['base_path']= $events->getOptions()['path'];
         $data['data']=[];
         foreach ($events->items() as $event) {
             array_push($data['data'],[

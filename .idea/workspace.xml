@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c953159-a913-4a1e-a06c-26cc08ece331" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/MediaCenterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MoosaHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoosaHospital.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CommunityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DoctorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/BlogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/MediaCenterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/MediaCenterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Blog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Community.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Community.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/PhotoGallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PhotoGallery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/blog_index.index" beforeDir="false" afterPath="$PROJECT_DIR$/storage/blog_index.index" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -652,7 +653,9 @@
       <workItem from="1608034075644" duration="46988000" />
       <workItem from="1608214580910" duration="8066000" />
       <workItem from="1608455310859" duration="40117000" />
-      <workItem from="1608636069319" duration="18340000" />
+      <workItem from="1608636069319" duration="18798000" />
+      <workItem from="1608715855522" duration="29828000" />
+      <workItem from="1608798522004" duration="20838000" />
     </task>
     <servers />
   </component>

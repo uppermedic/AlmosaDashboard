@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Blog;
+use App\Models\Community;
 use App\Models\EventCategory;
 use App\Models\HakeemMagazine;
 use App\Models\ServiceCategory;
@@ -55,10 +57,27 @@ Route::get('/', function(){
 
     //$serviceCatogries = ServiceCategory::where('slug','medical-centers')->with('translations')->get();
     //return $serviceCatogries;
-    $page =  Page::where('id','=',7)->with('translations')->firstOrFail();
+    //$page =  Page::where('id','=',7)->with('translations')->firstOrFail();
     //$page->load($page);
 
-    return VideoGallery::with('translations')->paginate(10);
+   /*$articles =  Blog::whereHas('categories',function ($q){
+       $q->where('slug','LIKE',['blog-category_2']);
+   })->orWhereHas('tags',function ($q){
+       $q->where('tag_name','LIKE',['الصحة']);
+   })->with('tags','categories','translations')->orderBy('id','DESC')->paginate(10);*/
+   /* $com =  Community::all();
+    $content = $com->contents;
+    return $content;*/
+    /*return json_encode($content->photos) ;*/
+    //return \TCG\Voyager\Facades\Voyager::image($com->photos[0]);
+   /* foreach ($images as $image) {
+        echo $image;
+    }*/
+    $images = \App\Models\PhotoGallery::where('photo_category_id',1)->get();
+    /*foreach ($images as $image) {
+        return $image->category->where('id',1);
+    }*/
+    return $images;
 
 });
 

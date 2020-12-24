@@ -8,12 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Models\HakeemMagazine;
 use App\Models\Page;
 use App\Models\PhotoCategory;
+use App\Models\PhotoGallery;
+use App\Models\VideoCategory;
 use App\Models\VideoGallery;
 use TCG\Voyager\Facades\Voyager;
 
 
 class MediaCenterController extends Controller
 {
+    /*
+     * get page settings
+     */
     public function show()
     {
         $page = Page::where('id','=',7)->with('translations')->firstOrFail();
@@ -48,9 +53,18 @@ class MediaCenterController extends Controller
         return response($data, 200);
     }
 
+    /*
+     * get videos paginated by categories
+     */
     public function getVideos()
     {
-        $videos = VideoGallery::with('translations')->paginate(10);
+        if (request()->has('category')) {
+            $videos = VideoGallery::where('video_category_id','=',request()->get('category'))->with('translations')->paginate(10);
+        }else
+        {
+            $videos = VideoGallery::with('translations')->paginate(10);
+        }
+
         $data = [];
         $data['current_page']= $videos->currentPage();
         $data['previous_page_url'] = $videos->previousPageUrl();
@@ -70,13 +84,78 @@ class MediaCenterController extends Controller
         }
         return response($data, 200);
     }
+    /*
+     * get video categories
+     */
+    public function getVideosCategory()
+    {
+        $data = [];
+        $categories = VideoCategory::with('translations')->get();
+        foreach ($categories as $category) {
+            array_push($data, [
+                'id' => $category->id,
+                'ar' => [
+                    'title' => $category->title,
 
+                ],
+                'en' => Helper::toTranslation($category->translations),
+
+            ]);
+        }
+        return response($data, 200);
+    }
+
+    /**
+     *
+     * get all photos gallery with custom pagination
+     * get photos by category id
+     */
     public function getPhotos()
     {
-        $photos = PhotoCategory::all();
-        foreach ($photos as $photo) {
-            return $photo->getPhotos['images'];
+        $categoryID = request()->get('category');
+        $pageNumber = request()->get('page');
+        $data = [];
+        if (!empty($categoryID)) {
+            $photos = PhotoGallery::where('photo_category_id',1)->get();
+        }else{
+            $photos = PhotoGallery::all();
         }
-        return $photos;
+
+        foreach ($photos as $photo) {
+
+           /* return$photo->images;*/
+            foreach ($this->getSecretImages($photo->images) as $image){
+                array_push($data, $image);
+            }
+
+        }
+        $data = array_chunk($data, 2);
+
+        $images = [];
+        $images['images'] = (!empty($pageNumber) and $pageNumber != 0)? $data[$pageNumber -1]:$data[0];
+        $images['last_page'] = count($data);
+        return response($images, 200);
+    }
+
+    /*
+     *
+     * get the categories of photos
+     */
+    public function getPhotosCategory()
+    {
+        $categories = PhotoCategory::with('translations')->get();
+        return response($categories,200);
+    }
+
+    /*
+     *  return images seperated
+     */
+    protected function getSecretImages($images):array
+    {
+        $data = [];
+        foreach (json_decode($images) as $item) {
+            array_push($data,Voyager::image($item));
+        }
+        return $data;
     }
 }

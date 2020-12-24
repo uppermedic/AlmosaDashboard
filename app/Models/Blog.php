@@ -27,4 +27,13 @@ class Blog extends Model
         return $this->toArray();
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\BlogCategory','blogs_categories_relation','blog_id','blog_category_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\BlogTag','blogs_tags_relation','blog_id','blog_tag_id');
+    }
 }

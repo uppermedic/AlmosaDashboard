@@ -10,6 +10,21 @@ use TCG\Voyager\Traits\Translatable;
 class Community extends Model
 {
     use HasFactory,Translatable,SoftDeletes;
-    protected $translatable = ['title'];
+    protected $translatable = ['title','slug'];
 
+
+    public function contents()
+    {
+        return $this->belongsToMany('App\Models\CommunityContent','community_content_relation','community_id','community_content_id');
+    }
+
+    public function objectives()
+    {
+        return $this->belongsToMany('App\Models\Objective','communities_objectives_relations','objective_id','community_id');
+    }
+
+    public function participation()
+    {
+        return $this->belongsToMany('App\Models\ParticipatingGroup','communities_participating_relations','community_id','participating_group_id');
+    }
 }

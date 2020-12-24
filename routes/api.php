@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\CommunityController;
+use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\MediaCenterController;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -33,6 +36,7 @@ use App\Http\Controllers\Api\EventController;
     return $test;
 });*/
 Route::get('/layout',LayoutController::class.'@show');
+Route::get('/',HomeController::class.'@show');
 Route::get('/home',HomeController::class.'@show');
 Route::get('/about', AboutController::class . '@show');
 
@@ -61,8 +65,36 @@ Route::prefix('education')->group(function (){
 Route::prefix('media')->group(function () {
     Route::get('/',MediaCenterController::class.'@show');
     Route::get('/magazine',MediaCenterController::class.'@getMagazine');
-    Route::get('/videos',MediaCenterController::class.'@getVideos');
-    Route::get('/photos',MediaCenterController::class.'@getPhotos');
+
+    Route::prefix('videos')->group(function () {
+        Route::get('/',MediaCenterController::class.'@getVideos');
+        //Route::get('/{categoryID?}',MediaCenterController::class.'@getVideos');
+        Route::get('/categories',MediaCenterController::class.'@getVideosCategory');
+    });
+
+    Route::prefix('photos')->group(function () {
+        Route::get('/',MediaCenterController::class.'@getPhotos');
+        Route::get('/categories',MediaCenterController::class.'@getPhotosCategory');
+    });
+
+});
+Route::get('/doctors', DoctorController::class . '@show');
+
+Route::prefix('blog')->group(function () {
+    Route::get('/', BlogController::class . '@show');
+    Route::get('/tags', BlogController::class . '@getTags');
+    Route::get('/categories', BlogController::class . '@getCategories');
+
+    Route::prefix('articles')->group(function () {
+        Route::get('/', BlogController::class . '@getArticles');
+        Route::get('/cats={cats}/tags={tags}', BlogController::class . '@articlesFilter');
+
+    });
+});
+
+Route::prefix('community')->group(function () {
+    Route::get('/',CommunityController::class.'@show');
+    Route::get('/{id}',CommunityController::class.'@getCommunity');
 });
 
 Route::get('/search/{q}',SearchController::class.'@show');
