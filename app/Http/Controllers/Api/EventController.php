@@ -5,12 +5,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\EventRegisteredJob;
+use App\Mail\EventRegistered;
 use App\Models\Event;
+use App\Models\EventAttendance;
 use App\Models\EventCategory;
 use App\Models\Page;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Request;
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use TCG\Voyager\Facades\Voyager;
+
 
 class EventController extends Controller
 {
@@ -175,9 +182,44 @@ class EventController extends Controller
         return $data;
     }
 
-    public function registerToEvent()
+    public function registerToEvent(Request $request)
     {
-        return \request()->get('name');
+        /*$this->validatorData(request()->all());*/
+        $validate = Validator::make($request->all(),[
+            'event_id' =>'required|integer',
+            'firstName'=>'required|string|max:200',
+            'lastName'=>'required|string|max:200',
+            'email'=>'required|email|string|max:200',
+            'phone'=>'required|string|max:200',
+            'speciality'=>'required|string|max:200',
+            'city'=>'required|string|max:200',
+            'scfhs_no'=>'required|string|max:200',
+            'position'=>'required|string|max:200',
+            'hospital'=>'required|string|max:200',
+        ]);
+        if ($validate->fails()) {
+            return response(['message'=>'Oops,some data missing!','errors'=>$validate->errors(),'success'=>false],201);
+        }
+        $data = $this->create($request->all());
+//        Mail::to($request->get('email'))->send(new EventRegistered($data));
+        EventRegisteredJob::dispatch($data);
+        return response(['message'=>$data],200);
+    }
+
+    protected function create(array $data)
+    {
+        return EventAttendance::create([
+                'event_id'=>$data['event_id'],
+                'firstName'=>$data['firstName'],
+                'lastName'=>$data['lastName'],
+                'email'=>$data['email'],
+                'city'=>$data['city'],
+                'phone'=>$data['phone'],
+                'speciality'=>$data['speciality'],
+                'scfhs_no'=>$data['scfhs_no'],
+                'position'=>$data['position'],
+                'hospital'=>$data['hospital'],
+        ]);
     }
 }
 

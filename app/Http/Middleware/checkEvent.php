@@ -18,7 +18,7 @@ class checkEvent
     public function handle(Request $request, Closure $next)
     {
         if (empty(Event::find($request->get('event_id')))) {
-            return response(['message'=>'event not found'],404);
+            return response(['message'=>'Oops,some data missing!','errors'=>'the event you register to Not exist.','success'=>false],404);
         }
         return $next($request);
     }

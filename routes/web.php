@@ -73,11 +73,13 @@ Route::get('/', function(){
    /* foreach ($images as $image) {
         echo $image;
     }*/
-    $images = \App\Models\PhotoGallery::where('photo_category_id',1)->get();
+    //$images = \App\Models\PhotoGallery::where('photo_category_id',1)->get();
     /*foreach ($images as $image) {
         return $image->category->where('id',1);
     }*/
-    return $images;
+   // return $images;
+    $user = \App\Models\EventAttendance::find(9);
+    return new \App\Mail\EventRegistered($user);
 
 });
 
