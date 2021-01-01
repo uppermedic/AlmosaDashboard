@@ -24,8 +24,12 @@ class EventAttendance extends Model
             'event_id'
         ];
 
-    public function getEvent()
+    /*public function getEvent()
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
+    }*/
+	public function event()
+    {
+        return $this->belongsToMany('App\Models\Event', 'event_attendances_relations', 'event_attendance_id','event_id');
     }
 }

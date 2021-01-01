@@ -201,15 +201,12 @@ class EventController extends Controller
             return response(['message'=>'Oops,some data missing!','errors'=>$validate->errors(),'success'=>false],201);
         }
         $data = $this->create($request->all());
-//        Mail::to($request->get('email'))->send(new EventRegistered($data));
-        EventRegisteredJob::dispatch($data);
-        return response(['message'=>$data],200);
+        return response(['message'=>$data,'errors'=>$validate->errors(),'success'=>true],200);
     }
 
     protected function create(array $data)
     {
-        return EventAttendance::create([
-                'event_id'=>$data['event_id'],
+        $user = EventAttendance::firstOrCreate([
                 'firstName'=>$data['firstName'],
                 'lastName'=>$data['lastName'],
                 'email'=>$data['email'],
@@ -220,6 +217,14 @@ class EventController extends Controller
                 'position'=>$data['position'],
                 'hospital'=>$data['hospital'],
         ]);
+	 $eventExist = $user->event->find($data['event_id']);
+        $getEvent = Event::find($data['event_id']);
+        if ($eventExist) {
+            return 'you are already registered to this '.strtolower($getEvent->type);
+        }
+        $user->event()->attach($data['event_id']);
+	EventRegisteredJob::dispatch($user);
+        return 'Thanks!.You are register successfully to the '.strtolower($getEvent->type).'.Please check your mail';
     }
 }
 

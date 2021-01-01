@@ -99,11 +99,14 @@ class BlogController extends Controller{
         }
         return response($data,200);
     }
-   /* public static function search($q)
-    {
-        $result = Blog::search($q)->get();
-        $result->load('translations');
-        return [];
-    }*/
 
+	/* search function */
+
+   public static function search($q)
+    {
+        $result = Blog::search($q)->paginate(10);
+        $result->load('translations');
+
+        return (new BlogController())->pagination($result);
+    }
 }

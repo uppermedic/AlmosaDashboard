@@ -8,7 +8,7 @@ class SearchController extends Controller{
 
     public function show($q)
     {
-        dd($q);
+	 return BlogController::search($q);
     }
 
 

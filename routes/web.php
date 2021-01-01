@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Blog;
+/*use App\Models\Blog;
 use App\Models\Community;
 use App\Models\EventCategory;
 use App\Models\HakeemMagazine;
@@ -11,7 +11,7 @@ use App\Models\Testimonial;
 use App\Models\VideoGallery;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-
+*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*//*
 use App\Models\Event;
 use App\Models\Service;
 use App\Models\Page;
-
+*/
 //Route::get('/', \App\Http\Controllers\HomeController::class .'@index');
-Route::get('/', function(){
+//Route::get('/', function(){
 
    /* $events = Event::with('translations','categories','timelines')->paginate(2);*/
    /* $categories = EventCategory::with('translations')->get();
@@ -78,13 +78,13 @@ Route::get('/', function(){
         return $image->category->where('id',1);
     }*/
    // return $images;
-    $user = \App\Models\EventAttendance::find(9);
-    return new \App\Mail\EventRegistered($user);
+  //  $user = \App\Models\EventAttendance::find(9);
+   // return new \App\Mail\EventRegistered($user);
+//return view('welcome');
+//});
 
-});
 
-
-Route::group(['prefix' => 'moosa-adminstrator'], function () {
+//Route::group(['prefix' => '/'], function () {
 
     Voyager::routes();
-});
+//});
