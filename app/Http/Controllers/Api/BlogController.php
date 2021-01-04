@@ -10,7 +10,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\Page;
 
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 use TCG\Voyager\Facades\Voyager;
@@ -109,4 +109,66 @@ class BlogController extends Controller{
 
         return (new BlogController())->pagination($result);
     }
+ public function getSingleArticle($article_id)
+    {
+        try {
+            $article = Blog::findOrFail($article_id)->with('translations')->first();
+        } catch (ModelNotFoundException $e) {
+            return response(['status'=>'ERROR','message'=>'the article not found'],404);
+        }
+        $data = [];
+
+        $data['ar'] = [
+            'title'=>$article->title,
+            'content'=>$article->content,
+            'excerpt'=>$article->excerpt,
+	     'slug'=> $article->slug
+        ];
+        $data['en'] = Helper::toTranslation($article->translations);
+        $data['image']= Voyager::image($article->image);
+        $data['status']= $article->status;
+        
+        $data['seo']= [
+            'seo_title'=>$article->seo_title,
+            'meta_description'=>$article->meta_description,
+            'meta_keywords'=>$article->meta_keywords,
+
+        ];
+        $data['categories']= $this->getCategoriesForSingleArticle($article);
+        $data['tags']= $this->getTagsForSingleArticle($article);
+
+        return response($data,200);
+    }
+
+    public function getCategoriesForSingleArticle(Blog $article): array
+    {
+        $cats = $article->categories;
+        $cats->load('translations');
+        $data = [];
+        foreach ($cats as $cat) {
+            array_push($data, [
+                'id'=>$cat->id,
+                'slug'=>$cat->slug,
+                'ar'=>['category_name'=>$cat->category_name],
+                'en'=>Helper::toTranslation($cat->translations)
+            ]);
+        }
+        return $data;
+    }
+    public function getTagsForSingleArticle(Blog $article): array
+    {
+        $tags = $article->tags;
+
+        $data = [];
+        foreach ($tags as $cat) {
+            array_push($data, [
+                'id'=>$cat->id,
+                'tag_name'=>$cat->tag_name,
+
+            ]);
+        }
+        return $data;
+    }
+
+
 }

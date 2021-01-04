@@ -20,7 +20,7 @@ class Community extends Model
 
     public function objectives()
     {
-        return $this->belongsToMany('App\Models\Objective','communities_objectives_relations','objective_id','community_id');
+        return $this->belongsToMany('App\Models\Objective','communities_objectives_relations','community_id','objective_id');
     }
 
     public function participation()

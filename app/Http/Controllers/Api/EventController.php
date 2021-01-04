@@ -74,8 +74,14 @@ class EventController extends Controller
         $year = request()->get('year');
         $category =(int) request()->get('category');
         $status = strtoupper(request()->get('status'));
-        $events = Event::where('type',$type)->where('event_category_id',$category)
-            ->where('status',$status)->where('created_at','LIKE',"%{$year}%")->with('translations')->paginate(10);
+	
+	 $events = Event::where(function ($query)use($category,$type){
+            if ($category !=''&& !is_null($category))$query->where('type',$type)->where('event_category_id',$category);
+        })->orWhere(function ($query)use ($status,$type){
+            if ($status !=''&& !is_null($status))$query->where('type',$type)->where('status',$status);
+        })->orWhere(function ($query) use($year,$type){
+            if ($year !=''&& !is_null($year))$query->where('type',$type)->where('created_at','LIKE',"%{$year}%");
+        })->with('translations')->paginate(10);
 
 
 

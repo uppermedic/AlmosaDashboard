@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+use App\Http\Controllers\Api\HistoryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\SearchController;
@@ -40,7 +41,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/',HomeController::class.'@show');
     Route::get('/home',HomeController::class.'@show');
     Route::get('/about', AboutController::class . '@show');
-
+ Route::get('/history', HistoryController::class . '@show');
     Route::prefix('services')->group(function (){
         Route::get('/',ServicesController::class.'@show');
         Route::get('/{cat_id}',ServicesController::class.'@servicesByCategory');
@@ -88,6 +89,7 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('articles')->group(function () {
             Route::get('/', BlogController::class . '@getArticles');
+	Route::get('/single/{article_id}', BlogController::class . '@getSingleArticle');
             Route::get('/cats={cats}/tags={tags}', BlogController::class . '@articlesFilter');
 
         });

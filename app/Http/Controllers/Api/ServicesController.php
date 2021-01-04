@@ -86,10 +86,16 @@ class ServicesController extends Controller
     {
         $data = [];
         $services = Service::where('service_category_id', $cat_id)->with('translations')->get();
-
+        if(is_null($services)){
+	return response([
+        'status' => 'ERROR',
+        'error' => '404 not found'
+    ], 404);
+	}
+	$data['services'] = [];
         foreach ($services as $k => $service) {
             $data['page_cover']= Voyager::image(ServiceCategory::where('id',$service->service_category_id)->first('image')->image);
-            $data[] = [
+            array_push($data['services'] , [
                 'icon'=>Voyager::image($service->icon),
                 'color'=>$service->color,
                 'id'=>$service->id,
@@ -98,7 +104,7 @@ class ServicesController extends Controller
                     'excerpt'=>$service->excerpt
                 ],
                 'en'=>Helper::toTranslation($service->translations,['title','excerpt'])
-            ];
+            ]);
         }
         return response($data, 200);
     }
@@ -106,17 +112,26 @@ class ServicesController extends Controller
     public function singleService($service_id)
     {
         $data = [];
-        $service = Service::find($service_id)->with('translations')->first();
+try{
+        $service = Service::findOrFail($service_id)->with('translations')->first();
+} catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    return response([
+        'status' => 'ERROR',
+        'error' => '404 not found'
+    ], 404);
+}
         $data['icon']= Voyager::image($service->icon);
         $data['thumbnail']= Voyager::image($service->thumbnail);
         $data['image']= Voyager::image($service->image);
-        $data['ar']=[
+	$data['seo']=[
+	'ar'=>[
             'slug'=>$service->slug,
             'title'=>$service->title,
             'excerpt'=>$service->excerpt,
             'content'=>$service->content
-        ];
-        $data['en']=Helper::toTranslation($service->translations,['slug','title','excerpt','content']);
+        ],
+	'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content'])
+];
         $data['sections']= $this->getServiceSections($service->id);
         $data['physicians'] = $this->getServiceDoctors($service);
 

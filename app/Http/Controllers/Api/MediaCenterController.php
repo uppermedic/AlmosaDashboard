@@ -143,8 +143,18 @@ class MediaCenterController extends Controller
      */
     public function getPhotosCategory()
     {
-        $categories = PhotoCategory::with('translations')->get();
-        return response($categories,200);
+$categories = PhotoCategory::with('translations')->get();
+        $data = [];
+        foreach ($categories as $category) {
+            array_push($data, [
+                'id'=>$category->id,
+                'ar'=>[
+                    'title'=>$category->title
+                ],
+                'en'=>Helper::toTranslation($category->translations)
+            ]);
+        }
+        return response($data,200);
     }
 
     /*
