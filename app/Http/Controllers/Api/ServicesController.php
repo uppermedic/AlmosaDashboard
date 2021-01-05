@@ -124,14 +124,16 @@ try{
         $data['icon']= Voyager::image($service->icon);
         $data['thumbnail']= Voyager::image($service->thumbnail);
         $data['image']= Voyager::image($service->image);
+	$data['image2']= Voyager::image($service->image2);
 	$data['seo']=[
 	'ar'=>[
             'slug'=>$service->slug,
             'title'=>$service->title,
             'excerpt'=>$service->excerpt,
-            'content'=>$service->content
+            'content'=>$service->content,
+		'content2'=>$service->content2
         ],
-	'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content'])
+	'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content','content2'])
 ];
         $data['sections']= $this->getServiceSections($service->id);
         $data['physicians'] = $this->getServiceDoctors($service);
@@ -170,7 +172,8 @@ try{
                     'title'=>$item->title,
                     'content'=>$item->content
                 ],
-                'en'=>Helper::toTranslation($item->translations)
+                'en'=>Helper::toTranslation($item->translations),
+		'video_url'=>$item->video_url,
             ];
         }
         return $data;
