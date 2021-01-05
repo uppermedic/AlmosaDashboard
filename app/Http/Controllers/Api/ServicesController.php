@@ -96,6 +96,7 @@ class ServicesController extends Controller
         foreach ($services as $k => $service) {
             $data['page_cover']= Voyager::image(ServiceCategory::where('id',$service->service_category_id)->first('image')->image);
             array_push($data['services'] , [
+		'thumbnail'=> Voyager::image($service->thumbnail),
                 'icon'=>Voyager::image($service->icon),
                 'color'=>$service->color,
                 'id'=>$service->id,
