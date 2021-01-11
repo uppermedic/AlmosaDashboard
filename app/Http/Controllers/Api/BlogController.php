@@ -112,7 +112,7 @@ class BlogController extends Controller{
  public function getSingleArticle($article_id)
     {
         try {
-            $article = Blog::findOrFail($article_id)->with('translations')->first();
+            $article = Blog::whereId($article_id)->with('translations')->first();
         } catch (ModelNotFoundException $e) {
             return response(['status'=>'ERROR','message'=>'the article not found'],404);
         }
