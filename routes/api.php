@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\DoctorController;
@@ -8,17 +10,6 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 use App\Http\Controllers\Api\HistoryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
@@ -26,22 +17,17 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\EventController;
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
 
-/*Route::get('/home/testimonials', function () {
-    App::setLocale('en');
-    $test = menu('admin');
-    $test->load('translations');
-    return $test;
-});*/
 Route::prefix('v1')->group(function () {
     Route::get('/layout',LayoutController::class.'@show');
     Route::get('/',HomeController::class.'@show');
     Route::get('/home',HomeController::class.'@show');
     Route::get('/about', AboutController::class . '@show');
- Route::get('/history', HistoryController::class . '@show');
+
+    Route::get('/contact',ContactUsController::class.'@show');
+    Route::post('/contact',ContactUsController::class.'@ContactUs');
+
+    Route::get('/history', HistoryController::class . '@show');
     Route::prefix('services')->group(function (){
         Route::get('/',ServicesController::class.'@show');
         Route::get('/{cat_id}',ServicesController::class.'@servicesByCategory');

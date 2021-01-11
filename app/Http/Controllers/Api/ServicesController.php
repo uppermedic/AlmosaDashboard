@@ -38,17 +38,19 @@ class ServicesController extends Controller
      */
     public static function HomeServices(): array
     {
-        $services = Service::where('service_category_id',2)->with('translations')->orderBy('id','DESC')->limit(10)->get();
+        $services = Service::where('service_category_id',2)->inRandomOrder()->with('translations')->limit(3)->get();
         $items = [];
         foreach ($services as $key => $service) {
             $items[]=[
+		'id'=>$service['id'],
                 'ar'=>[
+			'thumbnail'=>Voyager::image($service['thumbnail']),
+
                     'slug'=>$service['slug'],
                     'title'=>$service['title'],
                     'excerpt'=>$service['excerpt'],
-                    'thumbnail'=>Voyager::image($service['thumbnail']),
                 ],
-                'en'=>Helper::toTranslation($service['translations']),
+                'en'=>Helper::toTranslation($service['translations'],['slug','title','excerpt']),
             ];
         }
         return $items;
