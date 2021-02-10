@@ -111,11 +111,12 @@ class BlogController extends Controller{
     }
  public function getSingleArticle($article_id)
     {
-        try {
-            $article = Blog::whereId($article_id)->with('translations')->first();
-        } catch (ModelNotFoundException $e) {
-            return response(['status'=>'ERROR','message'=>'the article not found'],404);
-        }
+        //try {
+            $article = Blog::whereId($article_id)->whereStatus('PUBLISHED')->with('translations')->first();
+	if(is_null($article)) return response(['status'=>'ERROR','message'=>'this article is private or not found try with another article'],401);
+        //} catch (ModelNotFoundException $e) {
+          //  return response(['status'=>'ERROR','message'=>'the article not found'],404);
+        //}
         $data = [];
 
         $data['ar'] = [
@@ -136,7 +137,7 @@ class BlogController extends Controller{
         ];
         $data['categories']= $this->getCategoriesForSingleArticle($article);
         $data['tags']= $this->getTagsForSingleArticle($article);
-
+	$data['related'] = $this->getRelatedArticles($article);
         return response($data,200);
     }
 
@@ -170,5 +171,24 @@ class BlogController extends Controller{
         return $data;
     }
 
+	public function getRelatedArticles(Blog $article): array
+    {
+        $related = Blog::whereHas('categories', function ($q) use($article) {
+            return $q->whereIn('blog_categories.id', $article->categories()->pluck('blog_categories.id')->all());
+        })->where('id','<>',$article->id)->whereStatus('PUBLISHED')->limit(5)->get();
+        $data = [];
+        foreach ($related as $article) {
+            array_push($data, [
+                'id' => $article->id,
+                'image'=> Voyager::image($article->image),
+                'ar' => [
+                    'title'=>$article->title,
+                    'excerpt'=>$article->excerpt
+                ],
+                'en'=>Helper::toTranslation($article->translations,['title','excerpt']),
 
+            ]);
+        }
+        return $data;
+    }
 }

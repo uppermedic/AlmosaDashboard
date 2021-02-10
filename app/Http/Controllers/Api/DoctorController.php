@@ -24,7 +24,7 @@ class DoctorController extends Controller
     protected function getDoctors():array
     {
 $data = [];
-        $doctors = Doctor::with('translations')->paginate(10);
+        $doctors = Doctor::with('translations')->paginate(8);
         $data['current_page'] = $doctors->currentPage();
         $data['next_page_url'] = $doctors->nextPageUrl();
         $data['prev_page_url'] = $doctors->previousPageUrl();

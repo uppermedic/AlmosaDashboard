@@ -116,7 +116,8 @@ class ServicesController extends Controller
     {
         $data = [];
 try{
-        $service = Service::findOrFail($service_id)->with('translations')->first();
+        $service = Service::whereId($service_id)->with('translations')->first();
+	//if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
 } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
     return response([
         'status' => 'ERROR',

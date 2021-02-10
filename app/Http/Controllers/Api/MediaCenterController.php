@@ -32,9 +32,10 @@ class MediaCenterController extends Controller
     public function getMagazine()
     {
 
-        $articles = HakeemMagazine::with('translations')->paginate(1);
+        $articles = HakeemMagazine::with('translations')->paginate(12);
         $data = [];
         $data['current_page']= $articles->currentPage();
+	$data['last_page']   = $articles->lastPage();
         $data['previous_page_url'] = $articles->previousPageUrl();
         $data['next_page_url'] = $articles->nextPageUrl();
         $data['data']=[];
@@ -69,6 +70,7 @@ class MediaCenterController extends Controller
         $data['current_page']= $videos->currentPage();
         $data['previous_page_url'] = $videos->previousPageUrl();
         $data['next_page_url'] = $videos->nextPageUrl();
+	$data['last_page'] = $videos->lastPage();
         $data['data']=[];
         foreach ($videos->items() as $article) {
             array_push($data['data'], [
@@ -116,7 +118,7 @@ class MediaCenterController extends Controller
         $pageNumber = request()->get('page');
         $data = [];
         if (!empty($categoryID)) {
-            $photos = PhotoGallery::where('photo_category_id',1)->get();
+            $photos = PhotoGallery::where('photo_category_id',$categoryID)->get();
         }else{
             $photos = PhotoGallery::all();
         }
@@ -129,7 +131,7 @@ class MediaCenterController extends Controller
             }
 
         }
-        $data = array_chunk($data, 2);
+        $data = array_chunk($data, 20);
 
         $images = [];
         $images['images'] = (!empty($pageNumber) and $pageNumber != 0)? $data[$pageNumber -1]:$data[0];
