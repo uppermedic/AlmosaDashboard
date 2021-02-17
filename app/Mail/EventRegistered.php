@@ -36,6 +36,6 @@ class EventRegistered extends Mailable
     public function build()
     {
 
-        return $this->from('aziz@uppermedic.com')->markdown('emails.events.registered',['user'=>$this->user]);
+        return $this->from('noreplay@almoosahospital.com')->markdown('emails.events.registered',['user'=>$this->user]);
     }
 }
