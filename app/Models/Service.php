@@ -20,6 +20,6 @@ class Service extends Model
 
     public function doctors()
     {
-        return $this->belongsToMany(Doctor::class, 'services_physicians_relation', 'doctor_id', 'service_id');
+        return $this->belongsToMany(Doctor::class, 'services_physicians_relation', 'service_id', 'doctor_id');
     }
 }

@@ -128,7 +128,7 @@ class BlogController extends Controller{
         $data['en'] = Helper::toTranslation($article->translations);
         $data['image']= Voyager::image($article->image);
         $data['status']= $article->status;
-        
+	$data['id'] = $article->id;
         $data['seo']= [
             'seo_title'=>$article->seo_title,
             'meta_description'=>$article->meta_description,

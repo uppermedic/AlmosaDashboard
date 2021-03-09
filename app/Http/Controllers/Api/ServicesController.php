@@ -115,29 +115,32 @@ class ServicesController extends Controller
     public function singleService($service_id)
     {
         $data = [];
-try{
-        $service = Service::whereId($service_id)->with('translations')->first();
-	//if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
-} catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-    return response([
-        'status' => 'ERROR',
-        'error' => '404 not found'
-    ], 404);
-}
+        try{
+            $service = Service::whereId($service_id)->with('translations')->first();
+            //if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
+        } 
+            catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                        return response([
+                            'status' => 'ERROR',
+                            'error' => '404 not found'
+                        ], 404);
+                   }
+
+	$data['id']  = $service->id;
         $data['icon']= Voyager::image($service->icon);
         $data['thumbnail']= Voyager::image($service->thumbnail);
         $data['image']= Voyager::image($service->image);
-	$data['image2']= Voyager::image($service->image2);
-	$data['seo']=[
-	'ar'=>[
-            'slug'=>$service->slug,
-            'title'=>$service->title,
-            'excerpt'=>$service->excerpt,
-            'content'=>$service->content,
-		'content2'=>$service->content2
-        ],
-	'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content','content2'])
-];
+        $data['image2']= Voyager::image($service->image2);
+        $data['seo']=[
+        'ar'=>[
+                'slug'=>$service->slug,
+                'title'=>$service->title,
+                'excerpt'=>$service->excerpt,
+                'content'=>$service->content,
+            'content2'=>$service->content2
+            ],
+        'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content','content2'])
+        ];
         $data['sections']= $this->getServiceSections($service->id);
         $data['physicians'] = $this->getServiceDoctors($service);
 
