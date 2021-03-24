@@ -38,7 +38,7 @@ class ServicesController extends Controller
      */
     public static function HomeServices(): array
     {
-        $services = Service::where('service_category_id',2)->inRandomOrder()->with('translations')->limit(3)->get();
+        $services = Service::where('service_category_id',2)->inRandomOrder()->with('translations')->limit(6)->get();
         $items = [];
         foreach ($services as $key => $service) {
             $items[]=[

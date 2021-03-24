@@ -191,4 +191,25 @@ class BlogController extends Controller{
         }
         return $data;
     }
+
+	/**
+     * show Blog at home page  limit by 10
+     */
+    public static function HomeBlogs(): array
+    {
+        $Blogs = Blog::with('translations')->inRandomOrder()->limit(6)->get();
+        $items = [];
+        foreach ($Blogs as $key => $blog) {
+           array_push($items,[
+                'id'=>$blog->id,
+               'thumbnail'=>Voyager::image($blog->image),
+                'ar'=>[
+                    'title'=>$blog->title,
+                    'content'=>$blog->content,
+                ],
+                'en'=>Helper::toTranslation($blog->translations,['title','content']),
+            ]);
+        }
+        return $items;
+    }
 }
