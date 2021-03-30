@@ -48,4 +48,50 @@ $data = [];
         }
         return $data;
     }
+
+    public function filter(Request $request)
+    {
+        $section_id = (int)$request->post('section_id');
+
+        $heads = Section::find($section_id)->doctors;
+        $heads = $heads->load('translations');
+        $heads = [
+            'image' => Voyager::image($heads->image),
+            'id'=>$heads->id,
+            'ar' => [
+                'name' => $heads->name,
+                'slug'=>$heads->slug,
+                'title' => $heads->title,
+                'qualifications' => $heads->qualifications,
+                'current_positions'=>$heads->current_positions,
+            ],
+            'en'=>Helper::toTranslation($heads->translations),
+
+        ];
+
+        $doctors = Doctor::whereSection_id($section_id)->with('section','translations')->paginate(2);
+
+        $doctors_data['current_page'] = $doctors->currentPage();
+        $doctors_data['next_page_url'] = $doctors->nextPageUrl();
+        $doctors_data['prev_page_url'] = $doctors->previousPageUrl();
+        $doctors_data['total'] = $doctors->total();
+        $doctors_data['last_page'] = $doctors->lastPage();
+        $doctors_data['data'] = [];
+        foreach ($doctors->items() as $doctor) {
+            array_push($doctors_data['data'],[
+                'image' => Voyager::image($doctor->image),
+                'id'=>$doctor->id,
+                'ar' => [
+                    'name' => $doctor->name,
+                    'slug'=>$doctor->slug,
+                    'title' => $doctor->title,
+                    'qualifications' => $doctor->qualifications,
+                    'current_positions'=>$doctor->current_positions,
+                ],
+                'en'=>Helper::toTranslation($doctor->translations),
+
+            ]);
+        }
+        return response(['SectionHead'=>$heads,'doctors'=>$doctors_data],200);
+    }
 }

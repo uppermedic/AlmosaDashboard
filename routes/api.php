@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommunityController;
@@ -66,7 +66,14 @@ Route::prefix('v1')->group(function () {
         });
 
     });
-    Route::get('/doctors', DoctorController::class . '@show');
+   Route::prefix('doctors')->group(function () {
+
+        Route::get('/', DoctorController::class . '@show');
+        Route::post('/filter', DoctorController::class . '@filter');
+
+    });
+
+    Route::get('/sections', SectionController::class . '@show');
 
     Route::prefix('blog')->group(function () {
         Route::get('/', BlogController::class . '@show');
