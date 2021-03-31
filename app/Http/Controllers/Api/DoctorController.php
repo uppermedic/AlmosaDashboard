@@ -3,12 +3,12 @@
  * created by aziz(aziz.adel.fci@gmail.com)
  **/
 namespace App\Http\Controllers\Api;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Page;
 use TCG\Voyager\Facades\Voyager;
-
+use App\Models\Section;
 
 class DoctorController extends Controller
 {
@@ -23,7 +23,7 @@ class DoctorController extends Controller
 
     protected function getDoctors():array
     {
-$data = [];
+        $data = [];
         $doctors = Doctor::with('translations')->paginate(8);
         $data['current_page'] = $doctors->currentPage();
         $data['next_page_url'] = $doctors->nextPageUrl();
@@ -35,6 +35,7 @@ $data = [];
             array_push($data['data'],[
                 'image' => Voyager::image($doctor->image),
                 'id'=>$doctor->id,
+                'section_id'=>$doctor->section_id,
                 'ar' => [
                     'name' => $doctor->name,
                     'slug'=>$doctor->slug,
@@ -51,7 +52,7 @@ $data = [];
 
     public function filter(Request $request)
     {
-        $section_id = (int)$request->post('section_id');
+ $section_id = (int)$request->section_id;
 
         $heads = Section::find($section_id)->doctors;
         $heads = $heads->load('translations');
@@ -69,7 +70,7 @@ $data = [];
 
         ];
 
-        $doctors = Doctor::whereSection_id($section_id)->with('section','translations')->paginate(2);
+        $doctors = Doctor::whereSection_id($section_id)->with('section','translations')->paginate(12);
 
         $doctors_data['current_page'] = $doctors->currentPage();
         $doctors_data['next_page_url'] = $doctors->nextPageUrl();

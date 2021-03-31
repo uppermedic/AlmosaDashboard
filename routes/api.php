@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Api\AcademicTeamController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\BlogController;
@@ -46,6 +48,8 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/single/{event_id}',EventController::class.'@getSingleEvent');
 
+	Route::get('/academic/team', AcademicTeamController::class . '@getTeam');
+
         Route::post('/register',EventController::class.'@registerToEvent')->middleware('checkEvent');
 
     });
@@ -69,7 +73,7 @@ Route::prefix('v1')->group(function () {
    Route::prefix('doctors')->group(function () {
 
         Route::get('/', DoctorController::class . '@show');
-        Route::post('/filter', DoctorController::class . '@filter');
+        Route::get('/filter/id={section_id}', DoctorController::class . '@filter');
 
     });
 
