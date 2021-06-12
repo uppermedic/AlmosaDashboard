@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\Service;
 use App\Models\ServiceSectionItem;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use stdClass;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
@@ -19,6 +21,8 @@ use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 use App\Models\ServiceSection;
+use TCG\Voyager\Models\Translation;
+
 class ServiceSectionsItemsController extends VoyagerBaseController
 {
     use BreadRelationshipParser;
@@ -77,6 +81,11 @@ class ServiceSectionsItemsController extends VoyagerBaseController
                 $query = $model->{$dataType->scope}();
             } else {
                 $query = $model::select('*');
+            }
+
+            if ($request->get('service_id')) {
+                $serviceId = $request->get('service_id');
+                $query = $model::getByService($serviceId);
             }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected
@@ -154,6 +163,8 @@ class ServiceSectionsItemsController extends VoyagerBaseController
             }
         }
 
+        $allServices = Service::getAllServices();
+
         // Define orderColumn
         $orderColumn = [];
         if ($orderBy) {
@@ -166,6 +177,8 @@ class ServiceSectionsItemsController extends VoyagerBaseController
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
+
+        $serviceID = isset($serviceId) && !empty($serviceId) ? $serviceId : 0;
 
         return Voyager::view($view, compact(
             'actions',
@@ -181,7 +194,9 @@ class ServiceSectionsItemsController extends VoyagerBaseController
             'defaultSearchKey',
             'usesSoftDeletes',
             'showSoftDeleted',
-            'showCheckboxColumn'
+            'showCheckboxColumn',
+            'allServices',
+            'serviceID'
         ));
     }
 
@@ -199,6 +214,7 @@ class ServiceSectionsItemsController extends VoyagerBaseController
 
     public function show(Request $request, $id)
     {
+//        file_put_contents('z1.txt','ok');
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -245,7 +261,20 @@ class ServiceSectionsItemsController extends VoyagerBaseController
             $view = "voyager::$slug.read";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted'));
+        $serviceInfo = ServiceSectionItem::getRequiredInfo($id);
+
+        $translation_section = ServiceSectionItem::getSectionTranslate($serviceInfo->section_id, ServiceSectionItem::SECTION_TABLE);
+        $translation_service = ServiceSectionItem::getSectionTranslate($serviceInfo->service_id, ServiceSectionItem::SERVICE_TABLE);
+
+        $translations = new stdClass();
+        $translations->section = new stdClass();
+        $translations->service = new stdClass();
+        $translations->section->en = !empty($translation_section) ? $translation_section : $serviceInfo->sectionTitle;
+        $translations->section->ar = $serviceInfo->sectionTitle;
+        $translations->service->en = !empty($translation_service) ? $translation_service : $serviceInfo->serviceTitle;
+        $translations->service->ar = $serviceInfo->serviceTitle;
+
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted', 'translations'));
     }
 
     //***************************************
@@ -305,13 +334,16 @@ class ServiceSectionsItemsController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
         $service_sections = ServiceSection::all();
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','service_sections'));
+        $allServices = Service::getAllServices();
+
+        $serviceInfo = ServiceSectionItem::getRequiredInfo($id);
+
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','service_sections', 'allServices', 'serviceInfo'));
     }
 
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
-
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -337,7 +369,19 @@ class ServiceSectionsItemsController extends VoyagerBaseController
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
         event(new BreadDataUpdated($dataType, $data));
-        ServiceSectionItem::where('id',$id)->update(array('section_id'=>$request['service_section']));
+
+        try {
+            ServiceSectionItem::updateSectionItem($id, $request['service_section_id']);
+            ServiceSection::updateSection($request['service_section_id'], $request['service_id'], $request['color']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => [
+                    'status'  => 'Error',
+                    'message' => $e->getMessage(),
+                ],
+            ]);
+        }
+
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
@@ -365,7 +409,10 @@ class ServiceSectionsItemsController extends VoyagerBaseController
 
     public function create(Request $request)
     {
-        
+
+        $_service_id = $request->input('service_id');
+        $url_service_id = $_service_id != 0 ? $_service_id : '';
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -398,7 +445,12 @@ class ServiceSectionsItemsController extends VoyagerBaseController
 
         $service_sections = ServiceSection::all();
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','service_sections'));
+        $allServices = Service::get(['id', 'title']);
+
+        $serviceInfo = new stdClass();
+        $serviceInfo->service_id = $url_service_id;
+
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','service_sections', 'allServices', 'serviceInfo'));
     }
 
     /**
@@ -419,11 +471,13 @@ class ServiceSectionsItemsController extends VoyagerBaseController
         //dd($dataType->addRows);
         // Validate fields with ajax
         $request->validate([
-            'service_section'=>'required',
+            'service_id' => 'required',
+            'service_section_id' => 'required'
         ]);
+
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
-        ServiceSectionItem::where('id', $data->id)->update(['section_id' => $request->service_section]);
+        ServiceSectionItem::where('id', $data->id)->update(['section_id' => $request->service_section_id]);
         event(new BreadDataAdded($dataType, $data));
 
         if (!$request->has('_tagging')) {

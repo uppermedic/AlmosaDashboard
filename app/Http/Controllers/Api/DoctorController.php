@@ -93,6 +93,8 @@ class DoctorController extends Controller
 
             ]);
         }
-        return response(['SectionHead'=>$heads,'doctors'=>$doctors_data],200);
+	$page = Page::where('id','=',9)->firstOrFail();
+
+        return response(['page' => Helper::page($page),'SectionHead'=>$heads,'doctors'=>$doctors_data],200);
     }
 }

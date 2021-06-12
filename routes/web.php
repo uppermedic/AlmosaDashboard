@@ -85,6 +85,16 @@ use App\Models\Page;
 
 
 //Route::group(['prefix' => '/'], function () {
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AjaxController;
+use TCG\Voyager\Voyager;
 
-    Voyager::routes();
+Auth::routes();
+
+Route::post('/getSections', [AjaxController::class, 'getSections']);
+Route::post('/addNewSection', [AjaxController::class, 'addNewSection']);
+Route::post('/updateSortingList', [AjaxController::class, 'updateSortingList']);
+
+(new TCG\Voyager\Voyager)->routes();
 //});

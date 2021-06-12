@@ -12,6 +12,6 @@ class AcademicTeam extends Model
 
     protected $translatable = ['name', 'title'];
     protected $attributes = [
-        'image' => 'doctor.jpg',
+        'image' => 'doctors/doctor-placeholder.jpg',
     ];
 }

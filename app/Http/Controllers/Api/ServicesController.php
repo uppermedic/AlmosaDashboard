@@ -118,7 +118,7 @@ class ServicesController extends Controller
         try{
             $service = Service::whereId($service_id)->with('translations')->first();
             //if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
-        } 
+        }
             catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
                         return response([
                             'status' => 'ERROR',
@@ -150,7 +150,12 @@ class ServicesController extends Controller
 
     public function getServiceSections($id): array
     {
-        $sections = ServiceSection::where('service_id', $id)->with('translations')->get();
+        $sections = ServiceSection::where('service_id', $id)
+            ->with('translations')
+            ->orderBy('sorting_number')
+            ->orderBy('id', 'DESC')
+            ->get();
+
         $data = [];
         foreach ($sections as $section) {
             $data[] = [

@@ -7,7 +7,42 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        .buttonsContainer {
+            position: absolute;
+            width: 164px;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            left: 37em;
+            top: 10%;
+            background: #9999;
+            transition: all 0.2s ease-in-out;
+            z-index: 99;
+            pointer-events: none;
+        }
 
+        .newSectionContainer{
+            position: absolute;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            background: #9999;
+            transition: all 0.1s ease-in-out;
+            z-index: 99;
+            pointer-events: none;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .open {
+            opacity: 1!important;
+            pointer-events: all;
+        }
+        .voyager .btn.btn-success {
+            min-width: 200px;
+        }
+    </style>
 @stop
 
 @section('page_title', __('voyager::generic.'.($edit ? 'edit' : 'add')).' '.$dataType->getTranslatedAttribute('display_name_singular'))
@@ -18,6 +53,12 @@
         {{ __('voyager::generic.'.($edit ? 'edit' : 'add')).' '.$dataType->getTranslatedAttribute('display_name_singular') }}
     </h1>
     @include('voyager::multilingual.language-selector')
+    @if($edit == 'edit')
+        <a href="/service-sections/{{ $dataTypeContent->section_id }}/edit" id="addSection"
+           class="btn btn-success btn-add-new optionButton">
+            <i class="voyager-plus"></i> <span>Edit this Section</span>
+        </a>
+    @endif
 @stop
 
 @section('content')
@@ -41,7 +82,7 @@
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 @if (count($errors) > 0)
                                     <div class="alert alert-danger">
                                         <ul>
@@ -53,6 +94,54 @@
                                 @endif
 
                             <!-- Adding / Editing -->
+                                <div class="form-group  col-md-12 ">
+                                    <label class="control-label" for="name">Services</label>
+                                    <select id="service_id" class="form-control services" name="service_id"
+                                            data-method="{{$edit}}" tabindex="-1" aria-hidden="false">
+                                        <option value="">None</option>
+                                        @foreach($allServices as $val)
+                                            <option value="{{$val->id}}"
+                                                {{isset($serviceInfo) && $val->id == $serviceInfo->service_id
+                                                    ? 'selected'
+                                                    : ''}}>
+                                                {{$val->title}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                    <div class="form-group  col-md-12 ">
+                                        <label class="control-label" for="name">Service sections</label>
+                                        <select id = "service_sections" class="form-control" name="service_section_id"
+                                                data-method="add" tabindex="-1" aria-hidden="false">
+                                            <option value="">None</option>
+                                            @foreach ($service_sections as $val)
+<!--                                                --><?php //file_put_contents('zzzzz1.txt',print_r($dataTypeContent->section_id,1)) ?>
+                                                <option value="{{$val->id}}" {{isset($dataTypeContent->section_id) && $val->id == $dataTypeContent->section_id ? 'selected' : ''}}>{{$val->title}}</option>
+                                            @endforeach
+                                        </select>
+                                        <div>
+                                            <a onclick="showAddingModal()" id="newSection" class="btn btn-success btn-add-new">
+                                                <i class="voyager-plus"></i> <span>Add new section</span>
+                                            </a>
+                                            <div class="newSectionContainer">
+                                                <input id="newSectionText" dir="rtl" type="text" name="new_section">
+                                                <a onclick="addNewSection()" class="btn btn-success btn-add-new ">
+                                                    <i class="voyager-plus"></i> <span>Add</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group  col-md-12 ">
+                                    <label class="control-label" for="name">Color</label>
+                                    <input type="color" class="form-control" name="color" value="{{!empty($serviceInfo->color) ? $serviceInfo->color : '#000000'}}">
+
+                                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"
+                                          data-toggle="tooltip" data-placement="right" data-html="true" title=""
+                                          data-original-title="background color of section title"></span>
+                                </div>
+
                                 @php
                                     $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                                 @endphp
@@ -96,29 +185,7 @@
                                 @endforeach
 
                             </div>
-                            <div class="col-md-4 col-sm-12">
-                                <h2 class="hndle ui-sortable-handle">Service Sections </h2>
 
-                                <ul style="list-style: none;max-height: 300px;overflow-x: hidden">
-                                    @foreach ($service_sections as $section)
-                                        @php
-                                        $section_id = (int) $section->id; //should be converted to int
-                                        $myId = $dataTypeContent->section_id;
-                                                @endphp
-                                        <li>
-                                            <label>
-                                                <input value="{{$section->id}}" type="radio" name="service_section" @if($myId == $section_id) checked  @endif > {{$section->title}}
-                                            </label>
-                                            <strong>-{{$section->getService->title}}</strong>
-                                        </li>
-                                    @endforeach
-                                </ul>
-
-
-                                <a type="button" href="{{route('voyager.service-sections.create')}}" class="button category-add-submit">
-                                    Add new Section
-                                </a>
-                            </div>
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
@@ -215,7 +282,7 @@
             });
 
             @if ($isModelTranslatable)
-                $('.side-body').multilingual({"editing": true});
+            $('.side-body').multilingual({"editing": true});
             @endif
 
             $('.side-body input[data-slug-origin]').each(function (i, el) {
@@ -246,6 +313,71 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
-        });
+
+            getSectionItems();
+
+            $('.services').on('change', function () {
+                var sectionId = this.value;
+                getSectionItems(sectionId);
+            })
+
+            $('body').click(function (e) {
+                if($(e.target).closest('#allButtons').length) return;
+                setTimeout(function () {
+                    $('.buttonsContainer').removeClass('open');
+                }, 100)
+            });
+        })
+
+        function getSectionItems(serveId = 0) {
+            var serviceId = serveId ? serveId : $('.services').val(),
+                sectionTitle = $('#service_sections').val();
+
+            $.post('/getSections', {serviceID: serviceId}, function (response) {
+                if (response) {
+                    var sectionOptions = "",
+                        selected = "";
+                    $.each(response, function (k, v) {
+                        var id = response[k].id,
+                            val = response[k].title;
+
+                        selected = parseInt(id) === parseInt(sectionTitle) ? 'selected' : '';
+                        sectionOptions += "<option value='" + id + "'" + selected + ">" + val + "</option>";
+                    });
+                    $('#service_sections').html(sectionOptions);
+                }
+            })
+        }
+
+        function showButtons() {
+            $('.buttonsContainer').toggleClass('open')
+        }
+
+        function showAddingModal() {
+            if ($('#service_id').val() == '') return;
+            $('.newSectionContainer').toggleClass('open')
+        }
+
+        function addNewSection() {
+            var serviceId = $('#service_id').val(),
+                sectionTitle = $('#newSectionText').val();
+
+            if($.trim(serviceId) === '' || $.trim(sectionTitle) === '') return;
+
+            $.post('/addNewSection', {serviceID: serviceId, sectionTitle: sectionTitle}, function (response) {
+                if (response) {
+                    var sectionOptions = "";
+                    $.each(response, function (k, v) {
+
+                        var id = response[k].id,
+                            val = response[k].title;
+                        sectionOptions += "<option value='" + id + "'>" + val + "</option>";
+                    });
+                    $('#service_sections').html(sectionOptions);
+
+                    showAddingModal();
+                }
+            })
+        }
     </script>
 @stop

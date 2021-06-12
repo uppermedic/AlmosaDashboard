@@ -78,12 +78,12 @@ class EventController extends Controller
 	$query = new Event();
 
         if($year){
-            
+
            $query =  $query->where('start_date', 'LIKE', "%{$year}%");
         }
         if($category) {
             $query = $query->where('event_category_id','=', $category);
-            
+
         }
         if($status) {
             $query =  $query->where('status','LIKE', $status);

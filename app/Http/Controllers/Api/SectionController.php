@@ -15,7 +15,7 @@ class SectionController
 
         foreach ($sections as $section) {
             array_push($data, [
-                'section_id'=>$section->id,
+                'id'=>$section->id,
                 'ar'=>[
                     'title'=>$section->title,
                 ],

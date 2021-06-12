@@ -19,7 +19,8 @@
         "laravel/tinker": "^2.5",
         "spatie/laravel-backup": "^6.14",
         "tcg/voyager": "^1.4",
-        "teamtnt/laravel-scout-tntsearch-driver": "^11.1"
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.1",
+      "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
