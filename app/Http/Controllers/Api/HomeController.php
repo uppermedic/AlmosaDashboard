@@ -20,8 +20,10 @@ class HomeController extends Controller {
         $data = [
             'page' => Helper::page($page),
             'content' => $this->getContent(),
+            'sliders'=>SliderController::HomeSlider(),
             'home_services'=>ServicesController::HomeServices(),
             'testimonials'=>TestimonialController::show(),
+	    'blogs'=>BlogController::HomeBlogs(),
             'hospital'=>[
                 'single_bed'=>setting('hospital.single_bed'),
                 'doctor'=>setting('hospital.doctor'),

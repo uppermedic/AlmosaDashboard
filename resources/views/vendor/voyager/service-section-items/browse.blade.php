@@ -8,7 +8,7 @@
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
         </h1>
         @can('add', app($dataType->model_name))
-            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
+            <a href="{{ route('voyager.'.$dataType->slug.'.create').'?service_id='.$serviceID }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
         @endcan
@@ -33,10 +33,23 @@
             @endif
         @endforeach
         @include('voyager::multilingual.language-selector')
+        <button class="btn btn-sm btn-primary edit" data-serviceid="{{$serviceID}}" onclick="saveSort(this)">
+            Update Sorting
+        </button>
     </div>
 @stop
 
 @section('content')
+    <div class="form-group  col-md-12 ">
+        <label class="control-label" for="name">Services</label>
+        <select id="service_id" class="form-control services" name="service_id" tabindex="-1" aria-hidden="false">
+            <option value="">None</option>
+            @foreach($allServices as $val)
+                <option value="{{$val->id}}" {{$val->id == $serviceID ? 'selected' : ''}}>{{$val->title}}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
 
@@ -102,13 +115,12 @@
                                             @endif
                                         </th>
                                     @endforeach
-                                        
+
                                     <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($dataTypeContent as $data)
-
                                     <tr>
                                         @if($showCheckboxColumn)
                                             <td>
@@ -256,6 +268,12 @@
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
+                                            <label for="{{$data->section_id}}">Sorting order </label>
+                                            <select id="{{$data->section_id}}" data-itemid="{{$data->id}}" class="sortingOrder" name="sortingOrder">
+                                                @for($i = 0; $i < count($dataTypeContent); $i++)
+                                                    <option value="{{$i}}" {{$i == $data->sorting_number ? 'selected' : ''}}>{{$i}}</option>
+                                                @endfor
+                                            </select>
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
@@ -266,6 +284,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div style="display: flex; justify-content: center;">
+                                <button class="btn btn-sm btn-primary pull-right edit" style="width: 30%;" onclick="saveSort()">
+                                    Update Sorting
+                                </button>
+                            </div>
                         </div>
                         @if ($isServerSide)
                             <div class="pull-left">
@@ -327,7 +350,8 @@
     @endif
     <script>
         $(document).ready(function () {
-                    @if (!$dataType->server_side)
+    var sortingObj = {};
+    @if (!$dataType->server_side)
             var table = $('#dataTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => $orderColumn,
@@ -354,6 +378,10 @@
             $('.select_all').on('click', function(e) {
                 $('input[name="row_id"]').prop('checked', $(this).prop('checked')).trigger('change');
             });
+
+            $('#service_id').on('change',function () {
+                window.location.href = "/{{$dataType->slug}}" +"/?service_id=" + $(this).val();
+            })
         });
 
 
@@ -394,5 +422,29 @@
             });
             $('.selected_ids').val(ids);
         });
+
+        function saveSortingNumber(data)
+        {
+            $.post('/updateSortingList', data, function (response) {
+                if (!response || response === 'OK') {
+                    alert('Sorting saved successfully')
+                } else {
+                    alert(response)
+                }
+            })
+        }
+
+        function saveSort ()
+        {
+            var sortingObj = [];
+
+            $('.sortingOrder').each(function (key, elem) {
+                console.log(elem);
+                sortingObj[key] = [elem.id, elem.value, elem.dataset.itemid];
+            })
+
+            if ($.isEmptyObject( sortingObj )) return
+            saveSortingNumber(JSON.stringify(sortingObj));
+        }
     </script>
 @stop

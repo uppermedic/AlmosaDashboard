@@ -38,17 +38,19 @@ class ServicesController extends Controller
      */
     public static function HomeServices(): array
     {
-        $services = Service::where('service_category_id',2)->with('translations')->orderBy('id','DESC')->limit(10)->get();
+        $services = Service::where('service_category_id',2)->inRandomOrder()->with('translations')->limit(6)->get();
         $items = [];
         foreach ($services as $key => $service) {
             $items[]=[
+		'id'=>$service['id'],
                 'ar'=>[
+			'thumbnail'=>Voyager::image($service['thumbnail']),
+
                     'slug'=>$service['slug'],
                     'title'=>$service['title'],
                     'excerpt'=>$service['excerpt'],
-                    'thumbnail'=>Voyager::image($service['thumbnail']),
                 ],
-                'en'=>Helper::toTranslation($service['translations']),
+                'en'=>Helper::toTranslation($service['translations'],['slug','title','excerpt']),
             ];
         }
         return $items;
@@ -86,10 +88,17 @@ class ServicesController extends Controller
     {
         $data = [];
         $services = Service::where('service_category_id', $cat_id)->with('translations')->get();
-
+        if(is_null($services)){
+	return response([
+        'status' => 'ERROR',
+        'error' => '404 not found'
+    ], 404);
+	}
+	$data['services'] = [];
         foreach ($services as $k => $service) {
             $data['page_cover']= Voyager::image(ServiceCategory::where('id',$service->service_category_id)->first('image')->image);
-            $data[] = [
+            array_push($data['services'] , [
+		'thumbnail'=> Voyager::image($service->thumbnail),
                 'icon'=>Voyager::image($service->icon),
                 'color'=>$service->color,
                 'id'=>$service->id,
@@ -98,7 +107,7 @@ class ServicesController extends Controller
                     'excerpt'=>$service->excerpt
                 ],
                 'en'=>Helper::toTranslation($service->translations,['title','excerpt'])
-            ];
+            ]);
         }
         return response($data, 200);
     }
@@ -106,17 +115,32 @@ class ServicesController extends Controller
     public function singleService($service_id)
     {
         $data = [];
-        $service = Service::find($service_id)->with('translations')->first();
+        try{
+            $service = Service::whereId($service_id)->with('translations')->first();
+            //if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
+        }
+            catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                        return response([
+                            'status' => 'ERROR',
+                            'error' => '404 not found'
+                        ], 404);
+                   }
+
+	$data['id']  = $service->id;
         $data['icon']= Voyager::image($service->icon);
         $data['thumbnail']= Voyager::image($service->thumbnail);
         $data['image']= Voyager::image($service->image);
-        $data['ar']=[
-            'slug'=>$service->slug,
-            'title'=>$service->title,
-            'excerpt'=>$service->excerpt,
-            'content'=>$service->content
+        $data['image2']= Voyager::image($service->image2);
+        $data['seo']=[
+        'ar'=>[
+                'slug'=>$service->slug,
+                'title'=>$service->title,
+                'excerpt'=>$service->excerpt,
+                'content'=>$service->content,
+            'content2'=>$service->content2
+            ],
+        'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content','content2'])
         ];
-        $data['en']=Helper::toTranslation($service->translations,['slug','title','excerpt','content']);
         $data['sections']= $this->getServiceSections($service->id);
         $data['physicians'] = $this->getServiceDoctors($service);
 
@@ -126,7 +150,12 @@ class ServicesController extends Controller
 
     public function getServiceSections($id): array
     {
-        $sections = ServiceSection::where('service_id', $id)->with('translations')->get();
+        $sections = ServiceSection::where('service_id', $id)
+            ->with('translations')
+            ->orderBy('sorting_number')
+            ->orderBy('id', 'DESC')
+            ->get();
+
         $data = [];
         foreach ($sections as $section) {
             $data[] = [
@@ -154,7 +183,8 @@ class ServicesController extends Controller
                     'title'=>$item->title,
                     'content'=>$item->content
                 ],
-                'en'=>Helper::toTranslation($item->translations)
+                'en'=>Helper::toTranslation($item->translations),
+		'video_url'=>$item->video_url,
             ];
         }
         return $data;

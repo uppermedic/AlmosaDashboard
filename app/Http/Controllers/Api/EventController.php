@@ -70,13 +70,42 @@ class EventController extends Controller
     public function filtration($type)
     {
 
-        $type = strtoupper($type);
-        $year = request()->get('year');
-        $category =(int) request()->get('category');
-        $status = strtoupper(request()->get('status'));
-        $events = Event::where('type',$type)->where('event_category_id',$category)
-            ->where('status',$status)->where('created_at','LIKE',"%{$year}%")->with('translations')->paginate(10);
+	$type = htmlspecialchars(strtoupper($type)) ;
+        $year = htmlspecialchars(request()->get('year'));
+        $category =(int) htmlspecialchars(request()->get('category'));
+        $status = htmlspecialchars(strtoupper(request()->get('status')));
 
+	$query = new Event();
+
+        if($year){
+
+           $query =  $query->where('start_date', 'LIKE', "%{$year}%");
+        }
+        if($category) {
+            $query = $query->where('event_category_id','=', $category);
+
+        }
+        if($status) {
+            $query =  $query->where('status','LIKE', $status);
+        }
+
+        $events = $query->where('type','LIKE',$type)->with('translations')->paginate(10);
+	/*
+	 $query = Event::where('type',$type);
+
+        if(isset($year)) $query->where('start_date','LIKE',"%{$year}%");
+        if(isset($category)) $query->where('event_category_id',$category);
+        if(isset($status)) $query->where('status',$status);
+	$events = $query->with('translations')->paginate(10);*/
+	/*
+	 $events = Event::where(function ($query)use($category,$type){
+            if ($category !=''&& !is_null($category))$query->where('type',$type)->where('event_category_id',$category);
+        })->orWhere(function ($query)use ($status,$type){
+            if ($status !=''&& !is_null($status))$query->where('type',$type)->where('status',$status);
+        })->orWhere(function ($query) use($year,$type){
+            if ($year !=''&& !is_null($year))$query->where('type',$type)->where('start_date','LIKE',"%{$year}%");
+        })->with('translations')->paginate(10);
+	*/
 
 
         return response($this->pagination($events),200);/*request()->get('type');*/
