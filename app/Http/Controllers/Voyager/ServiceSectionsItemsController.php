@@ -41,6 +41,8 @@ class ServiceSectionsItemsController extends VoyagerBaseController
 
     public function index(Request $request)
     {
+        $adminUser = Auth::user()->role_id == 1 ? true : false;
+
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -196,7 +198,8 @@ class ServiceSectionsItemsController extends VoyagerBaseController
             'showSoftDeleted',
             'showCheckboxColumn',
             'allServices',
-            'serviceID'
+            'serviceID',
+            'adminUser'
         ));
     }
 
