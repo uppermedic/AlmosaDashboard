@@ -33,9 +33,11 @@
             @endif
         @endforeach
         @include('voyager::multilingual.language-selector')
-        <button class="btn btn-sm btn-primary edit" data-serviceid="{{$serviceID}}" onclick="saveSort(this)">
-            Update Sorting
-        </button>
+        @if($adminUser)
+            <button class="btn btn-sm btn-primary edit" data-serviceid="{{$serviceID}}" onclick="saveSort(this)">
+                Update Sorting
+            </button>
+        @endif
     </div>
 @stop
 
@@ -284,11 +286,14 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div style="display: flex; justify-content: center;">
-                                <button class="btn btn-sm btn-primary pull-right edit" style="width: 30%;" onclick="saveSort()">
-                                    Update Sorting
-                                </button>
-                            </div>
+                            @if($adminUser)
+                                <div style="display: flex; justify-content: center;">
+                                    <button class="btn btn-sm btn-primary pull-right edit" style="width: 30%;"
+                                            onclick="saveSort()">
+                                        Update Sorting
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                         @if ($isServerSide)
                             <div class="pull-left">
