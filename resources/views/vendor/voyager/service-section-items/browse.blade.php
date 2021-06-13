@@ -35,7 +35,7 @@
         @include('voyager::multilingual.language-selector')
         @if($adminUser)
             <button class="btn btn-sm btn-primary edit" data-serviceid="{{$serviceID}}" onclick="saveSort(this)">
-                Update Sorting!
+                Update Sorting
             </button>
         @endif
     </div>
@@ -290,7 +290,7 @@
                                 <div style="display: flex; justify-content: center;">
                                     <button class="btn btn-sm btn-primary pull-right edit" style="width: 30%;"
                                             onclick="saveSort()">
-                                        Update Sorting!
+                                        Update Sorting
                                     </button>
                                 </div>
                             @endif
