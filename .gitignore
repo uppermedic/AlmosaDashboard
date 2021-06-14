@@ -4,4 +4,4 @@
 /storage/*.key
 /vendor
 /phpmyadmin
-/.env
+.env
