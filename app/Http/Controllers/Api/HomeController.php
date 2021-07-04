@@ -28,7 +28,7 @@ class HomeController extends Controller {
                 'single_bed' => setting('hospital.single_bed'),
                 'doctor' => setting('hospital.doctor'),
                 'surgery' => setting('hospital.surgery'),
-                'workers' => setting('hospital.patients')
+                'worker' => setting('hospital.patients')
             ],
             'emergency_phone' => setting('contact-us.emergency_number'),
 
