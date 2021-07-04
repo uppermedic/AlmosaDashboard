@@ -20,17 +20,17 @@ class HomeController extends Controller {
         $data = [
             'page' => Helper::page($page),
             'content' => $this->getContent(),
-            'sliders'=>SliderController::HomeSlider(),
-            'home_services'=>ServicesController::HomeServices(),
-            'testimonials'=>TestimonialController::show(),
-	    'blogs'=>BlogController::HomeBlogs(),
-            'hospital'=>[
-                'single_bed'=>setting('hospital.single_bed'),
-                'doctor'=>setting('hospital.doctor'),
-                'surgery'=>setting('hospital.surgery'),
-                'patient'=>setting('hospital.patients')
+            'sliders' => SliderController::HomeSlider(),
+            'home_services' => ServicesController::HomeServices(),
+            'testimonials' => TestimonialController::show(),
+            'blogs' => BlogController::HomeBlogs(),
+            'hospital' => [
+                'single_bed' => setting('hospital.single_bed'),
+                'doctor' => setting('hospital.doctor'),
+                'surgery' => setting('hospital.surgery'),
+                'workers' => setting('hospital.patients')
             ],
-            'emergency_phone'=>setting('contact-us.emergency_number'),
+            'emergency_phone' => setting('contact-us.emergency_number'),
 
         ];
         return response($data,200);
