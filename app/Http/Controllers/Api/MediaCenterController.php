@@ -32,10 +32,10 @@ class MediaCenterController extends Controller
     public function getMagazine()
     {
 
-        $articles = HakeemMagazine::with('translations')->paginate(12);
+        $articles = HakeemMagazine::orderBy('created_at','DESC')->with('translations')->paginate(12);
         $data = [];
         $data['current_page']= $articles->currentPage();
-	$data['last_page']   = $articles->lastPage();
+	    $data['last_page']   = $articles->lastPage();
         $data['previous_page_url'] = $articles->previousPageUrl();
         $data['next_page_url'] = $articles->nextPageUrl();
         $data['data']=[];
