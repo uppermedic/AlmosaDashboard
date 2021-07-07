@@ -6,9 +6,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 class SearchController extends Controller{
 
-    public function show($q)
+    /**
+     * @param string $q
+     * @return array
+     */
+    public function show(string $q): array
     {
-	 return BlogController::search($q);
+//	 return BlogController::search($q);
+     return BlogController::advancedSearch($q);
     }
 
 
