@@ -55,43 +55,47 @@ class DoctorController extends Controller
         $section_id = (int)$request->section_id;
 
         $heads = Section::find($section_id)->doctors;
-        $heads = $heads->load('translations');
-        $heads = [
-            'image' => Voyager::image($heads->image),
-            'id'=>$heads->id,
-            'ar' => [
-                'name' => $heads->name,
-                'slug'=>$heads->slug,
-                'title' => $heads->title,
-                'qualifications' => $heads->qualifications,
-                'current_positions'=>$heads->current_positions,
-            ],
-            'en'=>Helper::toTranslation($heads->translations),
-
-        ];
-//        $doctors = Doctor::whereSection_id($section_id)->with('section','translations')->paginate(12);
-        $doctors = Doctor::whereSection_id($section_id)->with('translations')->paginate(12);
-
-        $doctors_data['current_page'] = $doctors->currentPage();
-        $doctors_data['next_page_url'] = $doctors->nextPageUrl();
-        $doctors_data['prev_page_url'] = $doctors->previousPageUrl();
-        $doctors_data['total'] = $doctors->total();
-        $doctors_data['last_page'] = $doctors->lastPage();
-        $doctors_data['data'] = [];
-        foreach ($doctors->items() as $doctor) {
-            $doctors_data['data'][] = [
-                'image' => Voyager::image($doctor->image),
-                'id' => $doctor->id,
+        if($heads) {
+            $heads = $heads->load('translations');
+            $heads = [
+                'image' => Voyager::image($heads->image),
+                'id' => $heads->id,
                 'ar' => [
-                    'name' => $doctor->name,
-                    'slug' => $doctor->slug,
-                    'title' => $doctor->title,
-                    'qualifications' => $doctor->qualifications,
-                    'current_positions' => $doctor->current_positions,
+                    'name' => $heads->name,
+                    'slug' => $heads->slug,
+                    'title' => $heads->title,
+                    'qualifications' => $heads->qualifications,
+                    'current_positions' => $heads->current_positions,
                 ],
-                'en' => Helper::toTranslation($doctor->translations),
+                'en' => Helper::toTranslation($heads->translations),
 
             ];
+//        $doctors = Doctor::whereSection_id($section_id)->with('section','translations')->paginate(12);
+            $doctors = Doctor::whereSection_id($section_id)->with('translations')->paginate(12);
+
+            $doctors_data['current_page'] = $doctors->currentPage();
+            $doctors_data['next_page_url'] = $doctors->nextPageUrl();
+            $doctors_data['prev_page_url'] = $doctors->previousPageUrl();
+            $doctors_data['total'] = $doctors->total();
+            $doctors_data['last_page'] = $doctors->lastPage();
+            $doctors_data['data'] = [];
+            foreach ($doctors->items() as $doctor) {
+                $doctors_data['data'][] = [
+                    'image' => Voyager::image($doctor->image),
+                    'id' => $doctor->id,
+                    'ar' => [
+                        'name' => $doctor->name,
+                        'slug' => $doctor->slug,
+                        'title' => $doctor->title,
+                        'qualifications' => $doctor->qualifications,
+                        'current_positions' => $doctor->current_positions,
+                    ],
+                    'en' => Helper::toTranslation($doctor->translations),
+
+                ];
+            }
+        } else {
+            $doctors_data = 'no doctors found in this section';
         }
 	$page = Page::where('id','=',9)->firstOrFail();
 
