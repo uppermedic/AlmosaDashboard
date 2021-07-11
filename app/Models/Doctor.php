@@ -13,9 +13,9 @@ class Doctor extends Model
     protected $translatable =  ['slug','name','title','qualifications','current_positions'];
 
     protected $fillable = ['slug','name','title','qualifications','current_positions','image'];
-    
-    public function section()
-    {
-        return $this->hasOne(Section::class);
-    }
+
+//    public function section()
+//    {
+//        return $this->hasOne(Section::class);
+//    }
 }
