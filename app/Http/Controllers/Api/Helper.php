@@ -78,6 +78,26 @@ class Helper{
         return $getTranslatedItems;
     }
 
+    /**
+     * handle the translations
+     * get specified columns
+     * @param $translations
+     * @param null $columns
+     * @return array|null
+     */
+    public static function getColumnTranslation($translations, string $column): ?string
+    {
+        if( !empty($column)){
+            foreach ($translations as $translation) {
+                if($translation['column_name'] === $column){
+                    return $translation['value'];
+                }
+            }
+        }
+
+        return null;
+    }
+
     public static function page(Page $page): array
     {
         //$page = Page::where(['id'=>3,"status"=>"ACTIVE"])->with('translations')->first();
