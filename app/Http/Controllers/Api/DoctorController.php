@@ -117,19 +117,37 @@ class DoctorController extends Controller
     }
 
     /**
+     * @param $doctor
+     * @return array
+     */
+    private function getSocialInfo($doctor): array
+    {
+        return [
+            'facebook' => $doctor->facebook,
+            'twitter' => $doctor->twitter,
+            'linkedin' => $doctor->linkedin,
+            'website_url' => $doctor->website_url,
+            'whatsapp_number' => $doctor->whatsapp_number,
+        ];
+    }
+
+    /**
      * @param $slug
      * @return Application|ResponseFactory|Response
      */
     public function getDoctor($slug)
     {
+        $page = Page::where('id','=',9)->firstOrFail();
         $doctor = Doctor::where('slug', $slug)->with('translations')->firstOrFail();
         $data = [];
+        $data['page'] = Helper::page($page);
         $data['data']['slug'] = $doctor->slug;
         $data['data']['image'] = Voyager::image($doctor->image);
         $data['data']['id'] = $doctor->id;
         $data['data']['section_id'] = $doctor->section_id;
         $data['data']['ar'] = $this->getQualifications($doctor, 'ar');
         $data['data']['en'] = $this->getQualifications($doctor, 'en');
+        $data['social'] = $this->getSocialInfo($doctor);
 
         return response($data);
     }
