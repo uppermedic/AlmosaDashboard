@@ -54,10 +54,21 @@ class DoctorController extends Controller
         return $data;
     }
 
-    private function getOurDoctors():array
+    /**
+     * @param object|null $doctors
+     * @param false $noResults
+     * @return array|string
+     */
+    private function getOurDoctors(object $doctors = null, bool $noResults = false)
     {
+        if($noResults) {
+            return 'no doctors found in this section';
+        }
+        if (!$doctors) {
+            $doctors = Doctor::with('translations')->paginate(8);
+        }
+
         $data = [];
-        $doctors = Doctor::with('translations')->paginate(8);
         $data['current_page'] = $doctors->currentPage();
         $data['next_page_url'] = $doctors->nextPageUrl();
         $data['prev_page_url'] = $doctors->previousPageUrl();
@@ -156,8 +167,10 @@ class DoctorController extends Controller
     {
         $section_id = (int)$request->section_id;
 
-        $heads = Section::find($section_id)->doctors;
+        $heads = Section::find($section_id);
         if($heads) {
+            $noResults = false;
+            $heads = $heads->doctors;
             $heads = $heads->load('translations');
             $heads = [
                 'image' => Voyager::image($heads->image),
@@ -197,10 +210,11 @@ class DoctorController extends Controller
                 ];
             }
         } else {
+            $noResults = true;
             $doctors_data = 'no doctors found in this section';
         }
 	$page = Page::where('id','=',9)->firstOrFail();
 
-        return response(['page' => Helper::page($page),'SectionHead'=>$heads,'doctors'=>$doctors_data],200);
+        return response(['page' => Helper::page($page),'SectionHead'=>$heads,'doctors'=>$doctors_data, 'our_doctors' => $this->getOurDoctors($doctors ?? null, $noResults)],200);
     }
 }
