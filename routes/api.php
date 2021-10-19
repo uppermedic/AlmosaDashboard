@@ -73,6 +73,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('doctors')->group(function () {
 
         Route::get('/', DoctorController::class . '@show');
+        Route::get('/{slug}', DoctorController::class . '@getDoctor');
         Route::get('/filter/id={section_id}', DoctorController::class . '@filter');
 
     });
@@ -151,7 +152,9 @@ Route::prefix('v2')->group(function () {
         });
 
     });
+
     Route::get('/doctors', DoctorController::class . '@show');
+
 
     Route::prefix('blog')->group(function () {
         Route::get('/', BlogController::class . '@show');

@@ -10,7 +10,7 @@ class Doctor extends Model
 {
     use HasFactory,Translatable;
 
-    protected $translatable =  ['slug','name','title','qualifications','current_positions'];
+    protected $translatable =  ['slug','name','title','qualifications','current_positions','specialization','degree','areas_of_expertise','nationality','languages','age_group'];
 
     protected $fillable = ['slug','name','title','qualifications','current_positions','image'];
 
