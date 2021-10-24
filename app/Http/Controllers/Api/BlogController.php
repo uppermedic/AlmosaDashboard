@@ -86,6 +86,8 @@ class BlogController extends Controller
                 'id' => $article->id,
                 'status' => $article->status,
                 'image' => Voyager::image($article->image),
+                'created_at' => $article->created_at->format('F d, Y'),
+                'updated_at' => $article->updated_at->format('F d, Y'),
                 'ar' => [
                     'title' => $article->title,
                     'slug' => $article->slug,
