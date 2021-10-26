@@ -73,7 +73,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('doctors')->group(function () {
 
         Route::get('/', DoctorController::class . '@show');
-        Route::get('/{slug}', DoctorController::class . '@getDoctor');
+        Route::get('/{id}', DoctorController::class . '@getDoctor');
         Route::get('/filter/id={section_id}', DoctorController::class . '@filter');
 
     });

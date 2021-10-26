@@ -146,10 +146,10 @@ class DoctorController extends Controller
      * @param $slug
      * @return Application|ResponseFactory|Response
      */
-    public function getDoctor($slug)
+    public function getDoctor($id)
     {
         $page = Page::where('id','=',9)->firstOrFail();
-        $doctor = Doctor::where('slug', $slug)->with('translations')->firstOrFail();
+        $doctor = Doctor::where('id', $id)->with('translations')->firstOrFail();
         $data = [];
         $data['page'] = Helper::page($page);
         $data['data']['slug'] = $doctor->slug;
