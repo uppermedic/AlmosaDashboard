@@ -15,11 +15,11 @@ class HistoryController extends Controller
     public function show()
     {
         $page = Page::where(['id'=>11,"status"=>"ACTIVE"])->with('translations')->first();
-if (is_null($page) ) return response(['status'=>'ERROR','message'=>'page not found'],404);
-        return response([
-            'page'=>Helper::page($page),
-            'data'=>$this->getHistory(),
-        ],200);
+        if (is_null($page) ) return response(['status'=>'ERROR','message'=>'page not found'],404);
+                return response([
+                    'page'=>Helper::page($page),
+                    'data'=>$this->getHistory(),
+                ],200);
     }
 
 

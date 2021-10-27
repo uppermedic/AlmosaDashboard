@@ -14,7 +14,7 @@ class HistoryHead extends Model
 
     public function histories()
     {
-        return $this->belongsToMany('App\Models\History','history_heads_relation','history_head_id','history_id');
+        return $this->belongsToMany('App\Models\History','history_heads_relation','history_head_id','history_id')->orderBy('histories.year', 'asc');
     } 
 
 
