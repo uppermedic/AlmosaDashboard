@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 class Blog extends Model
 {
     use HasFactory ,Translatable,Searchable;
-    protected $translatable = ['title','slug','content','excerpt','seo_title','meta_description','meta_keywords'];
+    protected $translatable = ['title','slug','content','excerpt','canonical_link','seo_title','meta_description','meta_keywords'];
 
 
     /**

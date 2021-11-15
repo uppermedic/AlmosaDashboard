@@ -10,6 +10,6 @@ class ServiceCategory extends Model
 {
     use HasFactory,Translatable,SoftDeletes;
 
-    protected $translatable = ['title','slug'];
+    protected $translatable = ['title','slug','canonical_link','meta_title','meta_description'];
 
 }

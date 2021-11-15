@@ -11,7 +11,7 @@ class Page extends Model
 {
     use Translatable;
 
-    protected $translatable = ['title', 'slug', 'body','excerpt','meta_description','meta_keywords'];
+    protected $translatable = ['title', 'slug', 'body','excerpt','canonical_link','meta_title','meta_description','meta_keywords'];
 
     /**
      * Statuses.

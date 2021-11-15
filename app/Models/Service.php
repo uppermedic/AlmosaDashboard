@@ -22,7 +22,7 @@ class Service extends Model
     use HasFactory,Translatable,SoftDeletes;
     protected $hidden = ['id'];
     protected $table = 'services';
-    protected $translatable = ['title','excerpt','content','slug','content2'];
+    protected $translatable = ['title','excerpt','content','slug','content2','canonical_link','meta_title','meta_description'];
 
     public function getSections()
     {
