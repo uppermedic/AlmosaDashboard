@@ -12,7 +12,7 @@ class SliderController extends Controller
 {
     public static function HomeSlider()
     {
-        $sliders = Slider::with('translations')->get();
+        $sliders = Slider::with('translations')->orderBy('order')->get();
 
         $data = [];
         foreach ($sliders as $slider) {
