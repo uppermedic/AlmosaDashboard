@@ -21,10 +21,17 @@ use TCG\Voyager\Facades\Voyager;
 
 class EventController extends Controller
 {
+    private $page;
+
+    public function __construct()
+    {
+        $this->page = Page::where(['id' => 6, 'status' => 'ACTIVE'])->with('translations')->first();
+        $this->page = Helper::page($this->page);
+    }
+
     public function show()
     {
-        $page = Page::where(['id' => 6, 'status' => 'ACTIVE'])->with('translations')->first();
-        $data['page'] =  Helper::page($page);
+        $data['page'] =  $this->page;
         return response($data,200);
 
     }
@@ -146,6 +153,7 @@ class EventController extends Controller
     {
         $data = [];
         $event = Event::where('id', $event_id)->with('translations')->first();
+        $data['page'] =  $this->page;
         $data['id']= $event->id;
         $data['start_date']= $event->start_date;
         $data['end_date']= $event->end_date;

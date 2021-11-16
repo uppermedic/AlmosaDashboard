@@ -16,13 +16,20 @@ use TCG\Voyager\Facades\Voyager;
 
 class MediaCenterController extends Controller
 {
+    private $page;
+
+    public function __construct()
+    {
+        $this->page = Page::where('id','=',7)->with('translations')->firstOrFail();
+        $this->page = Helper::page($this->page);
+    }
+    
     /*
      * get page settings
      */
     public function show()
     {
-        $page = Page::where('id','=',7)->with('translations')->firstOrFail();
-        $data['page'] =  Helper::page($page);
+        $data['page'] =  $this->page;
         return response($data,200);
     }
 
@@ -34,6 +41,7 @@ class MediaCenterController extends Controller
 
         $articles = HakeemMagazine::orderBy('created_at','DESC')->with('translations')->paginate(12);
         $data = [];
+        $data['page'] =  $this->page;
         $data['current_page']= $articles->currentPage();
 	    $data['last_page']   = $articles->lastPage();
         $data['previous_page_url'] = $articles->previousPageUrl();
@@ -65,12 +73,12 @@ class MediaCenterController extends Controller
         {
             $videos = VideoGallery::with('translations')->paginate(10);
         }
-
         $data = [];
+        $data['page'] =  $this->page;
         $data['current_page']= $videos->currentPage();
         $data['previous_page_url'] = $videos->previousPageUrl();
         $data['next_page_url'] = $videos->nextPageUrl();
-	$data['last_page'] = $videos->lastPage();
+	    $data['last_page'] = $videos->lastPage();
         $data['data']=[];
         foreach ($videos->items() as $article) {
             array_push($data['data'], [
@@ -132,8 +140,8 @@ class MediaCenterController extends Controller
 
         }
         $data = array_chunk($data, 20);
-
         $images = [];
+        $images['page'] =  $this->page;
         $images['images'] = (!empty($pageNumber) and $pageNumber != 0)? $data[$pageNumber -1]:$data[0];
         $images['last_page'] = count($data);
         return response($images, 200);
@@ -145,7 +153,7 @@ class MediaCenterController extends Controller
      */
     public function getPhotosCategory()
     {
-$categories = PhotoCategory::with('translations')->get();
+        $categories = PhotoCategory::with('translations')->get();
         $data = [];
         foreach ($categories as $category) {
             array_push($data, [

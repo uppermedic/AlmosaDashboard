@@ -89,16 +89,25 @@ class ServicesController extends Controller
         $data = [];
         $services = Service::where('service_category_id', $cat_id)->with('translations')->get();
         if(is_null($services)){
-	return response([
-        'status' => 'ERROR',
-        'error' => '404 not found'
-    ], 404);
-	}
-	$data['services'] = [];
+    	return response([
+            'status' => 'ERROR',
+            'error' => '404 not found'
+        ], 404);
+    	}
+    	$data['services'] = [];
         foreach ($services as $k => $service) {
-            $data['page_cover']= Voyager::image(ServiceCategory::where('id',$service->service_category_id)->first('image')->image);
+            $serviceCategory = ServiceCategory::where('id',$service->service_category_id)->first();
+            $data['page_cover']= Voyager::image($serviceCategory->image);
+            $data['seo'] = [
+                'ar'=>[
+                    'canonical_link'=>$serviceCategory->canonical_link,
+                    'meta_title'=>$serviceCategory->meta_title,
+                    'meta_description'=>$serviceCategory->meta_description,
+                ],
+                'en'=>Helper::toTranslation($serviceCategory->translations)
+            ];
             array_push($data['services'] , [
-		'thumbnail'=> Voyager::image($service->thumbnail),
+		        'thumbnail'=> Voyager::image($service->thumbnail),
                 'icon'=>Voyager::image($service->icon),
                 'color'=>$service->color,
                 'id'=>$service->id,
@@ -119,27 +128,39 @@ class ServicesController extends Controller
             $service = Service::whereId($service_id)->with('translations')->first();
             //if(is_null($service)) return response(['status'=>'ERROR','error'=>''],401) ;
         }
-            catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-                        return response([
-                            'status' => 'ERROR',
-                            'error' => '404 not found'
-                        ], 404);
-                   }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response([
+                'status' => 'ERROR',
+                'error' => '404 not found'
+            ], 404);
+        }
 
-	$data['id']  = $service->id;
+	    $data['id']  = $service->id;
         $data['icon']= Voyager::image($service->icon);
         $data['thumbnail']= Voyager::image($service->thumbnail);
         $data['image']= Voyager::image($service->image);
         $data['image2']= Voyager::image($service->image2);
         $data['seo']=[
-        'ar'=>[
+            'ar'=>[
                 'slug'=>$service->slug,
                 'title'=>$service->title,
                 'excerpt'=>$service->excerpt,
                 'content'=>$service->content,
-            'content2'=>$service->content2
-            ],
-        'en'=>Helper::toTranslation($service->translations,['slug','title','excerpt','content','content2'])
+                'content2'=>$service->content2,
+                'canonical_link'=>$service->canonical_link,
+                'meta_title'=>$service->meta_title,
+                'meta_description'=>$service->meta_description,
+                ],
+            'en'=>Helper::toTranslation($service->translations,[
+                'slug',
+                'title',
+                'excerpt',
+                'content',
+                'content2',
+                'canonical_link',
+                'meta_title',
+                'meta_description',
+            ])
         ];
         $data['sections']= $this->getServiceSections($service->id);
         $data['physicians'] = $this->getServiceDoctors($service);

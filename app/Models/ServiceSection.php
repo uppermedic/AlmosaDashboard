@@ -25,7 +25,7 @@ class ServiceSection extends Model
 {
     use HasFactory,SoftDeletes,Translatable;
 
-    protected $translatable = ['title','canonical_link','meta_title','meta_description'];
+    protected $translatable = ['title'];
     protected $fillable = ['title','service_id'];
     protected $attributes = ['color' => '#000000'];
 
