@@ -110,6 +110,8 @@ class Helper{
                     'excerpt'=>$page->excerpt,
                     'body'=>$page->body,
                     'slug'=>$page->slug,
+                    'canonical_link'=>$page->canonical_link,
+                    'meta_title'=>$page->meta_title,
                     'meta_description'=>$page->meta_description,
                     'meta_keywords'=>$page->meta_keywords,
 

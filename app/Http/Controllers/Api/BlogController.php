@@ -176,6 +176,17 @@ class BlogController extends Controller
         //}
         $data = [];
 
+        $data['id'] = $article->id;
+        $data['status'] = $article->status;
+        $data['seo'] = [
+            'ar'=>[
+                'canonical_link'=>$article->canonical_link,
+                'meta_title'=>$article->meta_title,
+                'meta_description'=>$article->meta_description,
+                'meta_keywords' => $article->meta_keywords,
+            ],
+            'en'=>Helper::toTranslation($article->translations, ['canonical_link', 'meta_title', 'meta_description'])
+        ];
         $data['ar'] = [
             'title' => $article->title,
             'content' => $article->content,
@@ -184,14 +195,6 @@ class BlogController extends Controller
         ];
         $data['en'] = Helper::toTranslation($article->translations);
         $data['image'] = Voyager::image($article->image);
-        $data['status'] = $article->status;
-        $data['id'] = $article->id;
-        $data['seo'] = [
-            'seo_title' => $article->seo_title,
-            'meta_description' => $article->meta_description,
-            'meta_keywords' => $article->meta_keywords,
-
-        ];
         $data['categories'] = $this->getCategoriesForSingleArticle($article);
         $data['tags'] = $this->getTagsForSingleArticle($article);
         $data['related'] = $this->getRelatedArticles($article);

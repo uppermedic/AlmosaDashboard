@@ -43,6 +43,14 @@ class CommunityController extends Controller
         $data = [];
         $community = Community::where('id', '=', $id)->with('translations')->first();
         $data['cover_image'] = Voyager::image($community->image);
+        $data['seo'] = [
+            'ar'=>[
+                'canonical_link'=>$community->canonical_link,
+                'meta_title'=>$community->meta_title,
+                'meta_description'=>$community->meta_description,
+            ],
+            'en'=>Helper::toTranslation($community->translations)
+        ];
         $data['ar'] = [
             'title'=>$community->title,
             'slug'=>$community->slug0
