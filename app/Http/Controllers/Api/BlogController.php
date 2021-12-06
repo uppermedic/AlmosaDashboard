@@ -38,12 +38,15 @@ class BlogController extends Controller
             $cats = explode(',', request()->get('cats'));
             $tags = explode(',', request()->get('tags'));
 
-            $articles = Blog::whereStatus('PUBLISHED')->
-            whereHas('categories', function ($q) use ($cats) {
-                $q->where('slug', 'LIKE', $cats);
-            })->orWhereHas('tags', function ($q) use ($tags) {
-                $q->where('tag_name', 'LIKE', $tags);
-            })->with('translations')->orderBy('id', 'DESC')->paginate(10);
+            $articles = Blog::whereStatus('PUBLISHED')
+            ->where(function($q) use ($cats, $tags){
+                $q->whereHas('categories', function ($q) use ($cats) {
+                    $q->where('slug', 'LIKE', $cats);
+                })->orWhereHas('tags', function ($q) use ($tags) {
+                    $q->where('tag_name', 'LIKE', $tags);
+                });
+            })
+            ->with('translations')->orderBy('id', 'DESC')->paginate(10);
         } else {
             $articles = Blog::whereStatus('PUBLISHED')->with('translations')->orderBy('id', 'DESC')->paginate(10);
         }

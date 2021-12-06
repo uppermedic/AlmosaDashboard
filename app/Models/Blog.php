@@ -47,7 +47,7 @@ class Blog extends Model
     {
         if (request()->has('type')) {
             static::addGlobalScope('type', function (Builder $builder) {
-                $builder->where('type', request()->get('type'));
+                $builder->where('blogs.type', request()->get('type'));
             });
         }
     }
