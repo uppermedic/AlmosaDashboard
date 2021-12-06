@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Builder;
 class Blog extends Model
 {
     use HasFactory ,Translatable,Searchable;
@@ -35,5 +36,19 @@ class Blog extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Models\BlogTag','blogs_tags_relation','blog_id','blog_tag_id');
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        if (request()->has('type')) {
+            static::addGlobalScope('type', function (Builder $builder) {
+                $builder->where('type', request()->get('type'));
+            });
+        }
     }
 }
