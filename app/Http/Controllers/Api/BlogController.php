@@ -88,6 +88,7 @@ class BlogController extends Controller
         foreach ($articles->items() as $article) {
             array_push($data['data'], [
                 'id' => $article->id,
+                'type' => $article->type,
                 'status' => $article->status,
                 'image' => Voyager::image($article->image),
                 'created_at' => $article->created_at->format('F d, Y'),
