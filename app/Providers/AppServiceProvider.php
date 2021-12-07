@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\FormFields\ServiceItemsField;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,9 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(env('APP_ENV') !== 'local')
-        {
-            Url::forceSchema('https');
-        }
+
     }
 }
