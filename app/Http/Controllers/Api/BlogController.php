@@ -22,7 +22,11 @@ use TCG\Voyager\Models\Translation;
 
 class BlogController extends Controller
 {
-
+    public function medicalArticle()
+    {
+        $page = Page::where('id', '=', 13)->firstOrFail();
+        return response(['page' => Helper::page($page)], 200);
+    }
 
     public function show()
     {

@@ -82,6 +82,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('blog')->group(function () {
         Route::get('/', BlogController::class . '@show');
+        Route::get('/medical-article', BlogController::class . '@medicalArticle');
         Route::get('/tags', BlogController::class . '@getTags');
         Route::get('/categories', BlogController::class . '@getCategories');
 
