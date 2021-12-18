@@ -101,6 +101,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/search/{q}', SearchController::class . '@show');
+    Route::get('/all/search', SearchController::class . '@all');
 
     Route::fallback(function () {
         return response()->json([
