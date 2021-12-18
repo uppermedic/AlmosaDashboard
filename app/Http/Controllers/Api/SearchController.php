@@ -31,7 +31,7 @@ class SearchController extends Controller{
     public function all(Request $request): array
     {
         $request->validate([
-            'search_query' => 'required|string|min:2',
+            'search_query' => 'required|string|min:3',
         ]);
         $blogs = Blog::select('id','title','content','type', 'status','image')
                         ->where('status','PUBLISHED')
