@@ -38,4 +38,9 @@ class Service extends Model
     {
         return self::get(['id','title']);
     }
+
+    public function serviceCategory()
+    {
+        return $this->belongsTo(ServiceCategory::class);
+    }
 }

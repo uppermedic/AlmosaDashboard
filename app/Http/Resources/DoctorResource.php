@@ -19,24 +19,20 @@ class DoctorResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'type' => 'doctor',
             'image' => Voyager::image($this->image),
             'ar' => [
-                'name' => $this->name,
-                'title' => $this->title,
-                'qualifications' => $this->qualifications,
+                'title' => $this->name,
+                'content' => $this->title,
+                /*'qualifications' => $this->qualifications,
                 'specialization' => $this->specialization,
                 'degree' => $this->degree,
-                'areas_of_expertise' => $this->areas_of_expertise,
+                'areas_of_expertise' => $this->areas_of_expertise,*/
             ],
-            'en' => Helper::toTranslation($this->translations, 
-                                            [
-                                                'name' ,
-                                                'title' ,
-                                                'qualifications' ,
-                                                'specialization' ,
-                                                'degree' ,
-                                                'areas_of_expertise' ,
-                                            ])
+            'en' => [
+                'title' => Helper::toTranslation($this->translations, ['name'])['name'],
+                'content' => Helper::toTranslation($this->translations, ['title'])['title']
+            ]
         ];
     }
 }
