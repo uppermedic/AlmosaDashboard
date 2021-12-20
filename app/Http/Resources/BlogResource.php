@@ -19,6 +19,7 @@ class BlogResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' => $this->id,
             'type' => $this->type,
             'image' => Voyager::image($this->image),
             'ar' => [

@@ -82,6 +82,7 @@ class SearchController extends Controller{
                     ->merge(DoctorResource::collection($doctors))
                     ->merge(ServiceResource::collection($services))
                     ->merge(EventResource::collection($events));
+                    
         return $this->paginate($items);
         return [
             'blogs' => BlogResource::collection($blogs),

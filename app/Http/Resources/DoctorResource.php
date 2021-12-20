@@ -19,6 +19,7 @@ class DoctorResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' => $this->id,
             'type' => 'doctor',
             'image' => Voyager::image($this->image),
             'ar' => [

@@ -19,6 +19,7 @@ class ServiceResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' => $this->id,
             'type' => Helper::toTranslation(optional($this->serviceCategory)->translations, ['slug'])['slug'],
             'image' => Voyager::image($this->image),
             'ar' => [
