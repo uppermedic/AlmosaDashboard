@@ -23,7 +23,7 @@ class AboutController extends Controller
         $contents = Page::find(3)->getPageContents()->with('translations')->orderBy('id','ASC')->get();
         foreach ($contents as $k => $content) {
             $pageContent[] = [
-                'image'=>$this->getFiles($content->image),
+                'files'=>$this->getFiles($content->image),
                 'ar'=>[
                     'title'=>$content->title,
                     'content'=>$content->content,
