@@ -23,7 +23,7 @@ class AboutController extends Controller
         $contents = Page::find(3)->getPageContents()->with('translations')->orderBy('id','ASC')->get();
         foreach ($contents as $k => $content) {
             $pageContent[] = [
-                'image'=>Voyager::image($content->image),
+                'image'=>$this->getFiles($content->image),
                 'ar'=>[
                     'title'=>$content->title,
                     'content'=>$content->content,
@@ -34,5 +34,17 @@ class AboutController extends Controller
         }
         return  $pageContent;
 
+    }
+
+    protected function getFiles($files):array
+    {
+        if (! json_decode($files)) 
+            return [Voyager::image($files)];
+
+        $urls = [];
+        foreach (json_decode($files) as $file) {
+            array_push($urls, Voyager::image($file));
+        }
+        return $urls;
     }
 }

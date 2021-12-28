@@ -159,6 +159,7 @@ class EventController extends Controller
         $data['end_date']= $event->end_date;
         $data['cost']= (!empty($event->cost))?$event->cost:'free';
         $data['image']= Voyager::image($event->image);
+        $data['file']= Voyager::image($event->file);
         $data['phone']= $event->phone;
         $data['email']= $event->email;
         $data['type'] = strtolower($event->type);
