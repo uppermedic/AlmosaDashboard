@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\HistoryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LayoutController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\EventController;
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/layout', LayoutController::class . '@show');
     Route::get('/', HomeController::class . '@show');
     Route::get('/home', HomeController::class . '@show');
+    Route::get('/page/{id}', PageController::class . '@show');
     Route::get('/about', AboutController::class . '@show');
 
     Route::get('/contact', ContactUsController::class . '@show');
