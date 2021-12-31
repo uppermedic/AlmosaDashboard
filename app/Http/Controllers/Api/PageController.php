@@ -24,20 +24,41 @@ class PageController extends Controller
     public function getContent($id):array
     {
         $pageContent = [];
-        $contents = Page::find($id)->getPageContents()->with('translations')->orderBy('id','ASC')->get();
+        $contents = Page::find($id)->getPageContents()->with('translations')->orderBy('id','DESC')->get();
         foreach ($contents as $k => $content) {
             $pageContent[] = [
                 'files'=>$this->getFiles($content->image),
                 'ar'=>[
                     'title'=>$content->title,
                     'content'=>$content->content,
-
                 ],
-                'en'=>Helper::toTranslation($content->translations)
+                'en'=>Helper::toTranslation($content->translations),
+                'page_items'=>$this->getPageItem($content)
             ];
         }
         return  $pageContent;
 
+    }
+
+    public function getPageItem($pageContent):array
+    {
+    	$pageItemResponse = [];
+        $pageItems = $pageContent->pageItems()->with('translations')->get();
+        foreach ($pageItems as $k => $pageItem) {
+            $pageItemResponse[$pageItem->section][] = [
+                'section'=>$pageItem->section,
+                'url'=>$pageItem->url,
+                'color'=>$pageItem->color,
+                'image'=>$this->getFiles($pageItem->image),
+                'ar'=>[
+                    'name'=>$pageItem->name,
+                    'title'=>$pageItem->title,
+                    'content'=>$pageItem->content,
+                ],
+                'en'=>Helper::toTranslation($pageItem->translations),
+            ];
+        }
+        return  $pageItemResponse;
     }
 
     protected function getFiles($files):array
