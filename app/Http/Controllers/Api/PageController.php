@@ -37,7 +37,6 @@ class PageController extends Controller
             ];
         }
         return  $pageContent;
-
     }
 
     public function getPageItem($pageContent):array
@@ -45,29 +44,35 @@ class PageController extends Controller
     	$pageItemResponse = [];
         $pageItems = $pageContent->pageItems()->with('translations')->get();
         foreach ($pageItems as $k => $pageItem) {
-            $pageItemResponse[$pageItem->section][] = [
+            $data = [
                 'section'=>$pageItem->section,
                 'url'=>$pageItem->url,
                 'color'=>$pageItem->color,
                 'image'=>$this->getFiles($pageItem->image),
                 'ar'=>[
+                    'slug'=>$pageItem->slug,
                     'name'=>$pageItem->name,
                     'title'=>$pageItem->title,
                     'content'=>$pageItem->content,
                 ],
                 'en'=>Helper::toTranslation($pageItem->translations),
             ];
+            $pageItem->group ?
+                $pageItemResponse[$pageItem->section][ $pageItem->group ][] = $data :
+                $pageItemResponse[$pageItem->section][] = $data;
         }
         return  $pageItemResponse;
     }
 
     protected function getFiles($files):array
     {
-        if (! json_decode($files)) 
+        $files = json_decode($files) ?? $files;
+
+        if ( is_string($files) ) 
             return [Voyager::image($files)];
 
         $urls = [];
-        foreach (json_decode($files) as $file) {
+        foreach ($files as $file) {
             array_push($urls, Voyager::image($file));
         }
         return $urls;

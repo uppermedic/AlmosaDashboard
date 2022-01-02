@@ -10,5 +10,5 @@ class PageItem extends Model
 {
     use HasFactory,Translatable,SoftDeletes;
 
-    protected $translatable= ['name','title','content'];
+    protected $translatable= ['name','title','content','slug'];
 }
