@@ -4,6 +4,8 @@
  **/
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use App\Models\Page;
 use TCG\Voyager\Facades\Voyager;
 
@@ -24,9 +26,10 @@ class PageController extends Controller
     public function getContent($id):array
     {
         $pageContent = [];
-        $contents = Page::find($id)->getPageContents()->with('translations')->orderBy('id','DESC')->get();
+        $contents = Page::find($id)->getPageContents()->with('translations')->orderBy('order','ASC')->get();
         foreach ($contents as $k => $content) {
             $pageContent[] = [
+                'order'=>$content->order,
                 'files'=>$this->getFiles($content->image),
                 'ar'=>[
                     'title'=>$content->title,
@@ -45,7 +48,6 @@ class PageController extends Controller
         $pageItems = $pageContent->pageItems()->with('translations')->get();
         foreach ($pageItems as $k => $pageItem) {
             $data = [
-                'section'=>$pageItem->section,
                 'url'=>$pageItem->url,
                 'color'=>$pageItem->color,
                 'image'=>$this->getFiles($pageItem->image),
@@ -58,8 +60,8 @@ class PageController extends Controller
                 'en'=>Helper::toTranslation($pageItem->translations),
             ];
             $pageItem->group ?
-                $pageItemResponse[$pageItem->section][ $pageItem->group ][] = $data :
-                $pageItemResponse[$pageItem->section][] = $data;
+                $pageItemResponse[ $pageItem->group ][] = $data :
+                $pageItemResponse[] = $data;
         }
         return  $pageItemResponse;
     }
@@ -76,5 +78,13 @@ class PageController extends Controller
             array_push($urls, Voyager::image($file));
         }
         return $urls;
+    }
+
+    public function store (Request $request)
+    {
+        dd('test');
+        $page = Page::create([
+            'status' => $request['page']['status']
+        ]);
     }
 }
