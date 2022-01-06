@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/', HomeController::class . '@show');
     Route::get('/home', HomeController::class . '@show');
     Route::get('/page/{id}', PageController::class . '@show');
+    Route::get('/page-item/{page_item}', PageController::class . '@showPageItem');
     Route::get('/about', AboutController::class . '@show');
 
     Route::get('/contact', ContactUsController::class . '@show');

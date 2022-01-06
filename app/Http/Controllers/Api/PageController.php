@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
+use App\Models\PageItem;
 use TCG\Voyager\Facades\Voyager;
 
 class PageController extends Controller
@@ -47,23 +48,49 @@ class PageController extends Controller
     	$pageItemResponse = [];
         $pageItems = $pageContent->pageItems()->with('translations')->get();
         foreach ($pageItems as $k => $pageItem) {
-            $data = [
-                'url'=>$pageItem->url,
-                'color'=>$pageItem->color,
-                'image'=>$this->getFiles($pageItem->image),
-                'ar'=>[
-                    'slug'=>$pageItem->slug,
-                    'name'=>$pageItem->name,
-                    'title'=>$pageItem->title,
-                    'content'=>$pageItem->content,
-                ],
-                'en'=>Helper::toTranslation($pageItem->translations),
-            ];
-            $pageItem->group ?
-                $pageItemResponse[ $pageItem->group ][] = $data :
+            $data = $this->responsePageItem($pageItem);
+            // if ($pageItem->section_id) {
+            /*$pageItem->section_id ?
+                $pageItemResponse[ $pageItem->section_id ][] = [
+                    'section' => [
+                        'ar' => ['title_ar' => optional($pageItem->section)->title],
+                        'en' => Helper::toTranslation(optional($pageItem->section)->translations),
+                        'page_item' => $data
+                    ]
+                ]:*/
                 $pageItemResponse[] = $data;
+            // }
         }
         return  $pageItemResponse;
+    }
+
+    public function showPageItem(PageItem $pageItem):array
+    {
+        return $this->responsePageItem($pageItem);
+    }
+
+    public function responsePageItem($pageItem):array
+    {
+        return [
+            'id'=>$pageItem->id,
+            'url'=>$pageItem->url,
+            'color'=>$pageItem->color,
+            'image'=>$this->getFiles($pageItem->image),
+            'ar'=>[
+                'slug'=>$pageItem->slug,
+                'canonical_link'=>$pageItem->canonical_link,
+                'meta_title'=>$pageItem->meta_title,
+                'meta_description'=>$pageItem->meta_description,
+                'name'=>$pageItem->name,
+                'title'=>$pageItem->title,
+                'content'=>$pageItem->content,
+            ],
+            'en'=>Helper::toTranslation($pageItem->translations),
+            'section' => [
+                'ar' => ['title' => optional($pageItem->section)->title],
+                'en' => $pageItem->section ? Helper::toTranslation(optional($pageItem->section)->translations) : [],
+            ]
+        ];
     }
 
     protected function getFiles($files):array
@@ -82,7 +109,7 @@ class PageController extends Controller
 
     public function store (Request $request)
     {
-        dd('test');
+        dd($request->page);
         $page = Page::create([
             'status' => $request['page']['status']
         ]);
