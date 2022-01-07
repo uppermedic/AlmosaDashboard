@@ -32,6 +32,7 @@ class PageController extends Controller
             $pageContent[] = [
                 'order'=>$content->order,
                 'files'=>$this->getFiles($content->image),
+                'name'=>$content->name,
                 'ar'=>[
                     'title'=>$content->title,
                     'content'=>$content->content,
@@ -71,7 +72,7 @@ class PageController extends Controller
 
     public function responsePageItem($pageItem):array
     {
-        return [
+        $data = [
             'id'=>$pageItem->id,
             'url'=>$pageItem->url,
             'color'=>$pageItem->color,
@@ -85,12 +86,16 @@ class PageController extends Controller
                 'title'=>$pageItem->title,
                 'content'=>$pageItem->content,
             ],
-            'en'=>Helper::toTranslation($pageItem->translations),
-            'section' => [
-                'ar' => ['title' => optional($pageItem->section)->title],
-                'en' => $pageItem->section ? Helper::toTranslation(optional($pageItem->section)->translations) : [],
-            ]
+            'en'=>Helper::toTranslation($pageItem->translations)
         ];
+
+        if ($pageItem->section_id) 
+            $data ['section'] = [
+                    'id' => $pageItem->section_id,
+                    'ar' => ['title' => optional($pageItem->section)->title],
+                    'en' => Helper::toTranslation(optional($pageItem->section)->translations),
+                ];
+        return $data;
     }
 
     protected function getFiles($files):array
