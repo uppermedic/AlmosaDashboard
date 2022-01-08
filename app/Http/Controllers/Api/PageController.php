@@ -136,6 +136,8 @@ class PageController extends Controller
             $pageItem->update(['image'=>'page-items/'.$basename]);
         }
 
-        return "done";
+        return response([
+            'Message'=>'Successfully Done',
+        ],200);
     }
 }
