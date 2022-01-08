@@ -100,15 +100,16 @@ class PageController extends Controller
 
     protected function getFiles($files):array
     {
-        $files = json_decode($files) ?? $files;
-
-        if ( is_string($files) ) 
-            return [Voyager::image($files)];
-
         $urls = [];
-        foreach ($files as $file) {
-            array_push($urls, Voyager::image($file));
-        }
+
+        if ( is_string($files) ){
+            $files = json_decode($files) ?? [Voyager::image($files)];
+
+            foreach ($files as $file) {
+                array_push($urls, Voyager::image($file));
+            }
+        } 
+
         return $urls;
     }
 
