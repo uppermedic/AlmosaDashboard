@@ -103,7 +103,7 @@ class PageController extends Controller
         $urls = [];
 
         if ( is_string($files) ){
-            $files = json_decode($files) ?? [Voyager::image($files)];
+            $files = json_decode($files) ?? [$files];
 
             foreach ($files as $file) {
                 array_push($urls, Voyager::image($file));
@@ -113,11 +113,29 @@ class PageController extends Controller
         return $urls;
     }
 
-    public function store (Request $request)
+    public function storePageItem (Request $req)
     {
-        dd($request->page);
-        $page = Page::create([
-            'status' => $request['page']['status']
-        ]);
+        foreach($req->all() as $request) {
+            $request = new Request($request);
+            $pageItem = PageItem::create($request->except(['image', 'en', 'page_content_ids']));
+            $pageItem->pageContents()->sync($request->page_content_ids);
+            if ($request->en && !empty($request->en)) {
+                $translation['table_name'] = 'page_items';
+                $translation['locale'] = 'en';
+                $translation['foreign_key'] = $pageItem->id;
+                foreach($request->en as $key => $value)
+                {
+                    $translation['column_name'] = $key;
+                    $translation['value'] = $value;
+                    \DB::table('translations')->insert($translation);
+                }
+            }
+            foreach($request->image as $basename => $image)
+                \Storage::put('public/page-items/'.$basename, file_get_contents($image));
+
+            $pageItem->update(['image'=>'page-items/'.$basename]);
+        }
+
+        return "done";
     }
 }

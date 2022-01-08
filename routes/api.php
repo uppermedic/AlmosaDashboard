@@ -22,7 +22,7 @@ use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\EventController;
 
 Route::prefix('v1')->group(function () {
-    Route::post('/page', PageController::class . '@store');
+    Route::post('/page-item', PageController::class . '@storePageItem');
     Route::get('/layout', LayoutController::class . '@show');
     Route::get('/', HomeController::class . '@show');
     Route::get('/home', HomeController::class . '@show');
